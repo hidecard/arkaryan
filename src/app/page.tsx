@@ -155,7 +155,7 @@ export default function Home() {
       period: '2024 - Now',
       type: 'Full-time',
       description: 'Teaching programming and leading development projects',
-      technologies: ['Next.js', 'Express.js', 'React.js', 'Node.js', 'MongoDB'],
+      technologies: ['Next.js', 'Express.js', 'React.js', 'Node.js', 'MongoDB','Web Design and Development','Flutter & Dart','Python','C# Programming','Laravel & Vue'],
     },
     {
       title: 'Founder & Graphic Designer',
@@ -195,7 +195,7 @@ export default function Home() {
       period: '2021 - 2022',
       type: 'Full-time',
       description: 'Developed software solutions and maintained applications',
-      technologies: ['JavaScript', 'React.js', 'Node.js', 'Database Design'],
+      technologies: ['Java', 'Flutter','Database'],
     },
   ];
 
