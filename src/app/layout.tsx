@@ -19,9 +19,6 @@ export const metadata: Metadata = {
   description: "Professional portfolio of Arkar Yan, a Full-Stack Developer with expertise in React.js, Next.js, Node.js, PHP, and mobile development.",
   keywords: ["Arkar Yan", "Full-Stack Developer", "React.js", "Next.js", "Node.js", "PHP", "Flutter", "Web Development", "Mobile Development"],
   authors: [{ name: "Arkar Yan" }],
-  icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
-  },
   openGraph: {
     title: "Arkar Yan - Full-Stack Developer",
     description: "Professional portfolio showcasing web and mobile development projects",
