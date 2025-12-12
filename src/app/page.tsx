@@ -381,11 +381,11 @@ export default function Home() {
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">5+</div>
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">10+</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
                   </div>
                   <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">50+</div>
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">200+</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
                   </div>
                 </div>
