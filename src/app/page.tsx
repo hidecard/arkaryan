@@ -879,7 +879,7 @@ export default function Home() {
                     <Mail className="h-6 w-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-500" />
                   </div>
                   <h3 className="font-medium mb-2">Email</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">arkaryan2022@gmail.com</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">arkaryan.info@gmail.com</p>
                   <Button variant="outline" size="sm" className="hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-500 transition-colors" asChild>
                     <a href="mailto:arkaryan.info@gmail.com">Send email</a>
                   </Button>
@@ -890,7 +890,7 @@ export default function Home() {
                     <Phone className="h-6 w-6 text-gray-600 dark:text-gray-400 group-hover:text-green-500" />
                   </div>
                   <h3 className="font-medium mb-2">Phone</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">09 963 962 789</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">09758430371</p>
                   <Button variant="outline" size="sm" className="hover:bg-green-50 dark:hover:bg-green-900/20 hover:border-green-500 transition-colors" asChild>
                     <a href="tel:+959758430371">Call me</a>
                   </Button>
