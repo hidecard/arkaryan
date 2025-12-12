@@ -402,11 +402,11 @@ export default function Home() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
                       <Mail className="h-4 w-4 text-gray-500" />
-                      <span className="text-sm">arkaryan2022@gmail.com</span>
+                      <span className="text-sm">arkaryan.info@gmail.com</span>
                     </div>
                     <div className="flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
                       <Phone className="h-4 w-4 text-gray-500" />
-                      <span className="text-sm">09 963 962 789</span>
+                      <span className="text-sm">09758430371</span>
                     </div>
                     <div className="flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
                       <LocationIcon className="h-4 w-4 text-gray-500" />
@@ -881,7 +881,7 @@ export default function Home() {
                   <h3 className="font-medium mb-2">Email</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">arkaryan2022@gmail.com</p>
                   <Button variant="outline" size="sm" className="hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-500 transition-colors" asChild>
-                    <a href="mailto:arkaryan2022@gmail.com">Send email</a>
+                    <a href="mailto:arkaryan.info@gmail.com">Send email</a>
                   </Button>
                 </div>
                 
@@ -892,7 +892,7 @@ export default function Home() {
                   <h3 className="font-medium mb-2">Phone</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">09 963 962 789</p>
                   <Button variant="outline" size="sm" className="hover:bg-green-50 dark:hover:bg-green-900/20 hover:border-green-500 transition-colors" asChild>
-                    <a href="tel:+959963962789">Call me</a>
+                    <a href="tel:+959758430371">Call me</a>
                   </Button>
                 </div>
                 
@@ -948,9 +948,9 @@ export default function Home() {
             
             <div className="flex items-center space-x-6">
               {[
-                { icon: Github, href: 'https://github.com' },
-                { icon: Linkedin, href: 'https://linkedin.com' },
-                { icon: Twitter, href: 'https://twitter.com' }
+                { icon: Github, href: 'https://github.com/hidecard' },
+                { icon: Linkedin, href: 'https://linkedin.com/arkaryan' },
+                { icon: Twitter, href: 'https://twitter.com/arkaryan' }
               ].map((social, index) => (
                 <a 
                   key={index}
