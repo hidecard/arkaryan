@@ -15,19 +15,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arkar Yan - Full-Stack Developer Portfolio",
-  description: "Professional portfolio of Arkar Yan, a Full-Stack Developer with expertise in React.js, Next.js, Node.js, PHP, and mobile development.",
-  keywords: ["Arkar Yan", "Full-Stack Developer", "React.js", "Next.js", "Node.js", "PHP", "Flutter", "Web Development", "Mobile Development"],
+  title: "Arkar Yan - Software Engineer | Project Manager | Instructor | Founder",
+  description: "Visionary Software Architect and Educator with 10+ years experience. Led 200+ projects in enterprise SaaS, AI solutions, and cybersecurity advocacy. Founder of k Square, specializing in MERN, Laravel, and Flutter development.",
+  keywords: ["Arkar Yan", "Software Engineer", "Project Manager", "Instructor", "Founder", "Software Architect", "MERN", "Laravel", "Flutter", "Cybersecurity", "SaaS", "Next.js", "React.js", "Node.js", "PHP", "Web Development", "Mobile Development", "k Square", "Myanmar Cyber Ghost"],
   authors: [{ name: "Arkar Yan" }],
   openGraph: {
-    title: "Arkar Yan - Full-Stack Developer",
-    description: "Professional portfolio showcasing web and mobile development projects",
+    title: "Arkar Yan - Software Engineer & Founder",
+    description: "10+ years experience in software architecture, project management, and cybersecurity advocacy. Founder of k Square and Myanmar Cyber Ghost.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arkar Yan - Full-Stack Developer",
-    description: "Professional portfolio showcasing web and mobile development projects",
+    title: "Arkar Yan - Software Engineer & Founder",
+    description: "10+ years experience in software architecture, project management, and cybersecurity advocacy.",
   },
 };
 

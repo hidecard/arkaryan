@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Moon, Sun, Menu, X, Mail, Phone, MapPin, ExternalLink, Github, Linkedin, Twitter, ArrowRight, Calendar, MapPin as LocationIcon, Briefcase, Award, CheckCircle, Code, Database, Smartphone, Settings } from 'lucide-react';
+import { Moon, Sun, Menu, X, Mail, Phone, MapPin, ExternalLink, Github, Linkedin, Twitter, ArrowRight, Calendar, MapPin as LocationIcon, Briefcase, Award, CheckCircle, Code, Database, Smartphone, Settings, GraduationCap, Rocket, Shield, Trophy } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 // Animation Hook
@@ -82,7 +82,7 @@ export default function Home() {
     setMounted(true);
     
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'services', 'experience', 'education', 'achievements', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -123,79 +123,180 @@ export default function Home() {
     frontend: [
       { name: 'Next.js', percentage: 95, color: 'bg-gray-900 dark:bg-white' },
       { name: 'React.js', percentage: 90, color: 'bg-blue-500' },
+      { name: 'Vue.js', percentage: 85, color: 'bg-green-500' },
       { name: 'JavaScript', percentage: 95, color: 'bg-yellow-500' },
       { name: 'TypeScript', percentage: 85, color: 'bg-blue-600' },
       { name: 'Tailwind CSS', percentage: 90, color: 'bg-cyan-500' },
       { name: 'HTML/CSS', percentage: 95, color: 'bg-orange-500' },
     ],
     backend: [
+      { name: 'Node.js', percentage: 90, color: 'bg-green-500' },
       { name: 'Express.js', percentage: 90, color: 'bg-green-600' },
-      { name: 'Node.js', percentage: 85, color: 'bg-green-500' },
-      { name: 'PHP', percentage: 80, color: 'bg-purple-500' },
-      { name: 'Laravel', percentage: 75, color: 'bg-red-500' },
+      { name: 'PHP', percentage: 85, color: 'bg-purple-500' },
+      { name: 'Laravel', percentage: 80, color: 'bg-red-500' },
       { name: 'MongoDB', percentage: 85, color: 'bg-green-400' },
       { name: 'MySQL', percentage: 80, color: 'bg-blue-400' },
     ],
     mobile: [
-      { name: 'Flutter', percentage: 75, color: 'bg-blue-400' },
-      { name: 'React Native', percentage: 70, color: 'bg-cyan-400' },
+      { name: 'Flutter & Dart', percentage: 85, color: 'bg-blue-400' },
+      { name: 'Native Java (Android)', percentage: 75, color: 'bg-orange-500' },
     ],
-    tools: [
+    cybersecurity: [
+      { name: 'Vulnerability Assessment', percentage: 85, color: 'bg-red-500' },
+      { name: 'Network Security', percentage: 80, color: 'bg-yellow-600' },
+      { name: 'Incident Response', percentage: 75, color: 'bg-orange-600' },
+    ],
+    creative: [
+      { name: 'Graphic Design', percentage: 85, color: 'bg-pink-500' },
+      { name: 'Motion Video Editing', percentage: 80, color: 'bg-purple-500' },
+      { name: 'Page Administration', percentage: 90, color: 'bg-blue-500' },
+    ],
+    systems: [
+      { name: 'CCNA Networking', percentage: 85, color: 'bg-blue-600' },
+      { name: 'Linux System Administration', percentage: 80, color: 'bg-orange-600' },
       { name: 'Git & GitHub', percentage: 90, color: 'bg-gray-700' },
-      { name: 'Docker', percentage: 75, color: 'bg-blue-500' },
-      { name: 'Linux', percentage: 80, color: 'bg-orange-600' },
-      { name: 'Figma', percentage: 85, color: 'bg-purple-400' },
     ],
   };
 
+  const projects = [
+    {
+      title: 'Solo VPN',
+      description: 'Java Native VPN application focusing on secure network protocols, data encryption, and high-performance connectivity.',
+      technologies: ['Java Native', 'Network Security', 'Data Encryption', 'VPN Protocols'],
+      category: 'Mobile',
+      featured: true,
+    },
+    {
+      title: 'KG English',
+      description: 'Interactive educational mobile application designed to enhance English language learning for young students through gamified experiences.',
+      technologies: ['Flutter & Dart', 'Educational Gaming', 'Mobile UI/UX', 'Language Learning'],
+      category: 'Mobile',
+      featured: true,
+    },
+    {
+      title: 'MM Carrier AI',
+      description: 'Comprehensive platform designed to streamline logistics and career networking in the Myanmar market, integrated with advanced AI features.',
+      technologies: ['AI Integration', 'Logistics Management', 'Career Networking', 'Marketplace'],
+      category: 'Web',
+      featured: true,
+    },
+    {
+      title: 'YBS AI (Intelligent Public Transport)',
+      description: 'AI-integrated solution for the Yangon Bus Service to optimize route planning and real-time navigation.',
+      technologies: ['AI/ML', 'Real-time Navigation', 'Route Optimization', 'Public Transport'],
+      category: 'AI',
+      featured: true,
+    },
+    {
+      title: 'OneKit Framework',
+      description: 'Custom lightweight JavaScript framework for routing and state management to optimize web performance.',
+      technologies: ['JavaScript', 'Framework Development', 'State Management', 'Web Performance'],
+      category: 'Framework',
+      featured: false,
+    },
+    {
+      title: 'Mobile App Portfolio',
+      description: 'Various utility software solutions currently available on Google Play Store for public use.',
+      technologies: ['Flutter', 'Play Store Deployment', 'Mobile Utilities', 'App Development'],
+      category: 'Mobile',
+      featured: false,
+    },
+  ];
+
+  const education = [
+    {
+      degree: 'Network Engineering & CCNA',
+      institution: 'Cisco Certified Network Associate',
+      period: '2014 – Present',
+      type: 'Certification',
+      description: 'Advanced networking concepts and Cisco certification preparation',
+    },
+    {
+      degree: 'Linux System Administration',
+      institution: 'Professional Training',
+      period: '2015 – Present',
+      type: 'Certification',
+      description: 'Comprehensive Linux system administration and server management',
+    },
+    {
+      degree: 'Advanced Laravel & Vue.js Development',
+      institution: 'Professional Development',
+      period: '2018 – Present',
+      type: 'Specialization',
+      description: 'Advanced web development with modern PHP and JavaScript frameworks',
+    },
+    {
+      degree: 'Self-Taught Professional',
+      institution: 'Independent Learning',
+      period: '2014 – Present',
+      type: 'Self-Directed',
+      description: 'A decade of intensive self-study and practical application in Full-stack development and System Architecture',
+    },
+  ];
+
+  const achievements = [
+    {
+      title: '9+ Years of Teaching Excellence',
+      description: 'Empowering the next generation of Myanmar developers since 2017',
+      icon: GraduationCap,
+    },
+    {
+      title: 'Technological Evolution',
+      description: 'Transitioned from Native Java development to modern Cross-platform (Flutter) and Full-stack cloud architectures',
+      icon: Rocket,
+    },
+    {
+      title: 'Cybersecurity Impact',
+      description: 'Successfully resolved complex cybercrime cases and provided public education via Myanmar Cyber Ghost',
+      icon: Shield,
+    },
+    {
+      title: 'Entrepreneurial Success',
+      description: 'Founded three distinct ventures in Tech, Cybersecurity, and Agriculture',
+      icon: Trophy,
+    },
+  ];
+
   const experiences = [
     {
-      title: 'Programming Teacher & Senior Developer',
+      title: 'Programming Instructor & Project Manager',
       company: 'YHA Computer',
-      period: '2024 - Now',
+      period: '2024 – Present',
       type: 'Full-time',
-      description: 'Teaching programming and leading development projects',
-      technologies: ['Next.js', 'Express.js', 'React.js', 'Node.js', 'MongoDB','Web Design and Development','Flutter & Dart','Python','C# Programming','Laravel & Vue'],
+      description: 'Leading high-impact development projects and supervising student-led initiatives. Instructing advanced courses in Full-stack Web Development and Mobile App Frameworks.',
+      technologies: ['Next.js', 'Express.js', 'React.js', 'Node.js', 'MongoDB', 'Web Design', 'Flutter & Dart', 'Python', 'C# Programming', 'Laravel & Vue'],
     },
     {
-      title: 'Founder & Graphic Designer',
-      company: 'Power Agri',
-      period: '2022 - 2024',
+      title: 'Cybersecurity Consultant & Digital Literacy Advocate',
+      company: 'Myanmar Cyber Ghost',
+      period: '2024 – Present',
       type: 'Founder',
-      description: 'Founded agricultural tech company with graphic design services',
-      technologies: ['Figma', 'Adobe Creative Suite', 'Web Design', 'Branding'],
+      description: 'Founded platform to share knowledge on Cybercrime and technical security trends. Specialized in Vulnerability Assessment and providing protection strategies.',
+      technologies: ['Vulnerability Assessment', 'Network Security', 'Incident Response', 'Digital Literacy Advocacy'],
     },
     {
-      title: 'Graphic Designer',
-      company: 'Taung Thu Gyi',
-      period: '2022 - 2024',
-      type: 'Part-time',
-      description: 'Created visual designs and marketing materials',
-      technologies: ['Adobe Photoshop', 'Illustrator', 'Figma', 'Canva'],
-    },
-    {
-      title: 'Cyber Security Specialist',
-      company: 'MCG & MART',
-      period: '2020 - 2023',
-      type: 'Full-time',
-      description: 'Implemented security measures and protected digital assets',
-      technologies: ['Network Security', 'Firewall Configuration', 'SIEM Tools', 'Penetration Testing'],
-    },
-    {
-      title: 'Software Developer | Founder CEO',
+      title: 'Founder & CEO',
       company: 'k Square',
-      period: '2022 - 2024',
+      period: '2022 – Present',
       type: 'Founder',
-      description: 'Founded tech startup and led software development',
-      technologies: ['Full-Stack Development', 'Project Management', 'Business Strategy', 'Team Leadership'],
+      description: 'Directing software firm specializing in custom enterprise solutions and modern SaaS architecture. Spearheading technical strategy and client relations.',
+      technologies: ['SaaS Architecture', 'Project Management', 'Business Strategy', 'Team Leadership', 'Full-Stack Development'],
     },
     {
-      title: 'Software Developer',
-      company: 'Nwe Moe Saung',
-      period: '2021 - 2022',
-      type: 'Full-time',
-      description: 'Developed software solutions and maintained applications',
-      technologies: ['Java', 'Flutter','Database'],
+      title: 'Independent Software Developer & Media Consultant',
+      company: 'Freelance',
+      period: '2017 – 2024',
+      type: 'Freelance',
+      description: 'Delivered high-quality freelance software solutions for local and international clients. Mentored hundreds of students through online batches.',
+      technologies: ['Full-Stack Development', 'Mobile Development', 'Graphic Design', 'Motion Video Editing', 'Page Administration'],
+    },
+    {
+      title: 'Founder',
+      company: 'Power Agriculture Myanmar',
+      period: '2023 – Present',
+      type: 'Founder',
+      description: 'Established proprietary brand for agricultural products, managing end-to-end supply chain and branding.',
+      technologies: ['Brand Management', 'Supply Chain', 'Agricultural Technology', 'Business Development'],
     },
   ];
 
@@ -227,7 +328,7 @@ export default function Home() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {['home', 'about', 'skills', 'services', 'experience', 'contact'].map((section, index) => (
+              {['home', 'about', 'skills', 'projects', 'services', 'experience', 'education', 'achievements', 'contact'].map((section, index) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -276,7 +377,7 @@ export default function Home() {
             isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
           }`}>
             <div className="py-4 space-y-2 border-t border-gray-200 dark:border-gray-800">
-              {['home', 'about', 'skills', 'services', 'experience', 'contact'].map((section) => (
+              {['home', 'about', 'skills', 'projects', 'services', 'experience', 'education', 'achievements', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -314,15 +415,16 @@ export default function Home() {
             {/* Title */}
             <AnimatedSection delay={400}>
               <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-medium">
-                Full-Stack Developer
+                Software Engineer | Project Manager | Instructor | Founder
               </p>
             </AnimatedSection>
             
             {/* Description */}
             <AnimatedSection delay={600}>
               <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                I build modern, scalable web applications with clean code and exceptional user experiences. 
-                Passionate about creating digital solutions that make a difference.
+                Visionary Software Architect and Educator with 10+ years experience. Successfully led 200+ projects, 
+                ranging from enterprise SaaS to community-driven AI solutions. Founder of k Square and Myanmar Cyber Ghost, 
+                dedicated to bridging the gap between industry and education through expert-led mentorship.
               </p>
             </AnimatedSection>
             
@@ -450,7 +552,7 @@ export default function Home() {
             </div>
           </AnimatedSection>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Frontend Skills */}
             <AnimatedCard delay={200}>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
@@ -550,17 +652,17 @@ export default function Home() {
               </div>
             </AnimatedCard>
 
-            {/* Tools Skills */}
+            {/* Cybersecurity Skills */}
             <AnimatedCard delay={800}>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
                 <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                  <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                    <Settings className="h-4 w-4 text-orange-500" />
+                  <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <Settings className="h-4 w-4 text-red-500" />
                   </div>
-                  Tools & Systems
+                  Cybersecurity
                 </h3>
                 <div className="space-y-4">
-                  {skills.tools.map((skill, index) => (
+                  {skills.cybersecurity.map((skill, index) => (
                     <div key={skill.name} className="space-y-2">
                       <div className="flex justify-between mb-2">
                         <span className="text-sm font-medium">{skill.name}</span>
@@ -573,6 +675,72 @@ export default function Home() {
                             style={{ 
                               width: skillsVisible ? `${skill.percentage}%` : '0%',
                               transitionDelay: `${800 + index * 100}ms`
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </AnimatedCard>
+
+            {/* Creative Skills */}
+            <AnimatedCard delay={1000}>
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <div className="w-8 h-8 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <Settings className="h-4 w-4 text-pink-500" />
+                  </div>
+                  Creative Suite
+                </h3>
+                <div className="space-y-4">
+                  {skills.creative.map((skill, index) => (
+                    <div key={skill.name} className="space-y-2">
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm font-medium">{skill.name}</span>
+                        <span className="text-sm text-gray-500">{skill.percentage}%</span>
+                      </div>
+                      <div className="relative">
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                          <div 
+                            className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
+                            style={{ 
+                              width: skillsVisible ? `${skill.percentage}%` : '0%',
+                              transitionDelay: `${1000 + index * 100}ms`
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </AnimatedCard>
+
+            {/* Systems Skills */}
+            <AnimatedCard delay={1200}>
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                  <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                    <Settings className="h-4 w-4 text-orange-500" />
+                  </div>
+                  Systems & Networking
+                </h3>
+                <div className="space-y-4">
+                  {skills.systems.map((skill, index) => (
+                    <div key={skill.name} className="space-y-2">
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm font-medium">{skill.name}</span>
+                        <span className="text-sm text-gray-500">{skill.percentage}%</span>
+                      </div>
+                      <div className="relative">
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                          <div 
+                            className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
+                            style={{ 
+                              width: skillsVisible ? `${skill.percentage}%` : '0%',
+                              transitionDelay: `${1200 + index * 100}ms`
                             }}
                           ></div>
                         </div>
@@ -776,6 +944,56 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section id="projects" className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedSection>
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Notable Projects</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                Featured projects showcasing my expertise across different domains
+              </p>
+            </div>
+          </AnimatedSection>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.filter(project => project.featured).map((project, index) => (
+              <AnimatedCard key={index} delay={index * 200}>
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                  <div className="mb-4">
+                    <Badge className="mb-3 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                      {project.category}
+                    </Badge>
+                    <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      {project.description}
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <h4 className="font-medium text-sm">Technologies</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <Badge 
+                          key={tech} 
+                          variant="secondary" 
+                          className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:scale-110 transition-transform duration-300"
+                          style={{ animationDelay: `${techIndex * 50}ms` }}
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section with Timeline Animation */}
       <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800/50">
         <div className="max-w-6xl mx-auto px-6">
@@ -852,6 +1070,80 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education & Certifications Section */}
+      <section id="education" className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedSection>
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Education & Certifications</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                My educational background and professional certifications
+              </p>
+            </div>
+          </AnimatedSection>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {education.map((edu, index) => (
+              <AnimatedCard key={index} delay={index * 200}>
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Award className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="text-xl font-semibold mb-2">{edu.degree}</h3>
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        <span className="font-medium">{edu.institution}</span>
+                        <span>•</span>
+                        <span>{edu.period}</span>
+                      </div>
+                      <Badge variant="outline" className="mb-3 text-xs">
+                        {edu.type}
+                      </Badge>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {edu.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements & Milestones Section */}
+      <section id="achievements" className="py-20 bg-gray-50 dark:bg-gray-800/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <AnimatedSection>
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Achievements & Milestones</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                Key accomplishments and career highlights
+              </p>
+            </div>
+          </AnimatedSection>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {achievements.map((achievement, index) => (
+              <AnimatedCard key={index} delay={index * 200}>
+                <div className="bg-white dark:bg-gray-800 p-8 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <achievement.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {achievement.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {achievement.description}
+                  </p>
                 </div>
               </AnimatedCard>
             ))}
