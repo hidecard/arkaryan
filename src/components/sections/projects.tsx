@@ -72,6 +72,7 @@ const AnimatedCard = ({ children, className = "", delay = 0 }: { children: React
 // Helper function to get detail path
 const getDetailPath = (title: string) => {
   switch(title) {
+    case 'PhotoBooth': return '/projects/photobooth';
     case 'Exam System': return '/projects/exam-system';
     case 'YHA - AI': return '/projects/yha-ai';
     case 'DWMBlurGlass': return '/projects/dwmblurglass';
@@ -306,6 +307,110 @@ Milestone generation with completion tracking
 🇲🇲 Burmese Language First
 Full UI text and AI-generated content in Myanmar language
 Pyidaungsu font support for proper Burmese rendering`
+  },
+  {
+    title: 'PhotoBooth',
+    description: 'A fun, interactive web-based PhotoBooth application that lets you capture memorable moments with cute frames, effects, and customizable layouts.',
+    technologies: ['HTML5', 'CSS3', 'Vanilla JavaScript', 'Bootstrap 5.3.0', 'WebRTC', 'Canvas API', 'Google Analytics', 'Icons8'],
+    category: 'Web Application',
+    featured: true,
+    liveDemo: 'https://photobooth-alpha-five.vercel.app/',
+    features: [
+      '📷 Core Photo Capture',
+      '🎨 Photo Effects',
+      '✨ Cute Frames (20+ Styles)',
+      '📐 Layout Options',
+      '🖼️ Background Customization',
+      '📝 Watermark & Branding',
+      '🔗 Sharing & Export',
+      '📱 User Experience'
+    ],
+    detailedDescription: `PhotoBooth
+A fun, interactive web-based PhotoBooth application that lets you capture memorable moments with cute frames, effects, and customizable layouts. Perfect for creating instant photo strips to share with friends!
+
+🌟 Features
+Core Photo Capture
+4-Photo Sequence: Automatically captures 4 pictures in a row with customizable countdown timer
+Custom Countdown: Choose countdown duration from 1 to 5 seconds per shot
+Camera Flip: Toggle between front and rear cameras on supported devices
+Live Preview: Real-time camera feed with instant effect previews
+
+Photo Effects
+Sepia - Classic vintage look
+Black & White (Grayscale) - Timeless monochrome
+Blur - Soft focus effect
+None - Clean, unfiltered capture
+
+Cute Frames (20+ Styles)
+Decorate your photos with adorable frame designs:
+Stars, Hearts, Sunflowers, Flowers, Bows
+Bunnies, Waves, Clouds, Cats, Pusheen
+Rainbow, Diamonds, Moon, Cherries
+Glitter, Pawprints, Candy, Butterflies, Galaxy
+Custom Solid Color - Pick any color with a color picker
+Custom Gradient - Create your own two-color gradient frames
+
+Layout Options
+Vertical Strip - Classic photobooth strip layout
+2x2 Grid - Four photos arranged in a square grid
+Polaroid Stack - Stacked polaroid-style photos with rotation
+
+Background Customization (Polaroid Layout)
+Solid Colors - Sky blue and other preset colors
+Preset Images - Beach, stars, and more from Unsplash
+Custom Upload - Upload your own background image
+
+Watermark & Branding
+Custom Text Watermark - Add your own personalized text to downloads
+Auto Date/Time Stamp - Automatically includes capture date and time
+Fixed URL Watermark - Credits the application source
+
+Sharing & Export
+Instant Download - Save your photo strip as a high-quality PNG
+Native Share - Use the Web Share API to share directly on mobile devices
+Fallback Share - Copy link or manual download for unsupported browsers
+
+User Experience
+Responsive Design - Works seamlessly on desktop, tablet, and mobile devices
+Animated Landing Page - Floating hearts background animation on the welcome screen
+Accessibility - ARIA labels and semantic HTML for screen reader support
+Modal Information - Built-in About, Privacy, Features, and Tips & Tricks sections
+Google Analytics - Integrated tracking for usage insights
+
+🛠️ Tech Stack
+HTML5 - Page structure and semantic markup
+CSS3 - Styling, animations, responsive design, and media queries
+Vanilla JavaScript - Application logic, camera handling, canvas rendering
+Bootstrap 5.3.0 - UI components, navigation, modals, and responsive grid
+WebRTC (getUserMedia) - Camera access and video streaming
+Canvas API - Photo rendering, frame application, and image export
+Google Analytics (gtag) - Usage tracking and insights
+Icons8 - Camera, share, download, and UI icons
+Unsplash - Preset background images for polaroid layout
+
+📱 Usage
+Getting Started
+Open index.html in a modern web browser
+Click "Start Snapping" on the welcome page to enter the PhotoBooth
+Click "Start Camera" and allow camera access when prompted
+
+Capturing Photos
+Optionally select a countdown duration (default is 3 seconds)
+Optionally flip the camera between front and rear facing
+Optionally apply an effect (sepia, grayscale, blur)
+Click "Capture Photos" to begin the 4-photo sequence
+Strike a pose for each shot during the countdown!
+
+Customizing Your Photo Strip
+Select a Frame - Choose from 20+ decorative frames, or create a custom solid/gradient frame
+Add Watermark - Enter custom text in the watermark input field
+Choose Layout - Pick between Vertical Strip, 2x2 Grid, or Polaroid Stack
+Swap Background (Polaroid only) - Choose a solid color, preset image, or upload your own
+
+Saving & Sharing
+Click "Save Photos" to download your finished photo strip as a PNG file
+Click "Share Photos" to share via your device's native share sheet
+Click "Retake Photos" to start over with a new photo session`
   },
   {
     title: 'Exam System',
