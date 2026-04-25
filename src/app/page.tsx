@@ -365,9 +365,9 @@ export default function Home() {
 
       <SkillsSection />
 
-      <ServicesSection />
-
       <ProjectsSection />
+
+      <ServicesSection />
 
       <ExperienceSection />
 

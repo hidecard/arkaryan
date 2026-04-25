@@ -74,22 +74,36 @@ const skills = {
     { name: 'Next.js', percentage: 95, color: 'bg-gray-900 dark:bg-white' },
     { name: 'React.js', percentage: 90, color: 'bg-blue-500' },
     { name: 'Vue.js', percentage: 85, color: 'bg-green-500' },
-    { name: 'JavaScript', percentage: 95, color: 'bg-yellow-500' },
-    { name: 'TypeScript', percentage: 85, color: 'bg-blue-600' },
     { name: 'Tailwind CSS', percentage: 90, color: 'bg-cyan-500' },
+    { name: 'Bootstrap', percentage: 90, color: 'bg-purple-600' },
     { name: 'HTML/CSS', percentage: 95, color: 'bg-orange-500' },
   ],
   backend: [
     { name: 'Node.js', percentage: 90, color: 'bg-green-500' },
     { name: 'Express.js', percentage: 90, color: 'bg-green-600' },
-    { name: 'PHP', percentage: 85, color: 'bg-purple-500' },
+    { name: 'Django', percentage: 70, color: 'bg-green-700' },
     { name: 'Laravel', percentage: 80, color: 'bg-red-500' },
+    { name: 'PostgreSQL', percentage: 70, color: 'bg-blue-600' },
+    { name: 'Supabase', percentage: 80, color: 'bg-green-500' },
+    { name: 'Firebase', percentage: 80, color: 'bg-yellow-500' },
     { name: 'MongoDB', percentage: 85, color: 'bg-green-400' },
     { name: 'MySQL', percentage: 80, color: 'bg-blue-400' },
+  ],
+  programmingLanguages: [
+    { name: 'Python', percentage: 80, color: 'bg-blue-600' },
+    { name: 'C#', percentage: 80, color: 'bg-purple-600' },
+    { name: 'C++', percentage: 60, color: 'bg-blue-500' },
+    { name: 'JavaScript', percentage: 95, color: 'bg-yellow-500' },
+    { name: 'Dart', percentage: 70, color: 'bg-cyan-500' },
+    { name: 'PHP', percentage: 90, color: 'bg-purple-500' },
+    { name: 'Java', percentage: 80, color: 'bg-orange-500' },
+    { name: 'TypeScript', percentage: 85, color: 'bg-blue-600' },
+    { name: 'Rust', percentage: 60, color: 'bg-orange-700' },
   ],
   mobile: [
     { name: 'Flutter & Dart', percentage: 85, color: 'bg-blue-400' },
     { name: 'Native Java (Android)', percentage: 75, color: 'bg-orange-500' },
+    { name: 'Sketchware (block programming)', percentage: 80, color: 'bg-green-500' },
   ],
   cybersecurity: [
     { name: 'Vulnerability Assessment', percentage: 85, color: 'bg-red-500' },
@@ -99,7 +113,14 @@ const skills = {
   creative: [
     { name: 'Graphic Design', percentage: 85, color: 'bg-pink-500' },
     { name: 'Motion Video Editing', percentage: 80, color: 'bg-purple-500' },
+    { name: 'Figma', percentage: 70, color: 'bg-orange-500' },
     { name: 'Page Administration', percentage: 90, color: 'bg-blue-500' },
+  ],
+  dataScience: [
+    { name: 'NumPy', percentage: 70, color: 'bg-blue-600' },
+    { name: 'Pandas', percentage: 70, color: 'bg-orange-600' },
+    { name: 'Matplotlib', percentage: 60, color: 'bg-green-600' },
+    { name: 'Seaborn', percentage: 80, color: 'bg-purple-600' },
   ],
   systems: [
     { name: 'CCNA Networking', percentage: 85, color: 'bg-blue-600' },
@@ -139,7 +160,7 @@ export default function SkillsSection() {
           </div>
         </AnimatedSection>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Frontend Skills */}
           <AnimatedCard delay={200}>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
@@ -206,8 +227,41 @@ export default function SkillsSection() {
             </div>
           </AnimatedCard>
 
-          {/* Mobile Skills */}
+          {/* Programming Languages */}
           <AnimatedCard delay={600}>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <Code className="h-4 w-4 text-indigo-600" />
+                </div>
+                Programming Languages
+              </h3>
+              <div className="space-y-4">
+                {skills.programmingLanguages.map((skill, index) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium">{skill.name}</span>
+                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
+                    </div>
+                    <div className="relative">
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div 
+                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
+                          style={{ 
+                            width: skillsVisible ? `${skill.percentage}%` : '0%',
+                            transitionDelay: `${600 + index * 100}ms`
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimatedCard>
+
+          {/* Mobile Skills */}
+          <AnimatedCard delay={800}>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
               <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
                 <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
@@ -240,7 +294,7 @@ export default function SkillsSection() {
           </AnimatedCard>
 
           {/* Cybersecurity Skills */}
-          <AnimatedCard delay={800}>
+          <AnimatedCard delay={1000}>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
               <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
                 <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
@@ -261,7 +315,7 @@ export default function SkillsSection() {
                           className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
                           style={{ 
                             width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${800 + index * 100}ms`
+                            transitionDelay: `${1000 + index * 100}ms`
                           }}
                         ></div>
                       </div>
@@ -305,8 +359,41 @@ export default function SkillsSection() {
             </div>
           </AnimatedCard>
 
-          {/* Systems Skills */}
+          {/* Data Science Skills */}
           <AnimatedCard delay={1200}>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                <div className="w-8 h-8 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                  <Database className="h-4 w-4 text-teal-600" />
+                </div>
+                Data Science
+              </h3>
+              <div className="space-y-4">
+                {skills.dataScience.map((skill, index) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium">{skill.name}</span>
+                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
+                    </div>
+                    <div className="relative">
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div 
+                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
+                          style={{ 
+                            width: skillsVisible ? `${skill.percentage}%` : '0%',
+                            transitionDelay: `${1200 + index * 100}ms`
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimatedCard>
+
+          {/* Systems Skills */}
+          <AnimatedCard delay={1400}>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
               <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
                 <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
@@ -327,7 +414,7 @@ export default function SkillsSection() {
                           className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
                           style={{ 
                             width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${1200 + index * 100}ms`
+                            transitionDelay: `${1400 + index * 100}ms`
                           }}
                         ></div>
                       </div>
