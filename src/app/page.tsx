@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Moon, Sun, Menu, X, Mail, Phone, MapPin, ExternalLink, Github, Linkedin, Twitter, ArrowRight, Calendar, MapPin as LocationIcon, Briefcase, Award, CheckCircle, Code, Database, Smartphone, Settings, GraduationCap, Rocket, Shield, Trophy } from 'lucide-react';
+import { Moon, Sun, Menu, X, Mail, Phone, MapPin, ExternalLink, Github, Linkedin, Twitter, ArrowRight, Calendar, MapPin as LocationIcon, Briefcase, Award, CheckCircle, Code, Database, Smartphone, Settings, GraduationCap, Rocket, Shield, Trophy, Send, Facebook } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import HomeSection from '@/components/sections/home';
@@ -377,39 +377,89 @@ export default function Home() {
 
       <ContactSection />
 
-      {/* Footer with Hover Effects */}
-      <footer className="border-t border-gray-200 dark:border-gray-800 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-              <div className="w-6 h-6 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
-                <span className="text-white dark:text-gray-900 font-bold text-xs">AY</span>
+      {/* Enhanced Footer with Contact Info */}
+      <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* Main Footer Content */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
+            {/* Brand Section */}
+            <div className="text-center sm:text-left">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start space-x-0 sm:space-x-3 hover:scale-105 transition-transform duration-300 mb-4">
+                <div className="w-10 h-10 bg-gray-900 dark:bg-white rounded-xl flex items-center justify-center shadow-lg mb-3 sm:mb-0">
+                  <span className="text-white dark:text-gray-900 font-bold text-sm">AY</span>
+                </div>
+                <div className="text-center sm:text-left">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Arkar Yan</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Software Engineer & Architect</p>
+                </div>
               </div>
-              <span className="font-medium">Arkar Yan</span>
             </div>
             
-            <div className="flex items-center space-x-6">
-              {[
-                { icon: Github, href: 'https://github.com/hidecard' },
-                { icon: Linkedin, href: 'https://linkedin.com/arkaryan' },
-                { icon: Twitter, href: 'https://twitter.com/arkaryan' }
-              ].map((social, index) => (
-                <a 
-                  key={index}
-                  href={social.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
+            {/* Quick Links */}
+            <div className="text-center">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h4>
+              <div className="space-y-2">
+                <a href="#home" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">Home</a>
+                <a href="#about" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">About</a>
+                <a href="#projects" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">Projects</a>
+                <a href="#contact" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">Contact</a>
+              </div>
             </div>
             
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              © 2024 Arkar Yan. All rights reserved.
-            </p>
+            {/* Contact Info */}
+            <div className="text-center sm:text-right">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Get in Touch</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center justify-center sm:justify-end space-x-2">
+                  <Mail className="h-4 w-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
+                  <a href="mailto:arkaryan.info@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors break-all">arkaryan.info@gmail.com</a>
+                </div>
+                <div className="flex items-center justify-center sm:justify-end space-x-2">
+                  <Phone className="h-4 w-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
+                  <span className="text-gray-600 dark:text-gray-400">09758430371</span>
+                </div>
+                <div className="flex items-center justify-center sm:justify-end space-x-2">
+                  <MapPin className="h-4 w-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
+                  <span className="text-gray-600 dark:text-gray-400">Yangon, Myanmar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Social Links */}
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-6 sm:pt-8">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <span className="text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">Connect with me:</span>
+                <div className="flex items-center space-x-4 sm:space-x-6">
+                  {[
+                    { icon: Github, href: 'https://github.com/hidecard' },
+                    { icon: Linkedin, href: 'https://linkedin.com/arkaryan' },
+                    { icon: Twitter, href: 'https://twitter.com/arkaryan' },
+                    { icon: Mail, href: 'mailto:arkaryan.info@gmail.com' },
+                    { icon: Send, href: 'https://t.me/hidecard1' },
+                    { icon: Facebook, href: 'https://facebook.com/arkaryan11' }
+                  ].map((social, index) => (
+                    <a 
+                      key={index}
+                      href={social.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <social.icon className="h-5 w-5" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  © 2024 Arkar Yan. All rights reserved.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </footer>

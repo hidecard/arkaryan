@@ -277,6 +277,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Project Manager & Instructor
 - Founder & Entrepreneur
 
+### 📞 Get in Touch
+- **Telegram**: [@hidecard1](https://t.me/hidecard1)
+- **Email**: arkaryan.info@gmail.com
+- **Portfolio**: [Live Demo](https://your-portfolio-url.com)
+
 ---
 
 *Built with ❤️ using Next.js 15 and modern web technologies*
