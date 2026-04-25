@@ -121,6 +121,8 @@ const skills = {
     { name: 'Pandas', percentage: 70, color: 'bg-orange-600' },
     { name: 'Matplotlib', percentage: 60, color: 'bg-green-600' },
     { name: 'Seaborn', percentage: 80, color: 'bg-purple-600' },
+    { name: 'Excel', percentage: 50, color: 'bg-green-500' },
+    { name: 'Microsoft Power BI', percentage: 60, color: 'bg-yellow-500' },
   ],
   systems: [
     { name: 'CCNA Networking', percentage: 85, color: 'bg-blue-600' },
@@ -366,7 +368,7 @@ export default function SkillsSection() {
                 <div className="w-8 h-8 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
                   <Database className="h-4 w-4 text-teal-600" />
                 </div>
-                Data Science
+                Data Analytics
               </h3>
               <div className="space-y-4">
                 {skills.dataScience.map((skill, index) => (
