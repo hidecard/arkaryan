@@ -92,7 +92,7 @@ export default function Navigation({
                 }}
                 className={`group relative px-4 py-2 rounded-lg transition-all duration-200 cursor-pointer select-none ${
                   activeSection === section
-                    ? ' dark:bg-blue-900/50 dark:text-blue-300 font-semibold'
+                    ? 'font-semibold'
                     : 'text-gray-600 dark:text-gray-400'
                 } hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white hover:shadow-md hover:scale-105`}
               >
@@ -127,7 +127,7 @@ export default function Navigation({
                   }}
                   className={`p-2 rounded-lg transition-all duration-200 cursor-pointer select-none ${
                     activeSection === item.name
-                      ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                      ? ' dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
                       : 'text-gray-600 dark:text-gray-400'
                   } hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white hover:shadow-md hover:scale-105`}
                 >
