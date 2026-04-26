@@ -14,10 +14,12 @@ import AboutSection from '@/components/sections/about';
 import SkillsSection from '@/components/sections/skills';
 import ServicesSection from '@/components/sections/services';
 import ProjectsSection from '@/components/sections/projects';
+import BlogSection from '@/app/blog/page';
 import ExperienceSection from '@/components/sections/experience';
 import EducationSection from '@/components/sections/education';
 import AchievementsSection from '@/components/sections/achievements';
 import ContactSection from '@/components/sections/contact';
+import Navigation from '@/components/navigation';
 
 // Animation Hook
 const useIntersectionObserver = (options = {}) => {
@@ -92,7 +94,7 @@ export default function Home() {
     setMounted(true);
     
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'services', 'experience', 'education', 'achievements', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'blog', 'services', 'experience', 'education', 'achievements', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -275,170 +277,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-transparent to-purple-100 dark:from-blue-900 dark:to-purple-900"></div>
       </div>
 
-      {/* Modern Responsive Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        activeSection !== 'home' 
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/30 dark:border-gray-700/30 shadow-sm' 
-          : 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm'
-      }`}>
-        <div className="max-w-8xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16 md:h-18 lg:h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
-                  <span className="text-white font-bold text-xs sm:text-sm">AY</span>
-                </div>
-              </div>
-              <div className="hidden md:block">
-                <div className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">Arkar Yan</div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 hidden lg:block">Software Engineer</div>
-              </div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden xl:flex items-center space-x-1">
-              {['home', 'about', 'skills', 'projects', 'services', 'experience', 'education', 'achievements', 'contact'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className={`group relative px-4 py-2 rounded-lg transition-all duration-200 ${
-                    activeSection === section
-                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }`}
-                >
-                  <span className="text-sm font-medium capitalize">{section}</span>
-                  {activeSection === section && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* Tablet Navigation */}
-            <div className="hidden lg:block xl:hidden">
-              <div className="flex items-center space-x-2">
-                {[
-                  { name: 'home', icon: HomeIcon },
-                  { name: 'about', icon: User },
-                  { name: 'skills', icon: Code },
-                  { name: 'projects', icon: Briefcase },
-                  { name: 'contact', icon: Mail }
-                ].map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.name)}
-                    className={`p-2 rounded-lg transition-all duration-200 ${
-                      activeSection === item.name
-                        ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                    }`}
-                  >
-                    <item.icon className="w-5 h-5" />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Actions */}
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              {/* Theme Toggle */}
-              <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 hover:scale-105"
-              >
-                {theme === 'dark' ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
-              </button>
-
-              {/* More Menu for Tablet */}
-              <div className="hidden lg:block xl:hidden">
-                <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 hover:scale-105"
-                >
-                  <Menu className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Mobile Menu Toggle */}
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden p-2 sm:p-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 hover:scale-105 shadow-md"
-              >
-                <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Tablet Dropdown Menu */}
-        {isMenuOpen && (
-          <div className="hidden lg:block xl:hidden absolute top-full right-4 mt-2 w-64 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <div className="p-2">
-              {[
-                { name: 'services', icon: Settings },
-                { name: 'experience', icon: Award },
-                { name: 'education', icon: GraduationCap },
-                { name: 'achievements', icon: Trophy }
-              ].map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    scrollToSection(item.name);
-                    setIsMenuOpen(false);
-                  }}
-                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 ${
-                    activeSection === item.name
-                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }`}
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span className="text-sm font-medium capitalize">{item.name}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Simple Mobile Dropdown */}
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg z-[9999]">
-            <div className="max-w-8xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-              <div className="py-2 space-y-1">
-                {[
-                  { name: 'home', icon: HomeIcon },
-                  { name: 'about', icon: User },
-                  { name: 'skills', icon: Code },
-                  { name: 'projects', icon: Briefcase },
-                  { name: 'services', icon: Settings },
-                  { name: 'experience', icon: Award },
-                  { name: 'education', icon: GraduationCap },
-                  { name: 'achievements', icon: Trophy },
-                  { name: 'contact', icon: Mail }
-                ].map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => {
-                      scrollToSection(item.name);
-                      setIsMenuOpen(false);
-                    }}
-                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
-                      activeSection === item.name
-                        ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
-                    }`}
-                  >
-                    <item.icon className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm font-medium capitalize">{item.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navigation 
+        activeSection={activeSection} 
+        onSectionClick={scrollToSection}
+        showScrollNavigation={true}
+      />
 
       <HomeSection scrollToSection={scrollToSection} />
 
@@ -447,6 +290,8 @@ export default function Home() {
       <SkillsSection />
 
       <ProjectsSection />
+
+      <BlogSection />
 
       <ServicesSection />
 
