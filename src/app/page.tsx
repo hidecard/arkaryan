@@ -14,7 +14,7 @@ import AboutSection from '@/components/sections/about';
 import SkillsSection from '@/components/sections/skills';
 import ServicesSection from '@/components/sections/services';
 import ProjectsSection from '@/components/sections/projects';
-import BlogSection from '@/app/blog/page';
+import BlogSection from '@/components/sections/blog';
 import ExperienceSection from '@/components/sections/experience';
 import EducationSection from '@/components/sections/education';
 import AchievementsSection from '@/components/sections/achievements';
@@ -85,30 +85,14 @@ const AnimatedCard = ({ children, className = "", delay = 0 }: { children: React
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [skillsVisible, setSkillsVisible] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
     
+    // Check if skills section is visible
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'blog', 'services', 'experience', 'education', 'achievements', 'contact'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
-
-      // Check if skills section is visible
       const skillsSection = document.getElementById('skills');
       if (skillsSection) {
         const rect = skillsSection.getBoundingClientRect();
@@ -127,7 +111,6 @@ export default function Home() {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
     }
   };
 
@@ -277,11 +260,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-transparent to-purple-100 dark:from-blue-900 dark:to-purple-900"></div>
       </div>
 
-      <Navigation 
-        activeSection={activeSection} 
-        onSectionClick={scrollToSection}
-        showScrollNavigation={true}
-      />
+      <Navigation />
 
       <HomeSection scrollToSection={scrollToSection} />
 
@@ -325,10 +304,10 @@ export default function Home() {
             <div className="text-center">
               <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h4>
               <div className="space-y-2">
-                <a href="#home" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">Home</a>
-                <a href="#about" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">About</a>
-                <a href="#projects" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">Projects</a>
-                <a href="#contact" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">Contact</a>
+                <a href="#home" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded px-2 py-1 -mx-2 -my-1">Home</a>
+                <a href="#about" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded px-2 py-1 -mx-2 -my-1">About</a>
+                <a href="#projects" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded px-2 py-1 -mx-2 -my-1">Projects</a>
+                <a href="#contact" className="block text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded px-2 py-1 -mx-2 -my-1">Contact</a>
               </div>
             </div>
             
@@ -338,7 +317,7 @@ export default function Home() {
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-center sm:justify-end space-x-2">
                   <Mail className="h-4 w-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
-                  <a href="mailto:arkaryan.info@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors break-all">arkaryan.info@gmail.com</a>
+                  <a href="mailto:arkaryan.info@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded px-2 py-1 -mx-2 -my-1 break-all">arkaryan.info@gmail.com</a>
                 </div>
                 <div className="flex items-center justify-center sm:justify-end space-x-2">
                   <Phone className="h-4 w-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
@@ -371,7 +350,7 @@ export default function Home() {
                       href={social.href} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:scale-110"
+                      className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg p-2 -m-2"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <social.icon className="h-5 w-5" />
