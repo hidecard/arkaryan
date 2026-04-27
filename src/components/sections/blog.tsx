@@ -31,6 +31,8 @@ interface BlogSectionProps {
 export default function BlogSection({ scrollToSection }: BlogSectionProps) {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const POSTS_PER_PAGE = 3;
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -50,6 +52,29 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
 
     fetchBlogs();
   }, []);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(blogs.length / POSTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const currentBlogs = blogs.slice(startIndex, endIndex);
+  const shouldShowPagination = blogs.length > POSTS_PER_PAGE;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <section id="blog" className="py-20 bg-gray-50 dark:bg-gray-900">
@@ -75,52 +100,97 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
             <p className="text-gray-600 dark:text-gray-400">No blog posts available at the moment.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {blogs.map((post) => (
-              <Card key={post.id} className="hover:shadow-lg transition-shadow duration-300">
-                {post.image_url && (
-                  <div className="h-48 md:h-64 relative overflow-hidden">
-                    <img
-                      src={post.image_url}
-                      alt={post.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary">{post.category}</Badge>
-                    {post.reading_time && (
-                      <div className="flex items-center text-sm text-gray-500">
-                        <Clock className="w-4 h-4 mr-1" />
-                        {post.reading_time} min
-                      </div>
-                    )}
-                  </div>
-                  <CardTitle className="text-xl mb-2 line-clamp-2">{post.title}</CardTitle>
-                  {post.excerpt && (
-                    <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {currentBlogs.map((post) => (
+                <Card key={post.id} className="hover:shadow-lg transition-shadow duration-300">
+                  {post.image_url && (
+                    <div className="h-48 md:h-64 relative overflow-hidden">
+                      <img
+                        src={post.image_url}
+                        alt={post.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   )}
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <Link href={`/blog/${post.id}`}>
-                      <Button variant="outline" size="sm">
-                        Read More
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
-                    {post.published_date && (
-                      <div className="flex items-center text-sm text-gray-500">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        {new Date(post.published_date).toLocaleDateString()}
-                      </div>
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge variant="secondary">{post.category}</Badge>
+                      {post.reading_time && (
+                        <div className="flex items-center text-sm text-gray-500">
+                          <Clock className="w-4 h-4 mr-1" />
+                          {post.reading_time} min
+                        </div>
+                      )}
+                    </div>
+                    <CardTitle className="text-xl mb-2 line-clamp-2">{post.title}</CardTitle>
+                    {post.excerpt && (
+                      <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
                     )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <Link href={`/blog/${post.id}`}>
+                        <Button variant="outline" size="sm">
+                          Read More
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+                      {post.published_date && (
+                        <div className="flex items-center text-sm text-gray-500">
+                          <Calendar className="w-4 h-4 mr-1" />
+                          {new Date(post.published_date).toLocaleDateString()}
+                        </div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {shouldShowPagination && (
+              <div className="flex justify-center items-center space-x-2 mb-8">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                  className="px-3 py-2"
+                >
+                  Previous
+                </Button>
+                
+                <div className="flex space-x-1">
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <Button
+                      key={index + 1}
+                      variant={currentPage === index + 1 ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => handlePageChange(index + 1)}
+                      className={`w-8 h-8 p-0 ${
+                        currentPage === index + 1
+                          ? "bg-blue-600 hover:bg-blue-700 text-white"
+                          : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                      }`}
+                    >
+                      {index + 1}
+                    </Button>
+                  ))}
+                </div>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-2"
+                >
+                  Next
+                </Button>
+              </div>
+            )}
+          </>
         )}
 
         {/* View All Posts Button */}
