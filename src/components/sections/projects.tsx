@@ -1042,6 +1042,33 @@ Data synchronization when online`
 ];
 
 export default function ProjectsSection() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const PROJECTS_PER_PAGE = 6;
+
+  // Pagination calculations
+  const featuredProjects = projects.filter(project => project.featured);
+  const totalPages = Math.ceil(featuredProjects.length / PROJECTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE;
+  const endIndex = startIndex + PROJECTS_PER_PAGE;
+  const currentProjects = featuredProjects.slice(startIndex, endIndex);
+  const shouldShowPagination = featuredProjects.length > PROJECTS_PER_PAGE;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <section id="projects" className="py-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -1055,7 +1082,7 @@ export default function ProjectsSection() {
         </AnimatedSection>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.filter(project => project.featured).map((project, index) => (
+          {currentProjects.map((project, index) => (
             <AnimatedCard key={index} delay={index * 200}>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:scale-105 group flex flex-col h-full">
                 {/* Header */}
@@ -1138,6 +1165,49 @@ export default function ProjectsSection() {
             </AnimatedCard>
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {shouldShowPagination && (
+          <div className="flex justify-center items-center space-x-2 mt-8">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="px-3 py-2"
+            >
+              Previous
+            </Button>
+            
+            <div className="flex space-x-1">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <Button
+                  key={index + 1}
+                  variant={currentPage === index + 1 ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`w-8 h-8 p-0 ${
+                    currentPage === index + 1
+                      ? "bg-blue-600 hover:bg-blue-700 text-white"
+                      : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
+                >
+                  {index + 1}
+                </Button>
+              ))}
+            </div>
+            
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="px-3 py-2"
+            >
+              Next
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
