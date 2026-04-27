@@ -36,6 +36,8 @@ A modern, responsive portfolio website built with Next.js 15, showcasing profess
   - Blog section with pagination and API integration
   - Contact forms with validation
   - Theme provider with system detection
+  - Professional timeline with company information
+  - Animated experience cards with hover effects
 
 ## 📁 Project Structure
 
@@ -121,6 +123,8 @@ arkaryan/
 - **Glow Effects** - Modern glass-morphism and backdrop blur effects
 - **Intersection Observer Animations** - Scroll-triggered element animations
 - **Gradient Underlines** - Animated navigation indicators
+- **Timeline Animations** - Professional experience timeline with staggered animations
+- **Card Interactions** - Enhanced hover states and smooth transitions
 
 ### Performance Optimizations
 - **Next.js Image Optimization** - Automatic image optimization and WebP conversion
@@ -184,8 +188,11 @@ arkaryan/
 
 ### 1. Home
 - Hero section with animated introduction
-- Call-to-action buttons
+- Professional profile image and name
+- Call-to-action buttons with hover effects
+- Stats cards showing achievements
 - Smooth scroll navigation
+- Animated section transitions
 
 ### 2. About
 - Professional summary
@@ -212,9 +219,11 @@ arkaryan/
 - Responsive card layout
 
 ### 6. Experience
-- Professional timeline
-- Company information
-- Role descriptions
+- Professional timeline with animated cards
+- Company information and role descriptions
+- Technology stack display for each position
+- Interactive hover effects and scroll animations
+- Work history with duration and type indicators
 
 ### 7. Education
 - Academic background
@@ -336,7 +345,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ### 📞 Get in Touch
 - **Telegram**: [@hidecard1](https://t.me/hidecard1)
 - **Email**: arkaryan.info@gmail.com
-- **Portfolio**: [Live Demo](https://your-portfolio-url.com)
+- **Portfolio**: [Live Demo](https://arkaryan.vercel.app)
 
 ---
 
