@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, User, ArrowRight, ExternalLink } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Calendar, Clock, User, ArrowRight, ExternalLink, Search } from 'lucide-react';
 import Link from 'next/link';
 import Navigation from '@/components/navigation';
 
@@ -36,26 +37,64 @@ interface Course {
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>([]);
+  const [categories, setCategories] = useState<string[]>(['All']);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchData = async () => {
       try {
-        const blogsResponse = await fetch(BLOGS_ENDPOINT);
+        // Fetch blogs and categories in parallel
+        const [blogsResponse, categoriesResponse] = await Promise.all([
+          fetch(BLOGS_ENDPOINT),
+          fetch('/api/categories')
+        ]);
+        
         const blogsData = await blogsResponse.json();
+        const categoriesData = await categoriesResponse.json();
         
         setBlogs(blogsData || []);
+        setFilteredBlogs(blogsData || []);
+        setCategories(categoriesData || ['All']);
       } catch (error) {
-        console.error('Error fetching blogs:', error);
-        // Set empty array on error - no fallback data
+        console.error('Error fetching data:', error);
+        // Set empty arrays on error - no fallback data
         setBlogs([]);
+        setFilteredBlogs([]);
+        setCategories(['All']);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchBlogs();
+    fetchData();
   }, []);
+
+  // Filter blogs based on search term and category
+  useEffect(() => {
+    let filtered = blogs;
+
+    // Filter by category
+    if (selectedCategory && selectedCategory !== 'All') {
+      filtered = filtered.filter(blog => 
+        blog.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(blog =>
+        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.excerpt?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setFilteredBlogs(filtered);
+  }, [blogs, searchTerm, selectedCategory]);
 
   return (
     <div id="blog" className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -72,13 +111,55 @@ export default function BlogPage() {
           </p>
         </div>
 
+        {/* Search and Filter Section */}
+        <div className="mb-8 space-y-4">
+          {/* Search Bar */}
+          <div className="relative max-w-2xl mx-auto">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Input
+              type="text"
+              placeholder="Search blog posts..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 w-full"
+            />
+          </div>
+
+          {/* Category Tags */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(category)}
+                className={`transition-colors ${
+                  selectedCategory === category
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                }`}
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+        </div>
+
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
+        ) : filteredBlogs.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-600 dark:text-gray-400">
+              {searchTerm || selectedCategory 
+                ? 'No blog posts found matching your criteria.' 
+                : 'No blog posts available at the moment.'}
+            </p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {blogs.map((post) => (
+            {filteredBlogs.map((post) => (
               <Card key={post.id} className="hover:shadow-lg transition-shadow duration-300">
                 {post.image_url && (
                   <div className="h-48 md:h-64 relative overflow-hidden">
