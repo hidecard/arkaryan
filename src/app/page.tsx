@@ -336,7 +336,7 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
               <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <span className="text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">Connect with me:</span>
-                <div className="flex items-center space-x-4 sm:space-x-6">
+                <div className="flex items-center space-x-4 sm:space-x-5">
                   {[
                     { icon: Github, href: 'https://github.com/hidecard' },
                     { icon: Linkedin, href: 'https://linkedin.com/arkaryan' },
@@ -350,7 +350,7 @@ export default function Home() {
                       href={social.href} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg p-2 -m-2"
+                      className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded-lg p-2"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       <social.icon className="h-5 w-5" />
