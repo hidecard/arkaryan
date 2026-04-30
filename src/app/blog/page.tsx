@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Calendar, Clock, User, ArrowRight, ExternalLink, Search } from 'lucide-react';
+import { Calendar, Clock, User, ArrowRight, ExternalLink, Search, Eye } from 'lucide-react';
 import Link from 'next/link';
 import Navigation from '@/components/navigation';
 
@@ -39,6 +39,7 @@ export default function BlogPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<string[]>(['All']);
+  const [viewCounts, setViewCounts] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -64,6 +65,9 @@ export default function BlogPage() {
         setBlogs(blogsArray);
         setFilteredBlogs(blogsArray);
         setCategories(categoriesArray);
+        
+        // Fetch view counts for all blogs
+        fetchViewCounts(blogsArray);
       } catch (error) {
         console.error('Error fetching data:', error);
         // Set empty arrays on error - no fallback data
@@ -77,6 +81,27 @@ export default function BlogPage() {
 
     fetchData();
   }, []);
+
+  // Fetch view counts for blogs
+  const fetchViewCounts = async (blogsList: BlogPost[]) => {
+    try {
+      const counts: Record<number, number> = {};
+      
+      await Promise.all(
+        blogsList.map(async (blog) => {
+          const response = await fetch(`/api/blog-views?blogId=${blog.id}`);
+          if (response.ok) {
+            const data = await response.json();
+            counts[blog.id] = data.count;
+          }
+        })
+      );
+      
+      setViewCounts(counts);
+    } catch (error) {
+      console.error('Error fetching view counts:', error);
+    }
+  };
 
   // Filter blogs based on search term and category
   useEffect(() => {
@@ -214,6 +239,12 @@ export default function BlogPage() {
                         <div className="flex items-center space-x-1">
                           <Clock className="h-4 w-4" />
                           <span>{post.readTime}</span>
+                        </div>
+                      )}
+                      {viewCounts[post.id] !== undefined && (
+                        <div className="flex items-center space-x-1">
+                          <Eye className="h-4 w-4" />
+                          <span>{viewCounts[post.id].toLocaleString()}</span>
                         </div>
                       )}
                     </div>

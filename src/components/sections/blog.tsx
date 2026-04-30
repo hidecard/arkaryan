@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Calendar, Clock, User, ArrowRight, ExternalLink, Search } from 'lucide-react';
+import { Calendar, Clock, User, ArrowRight, ExternalLink, Search, Eye } from 'lucide-react';
 import Link from 'next/link';
 
 // API Configuration
@@ -33,6 +33,7 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<string[]>(['All']);
+  const [viewCounts, setViewCounts] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -60,6 +61,9 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
         setBlogs(blogsArray);
         setFilteredBlogs(blogsArray);
         setCategories(categoriesArray);
+        
+        // Fetch view counts for all blogs
+        fetchViewCounts(blogsArray);
       } catch (error) {
         console.error('Error fetching data:', error);
         // Set empty arrays on error - no fallback data
@@ -119,6 +123,28 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // Fetch view counts for blogs
+  const fetchViewCounts = async (blogsList: BlogPost[]) => {
+    try {
+      const counts: Record<number, number> = {};
+      
+      // Fetch view counts for each blog
+      await Promise.all(
+        blogsList.map(async (blog) => {
+          const response = await fetch(`/api/blog-views?blogId=${blog.id}`);
+          if (response.ok) {
+            const data = await response.json();
+            counts[blog.id] = data.count;
+          }
+        })
+      );
+      
+      setViewCounts(counts);
+    } catch (error) {
+      console.error('Error fetching view counts:', error);
     }
   };
 
@@ -222,19 +248,27 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
                     )}
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mb-3">
                       <Link href={`/blog/${post.id}`}>
                         <Button variant="outline" size="sm">
                           Read More
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </Link>
-                      {post.published_date && (
-                        <div className="flex items-center text-sm text-gray-500">
-                          <Calendar className="w-4 h-4 mr-1" />
-                          {new Date(post.published_date).toLocaleDateString()}
-                        </div>
-                      )}
+                      <div className="flex items-center gap-3">
+                        {viewCounts[post.id] !== undefined && (
+                          <div className="flex items-center text-sm text-gray-500">
+                            <Eye className="w-4 h-4 mr-1" />
+                            {viewCounts[post.id].toLocaleString()}
+                          </div>
+                        )}
+                        {post.published_date && (
+                          <div className="flex items-center text-sm text-gray-500">
+                            <Calendar className="w-4 h-4 mr-1" />
+                            {new Date(post.published_date).toLocaleDateString()}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

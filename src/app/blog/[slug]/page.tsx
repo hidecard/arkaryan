@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, User, ArrowLeft, ExternalLink } from 'lucide-react';
+import { Calendar, Clock, User, ArrowLeft, ExternalLink, Eye } from 'lucide-react';
 import Link from 'next/link';
 import Navigation from '@/components/navigation';
 
@@ -29,6 +29,7 @@ export default function BlogDetailPage() {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [viewCount, setViewCount] = useState<number>(0);
   const params = useParams();
   const slug = params.slug as string;
 
@@ -39,16 +40,23 @@ export default function BlogDetailPage() {
         const response = await fetch(BLOGS_ENDPOINT);
         const blogData = await response.json();
         
+        // Ensure blogData is an array
+        const blogsArray = Array.isArray(blogData) ? blogData : [];
+        
         // Find the blog post with matching ID
-        const foundPost = blogData?.find((p: BlogPost) => p.id === parseInt(slug));
+        const foundPost = blogsArray.find((p: BlogPost) => p.id === parseInt(slug));
         
         if (foundPost) {
           setPost(foundPost);
           // Set related posts (same category, excluding current)
-          const related = blogData?.filter((p: BlogPost) => 
+          const related = blogsArray.filter((p: BlogPost) => 
             p.category === foundPost.category && p.id !== foundPost.id
-          ).slice(0, 3) || [];
+          ).slice(0, 3);
           setRelatedPosts(related);
+          
+          // Fetch and track view count
+          await fetchViewCount(foundPost.id);
+          await trackView(foundPost.id);
         } else {
           // No post found - set post to null to show "not found" state
           setPost(null);
@@ -66,6 +74,44 @@ export default function BlogDetailPage() {
 
     fetchBlogPost();
   }, [slug]);
+
+  // Fetch current view count
+  const fetchViewCount = async (blogId: number) => {
+    try {
+      const response = await fetch(`/api/blog-views?blogId=${blogId}`);
+      if (response.ok) {
+        const data = await response.json();
+        setViewCount(data.count);
+      }
+    } catch (error) {
+      console.error('Error fetching view count:', error);
+    }
+  };
+
+  // Track a new view
+  const trackView = async (blogId: number) => {
+    try {
+      // Check if already viewed in this session
+      const viewedKey = `blog_viewed_${blogId}`;
+      if (sessionStorage.getItem(viewedKey)) {
+        return; // Don't count duplicate views in same session
+      }
+      
+      const response = await fetch('/api/blog-views', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ blogId })
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setViewCount(data.count);
+        sessionStorage.setItem(viewedKey, 'true');
+      }
+    } catch (error) {
+      console.error('Error tracking view:', error);
+    }
+  };
 
   if (loading) {
     return (
@@ -153,6 +199,10 @@ export default function BlogDetailPage() {
                 <div className="flex items-center space-x-2">
                   <Clock className="h-4 w-4" />
                   <span>{post.readTime}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Eye className="h-4 w-4" />
+                  <span>{viewCount.toLocaleString()} views</span>
                 </div>
               </div>
             </header>

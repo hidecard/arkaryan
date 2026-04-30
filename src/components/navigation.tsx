@@ -6,6 +6,7 @@ import { Moon, Sun, Menu, X, Mail, Home as HomeIcon, User, Code, Briefcase, Send
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import VisitorCounter from '@/components/visitor-counter';
 
 interface NavigationProps {
   activeSection?: string;
@@ -246,6 +247,11 @@ export default function Navigation({
 
           {/* Right Actions */}
           <div className="flex items-center space-x-2 sm:space-x-3">
+            {/* Visitor Counter - Hidden on mobile, visible on sm+ */}
+            <div className="hidden sm:flex">
+              <VisitorCounter variant="compact" />
+            </div>
+
             {/* Theme Toggle */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
