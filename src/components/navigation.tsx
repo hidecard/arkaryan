@@ -247,10 +247,8 @@ export default function Navigation({
 
           {/* Right Actions */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            {/* Visitor Counter - Hidden on mobile, visible on sm+ */}
-            <div className="hidden sm:flex">
-              <VisitorCounter variant="compact" />
-            </div>
+            {/* Visitor Counter - Shows on all screens */}
+            <VisitorCounter variant="compact" showLabel={false} />
 
             {/* Theme Toggle */}
             <button
