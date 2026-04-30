@@ -55,9 +55,15 @@ export default function BlogPage() {
         const blogsData = await blogsResponse.json();
         const categoriesData = await categoriesResponse.json();
         
-        setBlogs(blogsData || []);
-        setFilteredBlogs(blogsData || []);
-        setCategories(categoriesData || ['All']);
+        let blogsArray = Array.isArray(blogsData) ? blogsData : [];
+        const categoriesArray = Array.isArray(categoriesData) ? categoriesData : ['All'];
+
+        // Sort blogs by ID (newest/highest ID first)
+        blogsArray = blogsArray.sort((a: BlogPost, b: BlogPost) => b.id - a.id);
+
+        setBlogs(blogsArray);
+        setFilteredBlogs(blogsArray);
+        setCategories(categoriesArray);
       } catch (error) {
         console.error('Error fetching data:', error);
         // Set empty arrays on error - no fallback data

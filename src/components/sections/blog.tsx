@@ -47,13 +47,19 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
           fetch(BLOGS_ENDPOINT),
           fetch('/api/categories')
         ]);
-        
+
         const blogsData = await blogsResponse.json();
         const categoriesData = await categoriesResponse.json();
-        
-        setBlogs(blogsData || []);
-        setFilteredBlogs(blogsData || []);
-        setCategories(categoriesData || ['All']);
+
+        let blogsArray = Array.isArray(blogsData) ? blogsData : [];
+        const categoriesArray = Array.isArray(categoriesData) ? categoriesData : ['All'];
+
+        // Sort blogs by ID (newest/highest ID first)
+        blogsArray = blogsArray.sort((a: BlogPost, b: BlogPost) => b.id - a.id);
+
+        setBlogs(blogsArray);
+        setFilteredBlogs(blogsArray);
+        setCategories(categoriesArray);
       } catch (error) {
         console.error('Error fetching data:', error);
         // Set empty arrays on error - no fallback data
@@ -180,8 +186,10 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {currentBlogs.map((post) => (
-                <Card key={post.id} className="hover:shadow-lg transition-shadow duration-300">
+              {currentBlogs.map((post, index) => {
+                const isNew = index < 2 && currentPage === 1;
+                return (
+                <Card key={post.id} className="hover:shadow-lg transition-shadow duration-300 relative">
                   {post.image_url && (
                     <div className="h-48 md:h-64 relative overflow-hidden">
                       <img
@@ -193,7 +201,14 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
                   )}
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
-                      <Badge variant="secondary">{post.category}</Badge>
+                      <div className="flex items-center gap-2">
+                        <Badge variant="secondary">{post.category}</Badge>
+                        {isNew && (
+                          <Badge className="bg-red-500 hover:bg-red-600 text-white animate-pulse">
+                            New
+                          </Badge>
+                        )}
+                      </div>
                       {post.reading_time && (
                         <div className="flex items-center text-sm text-gray-500">
                           <Clock className="w-4 h-4 mr-1" />
@@ -223,7 +238,7 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
                     </div>
                   </CardContent>
                 </Card>
-              ))}
+              )})}
             </div>
 
             {/* Pagination Controls */}
