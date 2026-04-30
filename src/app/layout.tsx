@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arkar Yan - Full Stack Developer | Software Architect | Project Manager",
+  title: "Arkar Yan - Full Stack Developer",
   description: "Visionary Software Architect and Educator with 10+ years experience. Led 200+ projects in enterprise SaaS, AI solutions, and cybersecurity advocacy. Founder of k Square, specializing in MERN, Laravel, and Flutter development.",
   keywords: ["Arkar Yan", "Software Engineer", "Full Stack Developer", "Project Manager", "Instructor", "Founder", "Software Architect", "MERN", "Laravel", "Flutter", "Cybersecurity", "SaaS", "Next.js", "React.js", "Node.js", "PHP", "Web Development", "Mobile Development", "k Square", "Myanmar Cyber Ghost", "TypeScript", "Tailwind CSS"],
   authors: [{ name: "Arkar Yan" }],
