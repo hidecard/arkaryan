@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Calendar, Clock, User, ArrowRight, ExternalLink, Search, Eye } from 'lucide-react';
 import Link from 'next/link';
+import ShareButton from '@/components/ui/share-button';
 
 // API Configuration
 const BLOGS_ENDPOINT = '/api/blogs';
@@ -248,26 +249,37 @@ export default function BlogSection({ scrollToSection }: BlogSectionProps) {
                     )}
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between mb-3">
-                      <Link href={`/blog/${post.id}`}>
-                        <Button variant="outline" size="sm">
-                          Read More
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                      <div className="flex items-center gap-3">
-                        {viewCounts[post.id] !== undefined && (
-                          <div className="flex items-center text-sm text-gray-500">
-                            <Eye className="w-4 h-4 mr-1" />
-                            {viewCounts[post.id].toLocaleString()}
-                          </div>
-                        )}
-                        {post.published_date && (
-                          <div className="flex items-center text-sm text-gray-500">
-                            <Calendar className="w-4 h-4 mr-1" />
-                            {new Date(post.published_date).toLocaleDateString()}
-                          </div>
-                        )}
+                    <div className="flex flex-col space-y-3">
+                      <div className="flex items-center justify-between">
+                        <Link href={`/blog/${post.id}`}>
+                          <Button variant="outline" size="sm">
+                            Read More
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
+                        <ShareButton 
+                          url={`/blog/${post.id}`}
+                          title={post.title}
+                          description={post.excerpt || ''}
+                          size="sm"
+                          variant="ghost"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center gap-3">
+                          {viewCounts[post.id] !== undefined && (
+                            <div className="flex items-center">
+                              <Eye className="w-4 h-4 mr-1" />
+                              {viewCounts[post.id].toLocaleString()}
+                            </div>
+                          )}
+                          {post.published_date && (
+                            <div className="flex items-center">
+                              <Calendar className="w-4 h-4 mr-1" />
+                              {new Date(post.published_date).toLocaleDateString()}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </CardContent>

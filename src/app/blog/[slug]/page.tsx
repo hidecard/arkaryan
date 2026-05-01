@@ -8,6 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Calendar, Clock, User, ArrowLeft, ExternalLink, Eye } from 'lucide-react';
 import Link from 'next/link';
 import Navigation from '@/components/navigation';
+import ShareButton from '@/components/ui/share-button';
+import ReadingProgress from '@/components/ui/reading-progress';
+import ReactMarkdown from 'react-markdown';
 
 // API Configuration
 const BLOGS_ENDPOINT = '/api/blogs';
@@ -143,6 +146,7 @@ export default function BlogDetailPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <ReadingProgress targetId="article-content" height={3} />
       <Navigation activeSection="blog" />
       <div className="pt-20">
         <div className="max-w-4xl mx-auto px-4 py-12">
@@ -157,7 +161,7 @@ export default function BlogDetailPage() {
         </div>
 
         {/* Blog Post Content */}
-        <article className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+        <article id="article-content" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
           {post.image_url && (
             <div className="h-64 md:h-96 relative overflow-hidden">
               <img 
@@ -173,14 +177,23 @@ export default function BlogDetailPage() {
             {/* Article Header */}
             <header className="mb-8">
               <div className="flex items-center justify-between mb-4">
-                <Badge variant="secondary" className="mb-2">
-                  {post.category}
-                </Badge>
-                {post.featured && (
-                  <Badge variant="default" className="ml-2">
-                    Featured
+                <div className="flex items-center gap-2">
+                  <Badge variant="secondary" className="mb-2">
+                    {post.category}
                   </Badge>
-                )}
+                  {post.featured && (
+                    <Badge variant="default" className="ml-2">
+                      Featured
+                    </Badge>
+                  )}
+                </div>
+                <ShareButton 
+                  url={`/blog/${post.id}`}
+                  title={post.title}
+                  description={post.excerpt || ''}
+                  size="sm"
+                  variant="outline"
+                />
               </div>
               
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -208,8 +221,48 @@ export default function BlogDetailPage() {
             </header>
 
             {/* Article Content */}
-            <div className="prose prose-lg max-w-none text-gray-900 dark:text-gray-100">
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className="prose prose-lg max-w-none text-gray-900 dark:text-gray-100 prose-headings:text-gray-900 prose-headings:dark:text-white prose-p:text-gray-900 prose-p:dark:text-gray-100 prose-strong:text-gray-900 prose-strong:dark:text-white prose-code:text-gray-900 prose-code:dark:text-gray-100 prose-pre:bg-gray-100 prose-pre:dark:bg-gray-800 prose-blockquote:border-l-blue-500 prose-blockquote:text-gray-700 prose-blockquote:dark:text-gray-300">
+              <ReactMarkdown
+                components={{
+                  h1: ({children}) => <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">{children}</h1>,
+                  h2: ({children}) => <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">{children}</h2>,
+                  h3: ({children}) => <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{children}</h3>,
+                  p: ({children}) => <p className="mb-4 text-gray-900 dark:text-gray-100 leading-relaxed">{children}</p>,
+                  ul: ({children}) => <ul className="list-disc list-inside mb-4 text-gray-900 dark:text-gray-100">{children}</ul>,
+                  ol: ({children}) => <ol className="list-decimal list-inside mb-4 text-gray-900 dark:text-gray-100">{children}</ol>,
+                  li: ({children}) => <li className="mb-2 text-gray-900 dark:text-gray-100">{children}</li>,
+                  blockquote: ({children}) => <blockquote className="border-l-4 border-blue-500 pl-4 italic my-4 text-gray-700 dark:text-gray-300">{children}</blockquote>,
+                  code: ({inline, children}) => inline 
+                    ? <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm text-gray-900 dark:text-gray-100">{children}</code>
+                    : <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4"><code>{children}</code></pre>,
+                  a: ({href, children}) => <a href={href} className="text-blue-600 dark:text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">{children}</a>,
+                  img: ({src, alt}) => <img src={src} alt={alt} className="rounded-lg max-w-full h-auto my-4" />,
+                  hr: () => <hr className="my-6 border-gray-300 dark:border-gray-600" />,
+                }}
+              >
+                {post.content}
+              </ReactMarkdown>
+            </div>
+
+            {/* Share Section */}
+            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    Share this article
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Help others discover this content by sharing it on your favorite platforms
+                  </p>
+                </div>
+                <ShareButton 
+                  url={`/blog/${post.id}`}
+                  title={post.title}
+                  description={post.excerpt || ''}
+                  size="default"
+                  variant="default"
+                />
+              </div>
             </div>
           </div>
         </article>
