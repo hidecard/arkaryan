@@ -30,7 +30,7 @@ export default function Navigation({
     
     // Handle scroll detection for active section
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'blog', 'services', 'experience', 'education', 'achievements', 'contact'];
+      const sections = ['home', 'about', 'skills', 'learning-paths', 'projects', 'blog', 'services', 'experience', 'education', 'achievements', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -99,7 +99,7 @@ export default function Navigation({
 
           {/* Desktop Navigation */}
           <div className="hidden xl:flex items-center space-x-1">
-            {['home', 'about', 'skills'].map((section) => (
+            {['home', 'about', 'skills', 'learning-paths'].map((section) => (
               <div
                 key={section}
                 onClick={() => {
@@ -207,6 +207,7 @@ export default function Navigation({
                 { name: 'home', icon: HomeIcon },
                 { name: 'about', icon: User },
                 { name: 'skills', icon: Code },
+                { name: 'learning-paths', icon: GraduationCap },
                 { name: 'projects', icon: Briefcase, special: true, color: 'green' },
                 { name: 'blog', icon: Mail, special: true },
                 { name: 'services', icon: Settings },
@@ -343,7 +344,7 @@ export default function Navigation({
                 }`} />
               </div>
               
-              {['services', 'experience', 'education', 'achievements', 'contact'].map((section) => (
+              {['learning-paths', 'services', 'experience', 'education', 'achievements', 'contact'].map((section) => (
                 <div
                   key={section}
                   onClick={() => {

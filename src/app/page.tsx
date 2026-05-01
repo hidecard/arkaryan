@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { Moon, Sun, Menu, X, Mail, Phone, MapPin, ExternalLink, Github, Linkedin, Twitter, ArrowRight, Calendar, MapPin as LocationIcon, Briefcase, Award, CheckCircle, Code, Database, Smartphone, Settings, GraduationCap, Rocket, Shield, Trophy, Send, Facebook, ChevronRight, User, Home as HomeIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
+import { Input } from '@/components/ui/input';
 import HomeSection from '@/components/sections/home';
 import AboutSection from '@/components/sections/about';
 import SkillsSection from '@/components/sections/skills';
@@ -19,6 +20,7 @@ import ExperienceSection from '@/components/sections/experience';
 import EducationSection from '@/components/sections/education';
 import AchievementsSection from '@/components/sections/achievements';
 import ContactSection from '@/components/sections/contact';
+import LearningPathsSection from '@/components/sections/learning-paths';
 import Navigation from '@/components/navigation';
 
 // Animation Hook
@@ -267,6 +269,8 @@ export default function Home() {
       <AboutSection />
 
       <SkillsSection />
+
+      <LearningPathsSection />
 
       <ProjectsSection />
 
