@@ -1,24 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { firestoreGet, firestoreSet } from '@/lib/firebase';
 import { createHash } from 'crypto';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseKey, {
-  auth: { persistSession: false }
-});
-
-// Get visitor count
+// Get visitor count - list all visitor documents and count them
 export async function GET() {
   try {
-    const { count, error } = await supabase
-      .from('visitors')
-      .select('*', { count: 'exact', head: true });
-    
-    if (error) throw error;
-    
-    return NextResponse.json({ count: count || 0 });
+    // Firestore REST API doesn't have a simple count, so we use a counter document
+    const counter = await firestoreGet('visitor_counter', 'total');
+    const count = counter?.count || 0;
+
+    return NextResponse.json({ count });
   } catch (error) {
     console.error('Error fetching visitor count:', error);
     return NextResponse.json({ count: 0 }, { status: 500 });
@@ -31,57 +22,53 @@ export async function POST(req: NextRequest) {
     // Get IP address from headers
     const forwarded = req.headers.get('x-forwarded-for');
     const ip = forwarded?.split(',')[0] || 'unknown';
-    
+
     // Create hash of IP (for privacy)
     const ipHash = createHash('sha256').update(ip).digest('hex');
-    
+
     // Get user agent
     const userAgent = req.headers.get('user-agent') || '';
-    
+
     // Check if visitor already exists
-    const { data: existingVisitor, error: findError } = await supabase
-      .from('visitors')
-      .select('id, visit_count')
-      .eq('ip_hash', ipHash)
-      .single();
-    
-    if (findError && findError.code !== 'PGRST116') {
-      throw findError;
-    }
-    
+    const existing = await firestoreGet('visitors', ipHash);
+
     let isNewVisitor = false;
-    
-    if (existingVisitor) {
+    const now = new Date().toISOString();
+
+    if (existing) {
       // Update visit count for returning visitor
-      await supabase
-        .from('visitors')
-        .update({ 
-          visit_count: existingVisitor.visit_count + 1,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', existingVisitor.id);
+      await firestoreSet('visitors', ipHash, {
+        ip_hash: ipHash,
+        user_agent: userAgent,
+        visit_count: (existing.visit_count || 0) + 1,
+        updated_at: now,
+        created_at: existing.created_at || now
+      });
     } else {
       // Create new visitor
       isNewVisitor = true;
-      await supabase
-        .from('visitors')
-        .insert({
-          ip_hash: ipHash,
-          user_agent: userAgent,
-          visit_count: 1
-        });
+      await firestoreSet('visitors', ipHash, {
+        ip_hash: ipHash,
+        user_agent: userAgent,
+        visit_count: 1,
+        created_at: now,
+        updated_at: now
+      });
+
+      // Increment total visitor counter
+      const counter = await firestoreGet('visitor_counter', 'total');
+      await firestoreSet('visitor_counter', 'total', {
+        count: (counter?.count || 0) + 1,
+        updated_at: now
+      });
     }
-    
+
     // Get updated count
-    const { count, error: countError } = await supabase
-      .from('visitors')
-      .select('*', { count: 'exact', head: true });
-    
-    if (countError) throw countError;
-    
-    return NextResponse.json({ 
-      success: true, 
-      count: count || 0,
+    const updatedCounter = await firestoreGet('visitor_counter', 'total');
+
+    return NextResponse.json({
+      success: true,
+      count: updatedCounter?.count || 0,
       isNewVisitor
     });
   } catch (error) {
