@@ -1,12 +1,12 @@
 # Arkar Yan - Portfolio & Professional Website
 
-A modern, responsive portfolio website built with Next.js 15, showcasing professional experience, skills, and projects.
+A modern, responsive portfolio website built with Next.js 16, showcasing professional experience, skills, projects, and blog with Open Graph social sharing support.
 
 ## 🚀 Tech Stack
 
 ### Frontend Technologies
-- **Next.js 15** - React framework with App Router
-- **React 18** - UI library with hooks and modern patterns
+- **Next.js 16** - React framework with App Router
+- **React 19** - UI library with hooks and modern patterns
 - **TypeScript** - Type-safe JavaScript development
 - **Tailwind CSS** - Utility-first CSS framework
 - **Lucide React** - Modern icon library
@@ -112,7 +112,9 @@ arkaryan/
 - **Mobile Menu** - Hamburger menu with slide-in animation
 
 ### Content Management
+- **Blog System** - Full-featured blog with dynamic Open Graph metadata for social sharing
 - **Blog Pagination** - Automatic pagination when posts exceed 3 items
+- **Blog View Counter** - Tracks and displays view counts for each blog post
 - **Projects Pagination** - 6 projects per page with navigation controls
 - **Dynamic Content Loading** - Optimized API integration for blogs
 - **Featured Content Filtering** - Smart project categorization and display
@@ -212,9 +214,12 @@ arkaryan/
 - Featured project filtering
 
 ### 5. Blog
-- Dynamic blog posts with API integration
+- Dynamic blog posts with Google Sheets API integration
+- **Open Graph Metadata** - Blog title and image display when sharing on social media
+- **View Counter** - Real-time view tracking per blog post
 - Pagination (3 posts per page)
 - Categories and metadata
+- Related posts suggestions
 - Reading time estimates
 - Responsive card layout
 
@@ -250,7 +255,9 @@ arkaryan/
 - **Responsive Design**: Adaptive layout for all screen sizes
 
 ### Content Management System
-- **Blog API Integration**: Dynamic content loading from `/api/blogs`
+- **Blog API Integration**: Dynamic content loading from Google Sheets via `/api/blogs`
+- **Open Graph Metadata**: Dynamic social sharing cards with blog title and image
+- **View Counter API**: `/api/blog-views` for tracking post popularity
 - **Pagination Logic**: Automatic pagination for blogs (3 items) and projects (6 items)
 - **Content Filtering**: Featured project categorization
 - **Metadata Support**: Reading time, categories, publication dates
@@ -314,8 +321,10 @@ arkaryan/
 
 ### SEO Features
 - **Meta Tags** - Dynamic page metadata
+- **Open Graph** - Social media sharing optimization for blog posts
 - **Structured Data** - Rich snippets support
 - **Sitemap** - Automatic sitemap generation
+- **Twitter Cards** - Twitter-optimized sharing metadata
 
 ## 🤝 Contributing
 
