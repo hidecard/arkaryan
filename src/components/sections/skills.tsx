@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Code, Database, Smartphone, Settings, GraduationCap, Rocket, Shield, Trophy } from 'lucide-react';
+import { 
+  Code, Database, Smartphone, Shield, Palette, Server, 
+  Globe, Cpu, LineChart, Sparkles
+} from 'lucide-react';
 
 // Animation Hook
 const useIntersectionObserver = (options = {}) => {
@@ -49,384 +50,276 @@ const AnimatedSection = ({ children, className = "", delay = 0 }: { children: Re
   );
 };
 
-// Animated Card Component
-const AnimatedCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
+// Bento Grid Item Component
+const BentoItem = ({ 
+  children, 
+  className = "", 
+  delay = 0,
+  colSpan = 1,
+  rowSpan = 1
+}: { 
+  children: React.ReactNode; 
+  className?: string; 
+  delay?: number;
+  colSpan?: number;
+  rowSpan?: number;
+}) => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${className} ${
-        isIntersecting 
-          ? 'opacity-100 scale-100' 
-          : 'opacity-0 scale-95'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={`group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 transition-all duration-700 hover:shadow-xl hover:scale-[1.02] ${className}`}
+      style={{ 
+        transitionDelay: `${delay}ms`,
+        opacity: isIntersecting ? 1 : 0,
+        transform: isIntersecting ? 'scale(1)' : 'scale(0.95)',
+        gridColumn: `span ${colSpan}`,
+        gridRow: `span ${rowSpan}`
+      }}
     >
-      {children}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-gray-100/50 dark:to-gray-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative h-full">
+        {children}
+      </div>
     </div>
   );
 };
 
-// Skills data
-const skills = {
-  frontend: [
-    { name: 'Next.js', percentage: 95, color: 'bg-gray-900 dark:bg-white' },
-    { name: 'React.js', percentage: 90, color: 'bg-blue-500' },
-    { name: 'Vue.js', percentage: 85, color: 'bg-green-500' },
-    { name: 'Tailwind CSS', percentage: 90, color: 'bg-cyan-500' },
-    { name: 'Bootstrap', percentage: 90, color: 'bg-purple-600' },
-    { name: 'HTML/CSS', percentage: 95, color: 'bg-orange-500' },
-  ],
-  backend: [
-    { name: 'Node.js', percentage: 90, color: 'bg-green-500' },
-    { name: 'Express.js', percentage: 90, color: 'bg-green-600' },
-    { name: 'Django', percentage: 70, color: 'bg-green-700' },
-    { name: 'Laravel', percentage: 80, color: 'bg-red-500' },
-    { name: 'PostgreSQL', percentage: 70, color: 'bg-blue-600' },
-    { name: 'Supabase', percentage: 80, color: 'bg-green-500' },
-    { name: 'Firebase', percentage: 80, color: 'bg-yellow-500' },
-    { name: 'MongoDB', percentage: 85, color: 'bg-green-400' },
-    { name: 'MySQL', percentage: 80, color: 'bg-blue-400' },
-  ],
-  programmingLanguages: [
-    { name: 'Python', percentage: 80, color: 'bg-blue-600' },
-    { name: 'C#', percentage: 80, color: 'bg-purple-600' },
-    { name: 'C++', percentage: 60, color: 'bg-blue-500' },
-    { name: 'JavaScript', percentage: 95, color: 'bg-yellow-500' },
-    { name: 'Dart', percentage: 70, color: 'bg-cyan-500' },
-    { name: 'PHP', percentage: 90, color: 'bg-purple-500' },
-    { name: 'Java', percentage: 80, color: 'bg-orange-500' },
-    { name: 'TypeScript', percentage: 85, color: 'bg-blue-600' },
-    { name: 'Rust', percentage: 60, color: 'bg-orange-700' },
-  ],
-  mobile: [
-    { name: 'Flutter & Dart', percentage: 85, color: 'bg-blue-400' },
-    { name: 'Native Java (Android)', percentage: 75, color: 'bg-orange-500' },
-    { name: 'Sketchware (block programming)', percentage: 80, color: 'bg-green-500' },
-  ],
-  cybersecurity: [
-    { name: 'Vulnerability Assessment', percentage: 85, color: 'bg-red-500' },
-    { name: 'Network Security', percentage: 80, color: 'bg-yellow-600' },
-    { name: 'Incident Response', percentage: 75, color: 'bg-orange-600' },
-  ],
-  creative: [
-    { name: 'Graphic Design', percentage: 85, color: 'bg-pink-500' },
-    { name: 'Motion Video Editing', percentage: 80, color: 'bg-purple-500' },
-    { name: 'Figma', percentage: 70, color: 'bg-orange-500' },
-    { name: 'Page Administration', percentage: 90, color: 'bg-blue-500' },
-  ],
-  dataScience: [
-    { name: 'NumPy', percentage: 70, color: 'bg-blue-600' },
-    { name: 'Pandas', percentage: 70, color: 'bg-orange-600' },
-    { name: 'Matplotlib', percentage: 60, color: 'bg-green-600' },
-    { name: 'Seaborn', percentage: 80, color: 'bg-purple-600' },
-    { name: 'Excel', percentage: 50, color: 'bg-green-500' },
-    { name: 'Microsoft Power BI', percentage: 60, color: 'bg-yellow-500' },
-  ],
-  systems: [
-    { name: 'CCNA Networking', percentage: 85, color: 'bg-blue-600' },
-    { name: 'Linux System Administration', percentage: 80, color: 'bg-orange-600' },
-    { name: 'Git & GitHub', percentage: 90, color: 'bg-gray-700' },
-  ],
+// Skill Badge Component
+const SkillBadge = ({ name, level }: { name: string; level: 'expert' | 'advanced' | 'intermediate' }) => {
+  const levelStyles = {
+    expert: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-blue-200 dark:border-blue-800',
+    advanced: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 border-purple-200 dark:border-purple-800',
+    intermediate: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border-green-200 dark:border-green-800',
+  };
+
+  return (
+    <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium border ${levelStyles[level]} transition-all duration-300 hover:scale-105 cursor-default`}>
+      {name}
+    </span>
+  );
+};
+
+// Skills data organized for Bento Grid
+const skillClusters = {
+  frontend: {
+    title: 'Frontend Stack',
+    icon: Globe,
+    color: 'from-blue-500 to-cyan-500',
+    skills: [
+      { name: 'Next.js', level: 'expert' as const },
+      { name: 'React.js', level: 'expert' as const },
+      { name: 'TypeScript', level: 'expert' as const },
+      { name: 'Vue.js', level: 'advanced' as const },
+      { name: 'Tailwind CSS', level: 'expert' as const },
+      { name: 'HTML/CSS', level: 'expert' as const },
+    ],
+    description: 'Modern frontend frameworks & responsive design'
+  },
+  backend: {
+    title: 'Backend Stack',
+    icon: Server,
+    color: 'from-green-500 to-emerald-600',
+    skills: [
+      { name: 'Node.js', level: 'expert' as const },
+      { name: 'Express.js', level: 'expert' as const },
+      { name: 'Laravel', level: 'advanced' as const },
+      { name: 'Django', level: 'intermediate' as const },
+      { name: 'PostgreSQL', level: 'advanced' as const },
+      { name: 'MongoDB', level: 'expert' as const },
+      { name: 'Redis', level: 'advanced' as const },
+    ],
+    description: 'Server-side technologies & database management'
+  },
+  languages: {
+    title: 'Languages',
+    icon: Code,
+    color: 'from-purple-500 to-pink-500',
+    skills: [
+      { name: 'JavaScript', level: 'expert' as const },
+      { name: 'TypeScript', level: 'expert' as const },
+      { name: 'Python', level: 'advanced' as const },
+      { name: 'PHP', level: 'expert' as const },
+      { name: 'Java', level: 'advanced' as const },
+      { name: 'C#', level: 'advanced' as const },
+      { name: 'Dart', level: 'advanced' as const },
+      { name: 'Rust', level: 'intermediate' as const },
+    ],
+    description: 'Programming languages proficiency'
+  },
+  mobile: {
+    title: 'Mobile Dev',
+    icon: Smartphone,
+    color: 'from-orange-500 to-red-500',
+    skills: [
+      { name: 'Flutter', level: 'expert' as const },
+      { name: 'React Native', level: 'advanced' as const },
+      { name: 'Android (Java)', level: 'advanced' as const },
+      { name: 'iOS (Swift)', level: 'intermediate' as const },
+    ],
+    description: 'Cross-platform & native mobile development'
+  },
+  security: {
+    title: 'Cybersecurity',
+    icon: Shield,
+    color: 'from-red-500 to-rose-600',
+    skills: [
+      { name: 'Vulnerability Assessment', level: 'advanced' as const },
+      { name: 'Network Security', level: 'advanced' as const },
+      { name: 'Incident Response', level: 'advanced' as const },
+      { name: 'Penetration Testing', level: 'intermediate' as const },
+    ],
+    description: 'Security practices & threat mitigation'
+  },
+  data: {
+    title: 'Data & AI',
+    icon: LineChart,
+    color: 'from-violet-500 to-fuchsia-500',
+    skills: [
+      { name: 'Python Data Stack', level: 'advanced' as const },
+      { name: 'TensorFlow', level: 'intermediate' as const },
+      { name: 'Power BI', level: 'advanced' as const },
+      { name: 'Machine Learning', level: 'intermediate' as const },
+    ],
+    description: 'Data science, analytics & ML'
+  },
+  design: {
+    title: 'Design Tools',
+    icon: Palette,
+    color: 'from-pink-500 to-rose-500',
+    skills: [
+      { name: 'Figma', level: 'advanced' as const },
+      { name: 'Adobe Creative Suite', level: 'advanced' as const },
+      { name: 'Motion Graphics', level: 'advanced' as const },
+      { name: 'UI/UX Design', level: 'expert' as const },
+    ],
+    description: 'Design tools & creative workflows'
+  },
+  infrastructure: {
+    title: 'Infrastructure',
+    icon: Cpu,
+    color: 'from-cyan-500 to-blue-600',
+    skills: [
+      { name: 'Docker', level: 'advanced' as const },
+      { name: 'AWS/GCP', level: 'advanced' as const },
+      { name: 'Linux Admin', level: 'advanced' as const },
+      { name: 'CI/CD', level: 'advanced' as const },
+      { name: 'Kubernetes', level: 'intermediate' as const },
+    ],
+    description: 'DevOps, cloud & system administration'
+  }
 };
 
 export default function SkillsSection() {
-  const [skillsVisible, setSkillsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const skillsSection = document.getElementById('skills');
-      if (skillsSection) {
-        const rect = skillsSection.getBoundingClientRect();
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-          setSkillsVisible(true);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  const clusters = Object.values(skillClusters);
+  
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 section-white">
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400">
-              My technical expertise across different domains
+          <div className="mb-12 text-center">
+            <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm font-medium border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 font-heading">
+              <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+              Expertise
+            </Badge>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              Technical Skills
+            </h2>
+            <p className="font-body text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              A comprehensive overview of my technical capabilities across multiple domains, 
+              organized by expertise level.
             </p>
           </div>
         </AnimatedSection>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Frontend Skills */}
-          <AnimatedCard delay={200}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Code className="h-4 w-4 text-gray-900 dark:text-white" />
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-min">
+          {/* Large Featured Item - Frontend */}
+          <BentoItem delay={100} colSpan={2} rowSpan={2} className="p-6">
+            <div className="flex flex-col h-full">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
+                  <Globe className="w-6 h-6 text-white" />
                 </div>
-                Frontend Development
-              </h3>
-              <div className="space-y-4">
-                {skills.frontend.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${200 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
+                <div>
+                  <h3 className="font-heading text-xl font-bold text-gray-900 dark:text-white">
+                    {clusters[0].title}
+                  </h3>
+                  <p className="font-body text-sm text-gray-500 dark:text-gray-400">
+                    {clusters[0].description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {clusters[0].skills.map((skill) => (
+                  <SkillBadge key={skill.name} name={skill.name} level={skill.level} />
                 ))}
               </div>
             </div>
-          </AnimatedCard>
+          </BentoItem>
 
-          {/* Backend Skills */}
-          <AnimatedCard delay={400}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Database className="h-4 w-4 text-green-600" />
-                </div>
-                Backend Development
-              </h3>
-              <div className="space-y-4">
-                {skills.backend.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${400 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
+          {/* Medium Items */}
+          {clusters.slice(1, 3).map((cluster, idx) => {
+            const Icon = cluster.icon;
+            return (
+              <BentoItem key={cluster.title} delay={200 + idx * 100} colSpan={2} rowSpan={1} className="p-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cluster.color} flex items-center justify-center`}>
+                    <Icon className="w-5 h-5 text-white" />
                   </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedCard>
+                  <h3 className="font-heading text-lg font-bold text-gray-900 dark:text-white">
+                    {cluster.title}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {cluster.skills.map((skill) => (
+                    <SkillBadge key={skill.name} name={skill.name} level={skill.level} />
+                  ))}
+                </div>
+              </BentoItem>
+            );
+          })}
 
-          {/* Programming Languages */}
-          <AnimatedCard delay={600}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Code className="h-4 w-4 text-indigo-600" />
-                </div>
-                Programming Languages
-              </h3>
-              <div className="space-y-4">
-                {skills.programmingLanguages.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${600 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
+          {/* Small Items */}
+          {clusters.slice(3).map((cluster, idx) => {
+            const Icon = cluster.icon;
+            return (
+              <BentoItem key={cluster.title} delay={400 + idx * 100} colSpan={1} rowSpan={1} className="p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${cluster.color} flex items-center justify-center`}>
+                    <Icon className="w-4 h-4 text-white" />
                   </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedCard>
-
-          {/* Mobile Skills */}
-          <AnimatedCard delay={800}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Smartphone className="h-4 w-4 text-purple-500" />
+                  <h3 className="font-heading text-base font-bold text-gray-900 dark:text-white">
+                    {cluster.title}
+                  </h3>
                 </div>
-                Mobile Development
-              </h3>
-              <div className="space-y-4">
-                {skills.mobile.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${600 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedCard>
-
-          {/* Cybersecurity Skills */}
-          <AnimatedCard delay={1000}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Settings className="h-4 w-4 text-red-500" />
+                <div className="flex flex-wrap gap-1.5">
+                  {cluster.skills.map((skill) => (
+                    <SkillBadge key={skill.name} name={skill.name} level={skill.level} />
+                  ))}
                 </div>
-                Cybersecurity
-              </h3>
-              <div className="space-y-4">
-                {skills.cybersecurity.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${1000 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedCard>
-
-          {/* Creative Skills */}
-          <AnimatedCard delay={1000}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Settings className="h-4 w-4 text-pink-500" />
-                </div>
-                Creative Suite
-              </h3>
-              <div className="space-y-4">
-                {skills.creative.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${1000 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedCard>
-
-          {/* Data Science Skills */}
-          <AnimatedCard delay={1200}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Database className="h-4 w-4 text-teal-600" />
-                </div>
-                Data Analytics
-              </h3>
-              <div className="space-y-4">
-                {skills.dataScience.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${1200 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedCard>
-
-          {/* Systems Skills */}
-          <AnimatedCard delay={1400}>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                  <Settings className="h-4 w-4 text-orange-500" />
-                </div>
-                Systems & Networking
-              </h3>
-              <div className="space-y-4">
-                {skills.systems.map((skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-gray-500">{skill.percentage}%</span>
-                    </div>
-                    <div className="relative">
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`${skill.color} h-2 rounded-full transition-all duration-1000 ease-out`}
-                          style={{ 
-                            width: skillsVisible ? `${skill.percentage}%` : '0%',
-                            transitionDelay: `${1400 + index * 100}ms`
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedCard>
+              </BentoItem>
+            );
+          })}
         </div>
+
+        {/* Stats Summary */}
+        <AnimatedSection delay={800}>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { label: 'Technologies', value: '45+' },
+              { label: 'Expert Level', value: '12' },
+              { label: 'Years Coding', value: '10+' },
+              { label: 'Domains', value: '8' },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
+                <div className="font-heading text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                <div className="font-body text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );

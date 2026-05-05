@@ -1070,7 +1070,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-20 section-gradient">
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
           <div className="mb-12">

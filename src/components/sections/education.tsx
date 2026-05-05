@@ -102,7 +102,7 @@ const education = [
 
 export default function EducationSection() {
   return (
-    <section id="education" className="py-20">
+    <section id="education" className="py-20 section-white">
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
           <div className="mb-12">

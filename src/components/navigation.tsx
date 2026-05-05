@@ -75,7 +75,7 @@ export default function Navigation({
   if (!mounted) return null;
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 pointer-events-auto ${
+    <nav className={`fixed top-0 left-0 right-0 z-[100] pt-2 transition-all duration-300 pointer-events-auto ${
       currentActiveSection !== 'home' 
         ? 'bg-white/95 dark:bg-gray-900/95 border-b border-gray-200/30 dark:border-gray-700/30 shadow-sm' 
         : 'bg-white/90 dark:bg-gray-900/90'

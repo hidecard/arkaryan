@@ -70,7 +70,7 @@ const AnimatedCard = ({ children, className = "", delay = 0 }: { children: React
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 section-muted">
       <div className="max-w-4xl mx-auto px-6">
         <AnimatedSection>
           <div className="text-center mb-12">

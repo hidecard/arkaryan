@@ -3023,110 +3023,220 @@ const levelColors: Record<string, string> = {
   'Advanced': 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
 };
 
+// Define categories with their associated learning paths
+const categories = [
+  {
+    id: 'web-dev',
+    name: 'Web Development',
+    description: 'Frontend, backend, and full-stack technologies',
+    icon: Globe,
+    color: 'from-blue-500 to-cyan-500',
+    pathIds: ['frontend', 'backend', 'fullstack', 'react-developer', 'nextjs-developer', 'node-developer', 'laravel', 'django-developer', 'vue-developer', 'angular-developer', 'svelte-developer']
+  },
+  {
+    id: 'mobile-app',
+    name: 'Mobile & App',
+    description: 'iOS, Android, and cross-platform development',
+    icon: Smartphone,
+    color: 'from-orange-500 to-red-500',
+    pathIds: ['mobile', 'android', 'ios', 'flutter-developer', 'react-native-developer']
+  },
+  {
+    id: 'data-ai',
+    name: 'Data & AI',
+    description: 'Machine learning, data science, and analytics',
+    icon: Binary,
+    color: 'from-violet-500 to-fuchsia-500',
+    pathIds: ['ai-ml', 'data-science', 'data-engineer', 'prompt-engineer', 'mlops', 'powerbi']
+  },
+  {
+    id: 'infrastructure',
+    name: 'Infrastructure & Security',
+    description: 'DevOps, cloud, networking, and cybersecurity',
+    icon: Shield,
+    color: 'from-green-500 to-emerald-600',
+    pathIds: ['devops', 'cybersecurity', 'cloud', 'sre', 'network-engineer', 'dba', 'platform-engineer']
+  },
+  {
+    id: 'specialized',
+    name: 'Specialized & Other',
+    description: 'Game dev, blockchain, design, and more',
+    icon: Code,
+    color: 'from-purple-500 to-pink-500',
+    pathIds: ['blockchain', 'gamedev', 'uiux', 'product', 'qa-engineer', 'ar-vr', 'technical-writer', 'c-developer', 'cpp-developer', 'python-developer', 'go-developer', 'rust-developer', 'ruby-developer', 'typescript-developer', 'graphql-developer', 'java-developer', 'csharp-developer']
+  }
+];
+
+// Map path IDs to categories for quick lookup
+const getCategoryForPath = (pathId: string) => {
+  return categories.find(cat => cat.pathIds.includes(pathId)) || categories[4];
+};
+
 export default function LearningPathsSection() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('web-dev');
   const [selectedPath, setSelectedPath] = useState<string>('frontend');
   const [expandedStage, setExpandedStage] = useState<number | null>(0);
 
-  const currentPath = learningPaths.find(p => p.id === selectedPath) || learningPaths[0];
+  const currentCategory = categories.find(c => c.id === selectedCategory) || categories[0];
+  const categoryPaths = learningPaths.filter(p => currentCategory.pathIds.includes(p.id));
+  const currentPath = learningPaths.find(p => p.id === selectedPath) || categoryPaths[0] || learningPaths[0];
+
+  // Update selected path when category changes
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    const newCategory = categories.find(c => c.id === categoryId);
+    if (newCategory) {
+      const firstPath = learningPaths.find(p => newCategory.pathIds.includes(p.id));
+      if (firstPath) {
+        setSelectedPath(firstPath.id);
+        setExpandedStage(0);
+      }
+    }
+  };
 
   return (
-    <section id="learning-paths" className="py-20 sm:py-28 bg-white dark:bg-gray-900">
+    <section id="learning-paths" className="py-20 sm:py-28 section-muted">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <AnimatedSection className="text-center mb-12">
-          <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm font-medium border-purple-200 dark:border-purple-800 text-purple-600 dark:text-purple-400">
+          <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm font-medium border-purple-200 dark:border-purple-800 text-purple-600 dark:text-purple-400 font-heading">
             Career Roadmaps
           </Badge>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Learning Paths
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Structured roadmaps to take you from beginner to professional. 
-            Choose your path and start your journey today.
+          <p className="font-body text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Structured roadmaps organized by domain. Select a category to explore 
+            specialized learning paths tailored to your career goals.
           </p>
         </AnimatedSection>
 
-        {/* Path Selector */}
+        {/* Category Tabs */}
         <AnimatedSection delay={200} className="mb-10">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 3xl:grid-cols-10 4xl:grid-cols-13 gap-3">
-            {learningPaths.map((path) => (
-              <button
-                key={path.id}
-                onClick={() => {
-                  setSelectedPath(path.id);
-                  setExpandedStage(0);
-                }}
-                className={`p-4 rounded-xl border-2 transition-all duration-300 text-left ${
-                  selectedPath === path.id
-                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-lg'
-                    : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 bg-white dark:bg-gray-800'
-                }`}
-              >
-                <path.icon className={`h-6 w-6 mb-2 ${
-                  selectedPath === path.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400'
-                }`} />
-                <p className={`font-semibold text-sm ${
-                  selectedPath === path.id ? 'text-blue-900 dark:text-blue-100' : 'text-gray-900 dark:text-white'
-                }`}>
-                  {path.title.split(' ')[0]}
-                </p>
-              </button>
-            ))}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {categories.map((category) => {
+              const Icon = category.icon;
+              const isActive = selectedCategory === category.id;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => handleCategoryChange(category.id)}
+                  className={`group relative px-5 py-3 rounded-xl font-heading font-semibold text-sm transition-all duration-300 ${
+                    isActive
+                      ? 'bg-gradient-to-r ' + category.color + ' text-white shadow-lg scale-105'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300'}`} />
+                    <span>{category.name}</span>
+                    <span className={`ml-1.5 px-1.5 py-0.5 rounded-full text-xs ${
+                      isActive 
+                        ? 'bg-white/20 text-white' 
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
+                    }`}>
+                      {category.pathIds.length}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Category Description */}
+          <div className="text-center mb-6">
+            <p className="font-body text-gray-600 dark:text-gray-400">
+              <span className="font-semibold text-gray-900 dark:text-white">{currentCategory.name}:</span>{' '}
+              {currentCategory.description}
+            </p>
+          </div>
+
+          {/* Path Selector Grid - Only show paths in current category */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {categoryPaths.map((path) => {
+              const isSelected = selectedPath === path.id;
+              return (
+                <button
+                  key={path.id}
+                  onClick={() => {
+                    setSelectedPath(path.id);
+                    setExpandedStage(0);
+                  }}
+                  className={`group p-4 rounded-xl border-2 transition-all duration-300 text-left hover:scale-105 ${
+                    isSelected
+                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-lg'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 bg-white dark:bg-gray-800'
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${path.color} flex items-center justify-center mb-3 ${isSelected ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`}>
+                    <path.icon className="h-5 w-5 text-white" />
+                  </div>
+                  <p className={`font-heading font-semibold text-sm mb-1 ${
+                    isSelected ? 'text-blue-900 dark:text-blue-100' : 'text-gray-900 dark:text-white'
+                  }`}>
+                    {path.title}
+                  </p>
+                  <Badge className={`text-xs ${levelColors[path.level]} ${isSelected ? 'opacity-100' : 'opacity-70'}`}>
+                    {path.level}
+                  </Badge>
+                </button>
+              );
+            })}
           </div>
         </AnimatedSection>
 
         {/* Selected Path Detail */}
         <AnimatedSection delay={400} key={selectedPath}>
-          <Card className="bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 overflow-hidden">
+          <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 overflow-hidden shadow-xl">
             {/* Path Header */}
             <CardHeader className="pb-6">
               <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${currentPath.color} flex items-center justify-center`}>
-                      <currentPath.icon className="h-7 w-7 text-white" />
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${currentPath.color} flex items-center justify-center shadow-lg`}>
+                      <currentPath.icon className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <CardTitle className="font-heading text-2xl font-bold text-gray-900 dark:text-white mb-1">
                         {currentPath.title}
                       </CardTitle>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Badge className={levelColors[currentPath.level]}>
+                      <div className="flex items-center gap-3">
+                        <Badge className={`${levelColors[currentPath.level]} font-medium`}>
                           {currentPath.level}
                         </Badge>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {currentPath.totalCourses} courses
+                        <span className="text-sm text-gray-500 dark:text-gray-400 font-body">
+                          {currentPath.totalCourses} courses • {currentPath.duration}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <CardDescription className="text-gray-600 dark:text-gray-400 text-base max-w-2xl">
+                  <CardDescription className="font-body text-gray-600 dark:text-gray-400 text-base max-w-2xl leading-relaxed">
                     {currentPath.description}
                   </CardDescription>
                 </div>
                 
                 {/* Quick Stats */}
-                <div className="flex flex-wrap gap-4">
-                  <div className="bg-white dark:bg-gray-800 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
+                <div className="flex flex-wrap gap-3">
+                  <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 rounded-xl">
+                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm font-body">
                       <Clock className="h-4 w-4" />
                       Duration
                     </div>
-                    <p className="font-semibold text-gray-900 dark:text-white">{currentPath.duration}</p>
+                    <p className="font-heading font-semibold text-gray-900 dark:text-white">{currentPath.duration}</p>
                   </div>
-                  <div className="bg-white dark:bg-gray-800 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
+                  <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 rounded-xl">
+                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm font-body">
                       <Target className="h-4 w-4" />
                       Stages
                     </div>
-                    <p className="font-semibold text-gray-900 dark:text-white">{currentPath.stages.length}</p>
+                    <p className="font-heading font-semibold text-gray-900 dark:text-white">{currentPath.stages.length}</p>
                   </div>
-                  <div className="bg-white dark:bg-gray-800 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
+                  <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 rounded-xl">
+                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm font-body">
                       <Star className="h-4 w-4" />
                       Rating
                     </div>
-                    <p className="font-semibold text-gray-900 dark:text-white">4.9/5</p>
+                    <p className="font-heading font-semibold text-gray-900 dark:text-white">4.9/5</p>
                   </div>
                 </div>
               </div>
@@ -3137,7 +3247,7 @@ export default function LearningPathsSection() {
                   <Badge 
                     key={skill}
                     variant="outline"
-                    className="bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    className="font-body bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                   >
                     {skill}
                   </Badge>
@@ -3148,7 +3258,7 @@ export default function LearningPathsSection() {
             <CardContent className="pt-0">
               {/* Learning Roadmap */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                <h3 className="font-heading text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-4">
                   <BookOpen className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   Learning Roadmap
                 </h3>
@@ -3160,7 +3270,7 @@ export default function LearningPathsSection() {
                       className={`border rounded-xl overflow-hidden transition-all duration-300 ${
                         expandedStage === index
                           ? 'border-blue-300 dark:border-blue-700 bg-white dark:bg-gray-800 shadow-md'
-                          : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50'
+                          : 'border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800'
                       }`}
                     >
                       <button
@@ -3168,7 +3278,7 @@ export default function LearningPathsSection() {
                         className="w-full p-5 flex items-center gap-4 text-left"
                       >
                         {/* Stage Number */}
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm font-heading ${
                           index < (expandedStage !== null ? expandedStage : 0)
                             ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
                             : index === expandedStage
@@ -3184,16 +3294,16 @@ export default function LearningPathsSection() {
 
                         {/* Stage Info */}
                         <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 dark:text-white">
+                          <h4 className="font-heading font-semibold text-gray-900 dark:text-white">
                             {stage.name}
                           </h4>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 font-body line-clamp-1">
                             {stage.description}
                           </p>
                         </div>
 
                         {/* Meta */}
-                        <div className="hidden sm:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                        <div className="hidden sm:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 font-body">
                           <span>{stage.duration}</span>
                           <span>{stage.resources} resources</span>
                         </div>
@@ -3209,32 +3319,37 @@ export default function LearningPathsSection() {
                         <div className="px-5 pb-5 pt-0 border-t border-gray-100 dark:border-gray-700">
                           <div className="pl-14 pt-4">
                             {/* Detailed Description */}
-                            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                            <p className="font-body text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                               {stage.detailedDescription}
                             </p>
                             
                             {/* Topics */}
                             <div className="mb-5">
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                              <p className="font-heading text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                                 <BookOpen className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                                 Topics Covered
                               </p>
                               <div className="flex flex-wrap gap-2">
-                                {stage.topics.map((topic) => (
+                                {stage.topics.slice(0, 12).map((topic) => (
                                   <Badge 
                                     key={topic}
                                     variant="outline"
-                                    className="bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
+                                    className="font-body bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300"
                                   >
                                     {topic}
                                   </Badge>
                                 ))}
+                                {stage.topics.length > 12 && (
+                                  <Badge variant="outline" className="font-body">
+                                    +{stage.topics.length - 12} more
+                                  </Badge>
+                                )}
                               </div>
                             </div>
 
                             {/* Skills */}
                             <div className="mb-5">
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                              <p className="font-heading text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                                 <Target className="h-4 w-4 text-green-600 dark:text-green-400" />
                                 Skills You'll Master
                               </p>
@@ -3243,7 +3358,7 @@ export default function LearningPathsSection() {
                                   <Badge 
                                     key={skill}
                                     variant="secondary"
-                                    className="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300"
+                                    className="font-body bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300"
                                   >
                                     {skill}
                                   </Badge>
@@ -3253,13 +3368,13 @@ export default function LearningPathsSection() {
 
                             {/* Projects */}
                             <div className="mb-5">
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                              <p className="font-heading text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                                 <Code className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                                 Hands-on Projects
                               </p>
                               <ul className="space-y-2">
                                 {stage.projects.map((project, pIndex) => (
-                                  <li key={pIndex} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                  <li key={pIndex} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 font-body">
                                     <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
                                     {project}
                                   </li>
@@ -3269,11 +3384,11 @@ export default function LearningPathsSection() {
 
                             {/* Outcome */}
                             <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
+                              <p className="font-heading text-sm font-semibold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
                                 <Award className="h-4 w-4 text-yellow-500" />
                                 Stage Outcome
                               </p>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                              <p className="font-body text-sm text-gray-600 dark:text-gray-400">
                                 {stage.outcome}
                               </p>
                             </div>
