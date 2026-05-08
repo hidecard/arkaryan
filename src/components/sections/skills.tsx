@@ -56,13 +56,17 @@ const BentoItem = ({
   className = "", 
   delay = 0,
   colSpan = 1,
-  rowSpan = 1
+  rowSpan = 1,
+  colSpanMobile = 1,
+  rowSpanMobile = 1,
 }: { 
   children: React.ReactNode; 
   className?: string; 
   delay?: number;
   colSpan?: number;
   rowSpan?: number;
+  colSpanMobile?: number;
+  rowSpanMobile?: number;
 }) => {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
 
@@ -74,8 +78,8 @@ const BentoItem = ({
         transitionDelay: `${delay}ms`,
         opacity: isIntersecting ? 1 : 0,
         transform: isIntersecting ? 'scale(1)' : 'scale(0.95)',
-        gridColumn: `span ${colSpan}`,
-        gridRow: `span ${rowSpan}`
+        gridColumn: `span ${colSpanMobile}`,
+        gridRow: `span ${rowSpanMobile}`,
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-gray-100/50 dark:to-gray-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -115,7 +119,7 @@ const skillClusters = {
       { name: 'Tailwind CSS', level: 'expert' as const },
       { name: 'HTML/CSS', level: 'expert' as const },
     ],
-    description: 'Modern frontend frameworks & responsive design'
+    description: ''
   },
   backend: {
     title: 'Backend Stack',
@@ -156,7 +160,6 @@ const skillClusters = {
       { name: 'Flutter', level: 'expert' as const },
       { name: 'React Native', level: 'advanced' as const },
       { name: 'Android (Java)', level: 'advanced' as const },
-      { name: 'iOS (Swift)', level: 'intermediate' as const },
     ],
     description: 'Cross-platform & native mobile development'
   },
@@ -180,7 +183,6 @@ const skillClusters = {
       { name: 'Python Data Stack', level: 'advanced' as const },
       { name: 'TensorFlow', level: 'intermediate' as const },
       { name: 'Power BI', level: 'advanced' as const },
-      { name: 'Machine Learning', level: 'intermediate' as const },
     ],
     description: 'Data science, analytics & ML'
   },
@@ -205,7 +207,6 @@ const skillClusters = {
       { name: 'AWS/GCP', level: 'advanced' as const },
       { name: 'Linux Admin', level: 'advanced' as const },
       { name: 'CI/CD', level: 'advanced' as const },
-      { name: 'Kubernetes', level: 'intermediate' as const },
     ],
     description: 'DevOps, cloud & system administration'
   }
@@ -233,25 +234,25 @@ export default function SkillsSection() {
           </div>
         </AnimatedSection>
         
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-min">
+        {/* Bento Grid Layout - Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-min">
           {/* Large Featured Item - Frontend */}
-          <BentoItem delay={100} colSpan={2} rowSpan={2} className="p-6">
+          <BentoItem delay={100} colSpan={2} rowSpan={2} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-6 sm:col-span-2 sm:row-span-2">
             <div className="flex flex-col h-full">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
-                  <Globe className="w-6 h-6 text-white" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg shrink-0">
+                  <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <div>
-                  <h3 className="font-heading text-xl font-bold text-gray-900 dark:text-white">
+                <div className="min-w-0">
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">
                     {clusters[0].title}
                   </h3>
-                  <p className="font-body text-sm text-gray-500 dark:text-gray-400">
+                  <p className="font-body text-xs sm:text-sm text-gray-500 dark:text-gray-400 hidden sm:block">
                     {clusters[0].description}
                   </p>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
                 {clusters[0].skills.map((skill) => (
                   <SkillBadge key={skill.name} name={skill.name} level={skill.level} />
                 ))}
@@ -259,38 +260,16 @@ export default function SkillsSection() {
             </div>
           </BentoItem>
 
-          {/* Medium Items */}
+          {/* Medium Items - Backend & Languages */}
           {clusters.slice(1, 3).map((cluster, idx) => {
             const Icon = cluster.icon;
             return (
-              <BentoItem key={cluster.title} delay={200 + idx * 100} colSpan={2} rowSpan={1} className="p-5">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cluster.color} flex items-center justify-center`}>
-                    <Icon className="w-5 h-5 text-white" />
+              <BentoItem key={cluster.title} delay={200 + idx * 100} colSpan={2} rowSpan={1} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-5 sm:col-span-2">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br ${cluster.color} flex items-center justify-center shrink-0`}>
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-gray-900 dark:text-white">
-                    {cluster.title}
-                  </h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {cluster.skills.map((skill) => (
-                    <SkillBadge key={skill.name} name={skill.name} level={skill.level} />
-                  ))}
-                </div>
-              </BentoItem>
-            );
-          })}
-
-          {/* Small Items */}
-          {clusters.slice(3).map((cluster, idx) => {
-            const Icon = cluster.icon;
-            return (
-              <BentoItem key={cluster.title} delay={400 + idx * 100} colSpan={1} rowSpan={1} className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${cluster.color} flex items-center justify-center`}>
-                    <Icon className="w-4 h-4 text-white" />
-                  </div>
-                  <h3 className="font-heading text-base font-bold text-gray-900 dark:text-white">
+                  <h3 className="font-heading text-base sm:text-lg font-bold text-gray-900 dark:text-white truncate">
                     {cluster.title}
                   </h3>
                 </div>
@@ -302,20 +281,42 @@ export default function SkillsSection() {
               </BentoItem>
             );
           })}
+
+          {/* Small Items - Mobile, Security, Data, Design, Infrastructure */}
+          {clusters.slice(3).map((cluster, idx) => {
+            const Icon = cluster.icon;
+            return (
+              <BentoItem key={cluster.title} delay={400 + idx * 100} colSpan={1} rowSpan={1} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-5">
+                <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br ${cluster.color} flex items-center justify-center shrink-0`}>
+                    <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                  </div>
+                  <h3 className="font-heading text-sm sm:text-base font-bold text-gray-900 dark:text-white truncate">
+                    {cluster.title}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-1 sm:gap-1.5">
+                  {cluster.skills.map((skill) => (
+                    <SkillBadge key={skill.name} name={skill.name} level={skill.level} />
+                  ))}
+                </div>
+              </BentoItem>
+            );
+          })}
         </div>
 
         {/* Stats Summary */}
         <AnimatedSection delay={800}>
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
               { label: 'Technologies', value: '45+' },
               { label: 'Expert Level', value: '12' },
               { label: 'Years Coding', value: '10+' },
               { label: 'Domains', value: '8' },
             ].map((stat) => (
-              <div key={stat.label} className="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50">
-                <div className="font-heading text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
-                <div className="font-body text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
+              <div key={stat.label} className="text-center p-3 sm:p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300">
+                <div className="font-heading text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</div>
+                <div className="font-body text-xs sm:text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
               </div>
             ))}
           </div>

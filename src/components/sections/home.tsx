@@ -4,6 +4,97 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Briefcase, Clock, Users } from 'lucide-react';
 
+// Custom Cursor Glow Component
+const CursorGlow = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+      if (!isVisible) setIsVisible(true);
+    };
+
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+    };
+  }, [isVisible]);
+
+  return (
+    <>
+      {/* Main glow */}
+      <div
+        className={`fixed pointer-events-none z-50 transition-opacity duration-300 mix-blend-screen ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          left: position.x - 150,
+          top: position.y - 150,
+          width: 300,
+          height: 300,
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.08) 40%, transparent 70%)',
+        }}
+      />
+      {/* Small dot */}
+      <div
+        className={`fixed pointer-events-none z-50 transition-opacity duration-150 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          left: position.x - 4,
+          top: position.y - 4,
+          width: 8,
+          height: 8,
+          background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+          borderRadius: '50%',
+          boxShadow: '0 0 10px rgba(99, 102, 241, 0.5)',
+        }}
+      />
+    </>
+  );
+};
+
+// Interactive Spotlight Background
+const InteractiveSpotlight = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: ((e.clientX - rect.left) / rect.width) * 100,
+          y: ((e.clientY - rect.top) / rect.height) * 100,
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        className="absolute inset-0 transition-all duration-700 ease-out"
+        style={{
+          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.04) 25%, transparent 50%)`,
+        }}
+      />
+    </div>
+  );
+};
+
 // Animation Hook
 const useIntersectionObserver = (options = {}) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -126,8 +217,10 @@ export default function HomeSection({ scrollToSection }: HomeSectionProps) {
   return (
     <>
       {/* Modern Hero Section with Interactive Background */}
-      <section id="home" className="min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 relative overflow-hidden">
+      <CursorGlow />
+      <section id="home" className="min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 relative overflow-hidden cursor-none">
         <MeshGradient />
+        <InteractiveSpotlight />
         
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <div className="space-y-12">
@@ -193,18 +286,22 @@ export default function HomeSection({ scrollToSection }: HomeSectionProps) {
                 <Button 
                   onClick={() => scrollToSection('contact')} 
                   size="lg"
-                  className="font-heading bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-8 py-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 group"
+                  className="font-heading bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-8 py-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 group relative overflow-hidden"
                 >
-                  Start a conversation
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <span className="relative z-10 flex items-center">
+                    Start a conversation
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
                 <Button 
                   onClick={() => scrollToSection('projects')} 
                   variant="outline"
                   size="lg"
-                  className="font-heading border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 px-8 py-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
+                  className="font-heading border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 px-8 py-6 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm relative overflow-hidden group"
                 >
-                  View portfolio
+                  <span className="relative z-10">View portfolio</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
               </div>
             </AnimatedSection>
