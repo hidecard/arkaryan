@@ -3099,9 +3099,7 @@ export default function LearningPathsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <AnimatedSection className="text-center mb-12">
-          <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm font-medium border-purple-200 dark:border-purple-800 text-purple-600 dark:text-purple-400 font-heading">
-            Career Roadmaps
-          </Badge>
+         
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Learning Paths
           </h2>

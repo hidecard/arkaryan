@@ -220,10 +220,7 @@ export default function SkillsSection() {
       <div className="max-w-6xl mx-auto px-6">
         <AnimatedSection>
           <div className="mb-12 text-center">
-            <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm font-medium border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 font-heading">
-              <Sparkles className="w-3.5 h-3.5 mr-1.5" />
-              Expertise
-            </Badge>
+           
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Technical Skills
             </h2>
