@@ -81,7 +81,7 @@ export default function VisitorCounter({
     return (
       <div className={`inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full ${className}`}>
         <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
-        <span className="text-xs text-gray-500 dark:text-gray-400">Loading...</span>
+        <span className="text-xs text-gray-500 dark:text-gray-400">...</span>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 import StructuredData from "@/components/structured-data";
 import { BackToTop } from "@/components/ui/back-to-top";
+import LoadingScreen from "@/components/loading-screen";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
@@ -190,7 +191,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <LoadingScreen>
+            {children}
+          </LoadingScreen>
           <BackToTop />
           <Toaster />
         </ThemeProvider>
