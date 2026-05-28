@@ -1,6 +1,7 @@
+'use client';
 import { AnimatedSection } from '@/hooks/use-animations';
 import { useIntersectionObserver } from '@/hooks/use-animations';
-'use client';
+
 
 import { Badge } from '@/components/ui/badge';
 import { 

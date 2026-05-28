@@ -1,5 +1,6 @@
-import { AnimatedSection, AnimatedCard } from '@/hooks/use-animations';
 'use client';
+import { AnimatedSection, AnimatedCard } from '@/hooks/use-animations';
+
 
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
