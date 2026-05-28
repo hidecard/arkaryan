@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Search, Menu as MenuIcon } from 'lucide-react';
 import { AnimatedSection } from '@/hooks/use-animations';
 
 // Custom Cursor Glow Component
@@ -69,28 +68,28 @@ export default function HomeSection({ scrollToSection }: HomeSectionProps) {
   return (
     <>
       <CursorGlow />
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#1a0b0b] text-white pt-20">
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden section-white px-4 py-24 sm:py-28 lg:px-0 lg:py-24">
         {/* Background decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-red-900/20 blur-[120px] rounded-full" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-900/10 blur-[120px] rounded-full" />
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100/80 blur-[120px] rounded-full dark:bg-blue-900/10" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-100/70 blur-[120px] rounded-full dark:bg-purple-900/10" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-6 xl:gap-8">
             
             {/* Left Content */}
-            <div className="lg:col-span-4 space-y-8 text-center lg:text-left order-2 lg:order-1">
+            <div className="order-2 space-y-6 text-center lg:order-1 lg:col-span-3 lg:text-left xl:space-y-8">
               <AnimatedSection delay={300}>
-                <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                  New Modern<br />
-                  <span className="text-gray-100">Research Center</span>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
+                  Hi, I'm<br />
+                  <span>Arkar Yan</span>
                 </h1>
               </AnimatedSection>
               
               <AnimatedSection delay={500}>
-                <p className="text-gray-400 text-lg max-w-md mx-auto lg:mx-0">
-                  Hi, I'm Arkar Yan. Visionary Software Architect and Educator with 10+ years of experience.
+                <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-md mx-auto lg:mx-0">
+                  Software Engineer | Project Manager | Instructor | Founder
                 </p>
               </AnimatedSection>
               
@@ -98,25 +97,25 @@ export default function HomeSection({ scrollToSection }: HomeSectionProps) {
                 <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                   <Button 
                     onClick={() => scrollToSection('contact')}
-                    className="bg-[#3d1a1a] hover:bg-[#4d2222] text-white px-8 py-6 rounded-lg font-medium transition-all"
+                    className="bg-gray-900 hover:bg-gray-800 text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 px-6 sm:px-8 py-6 rounded-lg font-medium transition-all"
                   >
-                    Register
+                    Start a conversation
                   </Button>
                   <Button 
                     variant="outline"
                     onClick={() => scrollToSection('projects')}
-                    className="border-gray-700 text-white hover:bg-white/5 px-8 py-6 rounded-lg font-medium transition-all bg-transparent"
+                    className="border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 px-6 sm:px-8 py-6 rounded-lg font-medium transition-all bg-transparent"
                   >
-                    Learn More
+                    View portfolio
                   </Button>
                 </div>
               </AnimatedSection>
             </div>
 
             {/* Center Character Image */}
-            <div className="lg:col-span-4 flex justify-center order-1 lg:order-2">
+            <div className="order-1 flex justify-center lg:order-2 lg:col-span-6">
               <AnimatedSection delay={200}>
-                <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px]">
+                <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[540px] xl:max-w-[620px]">
                   <div className="absolute inset-0 bg-red-500/10 blur-3xl rounded-full scale-75" />
                   <img 
                     src="/hero-character.png" 
@@ -128,47 +127,40 @@ export default function HomeSection({ scrollToSection }: HomeSectionProps) {
             </div>
 
             {/* Right Content */}
-            <div className="lg:col-span-4 space-y-8 text-center lg:text-left order-3">
+            <div className="order-3 space-y-6 text-center lg:col-span-3 lg:text-left xl:space-y-8">
               <AnimatedSection delay={400}>
-                <h2 className="text-4xl md:text-5xl font-bold">
-                  Join as a<br />
-                  Researcher
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white">
+                  200+<br />
+                  Projects Delivered
                 </h2>
               </AnimatedSection>
               
               <AnimatedSection delay={600}>
-                <p className="text-gray-400 text-lg max-w-md mx-auto lg:mx-0">
-                  Successfully led 200+ projects, from enterprise SaaS to community-driven AI solutions.
+                <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-md mx-auto lg:mx-0">
+                  Visionary Software Architect and Educator with 10+ years of experience. Successfully led 200+ projects, from enterprise SaaS to community-driven AI solutions. Founder of k Square and Myanmar Cyber Ghost.
                 </p>
               </AnimatedSection>
               
               <AnimatedSection delay={800}>
-                <Button 
-                  onClick={() => scrollToSection('about')}
-                  className="bg-[#3d1a1a] hover:bg-[#4d2222] text-white px-10 py-6 rounded-lg font-medium transition-all"
-                >
-                  Join Now
-                </Button>
+                <div className="grid grid-cols-1 gap-4 max-w-md mx-auto sm:grid-cols-3 lg:grid-cols-1 lg:mx-0 xl:grid-cols-3">
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">200+</div>
+                    <div className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Projects Delivered</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">10+</div>
+                    <div className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Years Experience</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">14.5K+</div>
+                    <div className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Students Taught</div>
+                  </div>
+                </div>
               </AnimatedSection>
             </div>
 
           </div>
 
-          {/* Bottom Footer Info */}
-          <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <AnimatedSection delay={1000}>
-              <p className="text-gray-500 text-sm">©All Right For Research.com</p>
-            </AnimatedSection>
-            
-            <AnimatedSection delay={1200}>
-              <div className="flex gap-6">
-                <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">FB</a>
-                <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">IN</a>
-                <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">TW</a>
-                <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">LI</a>
-              </div>
-            </AnimatedSection>
-          </div>
         </div>
       </section>
     </>
