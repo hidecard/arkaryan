@@ -1,62 +1,18 @@
+import { AnimatedSection } from '@/hooks/use-animations';
+import { useIntersectionObserver } from '@/hooks/use-animations';
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { 
   Code, Database, Smartphone, Shield, Palette, Server, 
-  Globe, Cpu, LineChart, Sparkles
+  Globe, Cpu, LineChart
 } from 'lucide-react';
-
-// Animation Hook
-const useIntersectionObserver = (options = {}) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsIntersecting(entry.isIntersecting);
-    }, options);
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [options]);
-
-  return { ref, isIntersecting };
-};
-
-// Animated Section Component
-const AnimatedSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-1000 ease-out ${className} ${
-        isIntersecting 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-10'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
 
 // Bento Grid Item Component
 const BentoItem = ({ 
   children, 
   className = "", 
   delay = 0,
-  colSpan = 1,
-  rowSpan = 1,
   colSpanMobile = 1,
   rowSpanMobile = 1,
 }: { 
@@ -234,7 +190,7 @@ export default function SkillsSection() {
         {/* Bento Grid Layout - Responsive */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-min">
           {/* Large Featured Item - Frontend */}
-          <BentoItem delay={100} colSpan={2} rowSpan={2} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-6 sm:col-span-2 sm:row-span-2">
+          <BentoItem delay={100} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-6 sm:col-span-2 sm:row-span-2">
             <div className="flex flex-col h-full">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg shrink-0">
@@ -261,7 +217,7 @@ export default function SkillsSection() {
           {clusters.slice(1, 3).map((cluster, idx) => {
             const Icon = cluster.icon;
             return (
-              <BentoItem key={cluster.title} delay={200 + idx * 100} colSpan={2} rowSpan={1} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-5 sm:col-span-2">
+              <BentoItem key={cluster.title} delay={200 + idx * 100} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-5 sm:col-span-2">
                 <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br ${cluster.color} flex items-center justify-center shrink-0`}>
                     <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -283,7 +239,7 @@ export default function SkillsSection() {
           {clusters.slice(3).map((cluster, idx) => {
             const Icon = cluster.icon;
             return (
-              <BentoItem key={cluster.title} delay={400 + idx * 100} colSpan={1} rowSpan={1} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-5">
+              <BentoItem key={cluster.title} delay={400 + idx * 100} colSpanMobile={1} rowSpanMobile={1} className="p-4 sm:p-5">
                 <div className="flex items-center gap-2 mb-2 sm:mb-3">
                   <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br ${cluster.color} flex items-center justify-center shrink-0`}>
                     <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
