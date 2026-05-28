@@ -77,8 +77,8 @@ export default function Navigation({
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
       currentActiveSection !== 'home'
-        ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 shadow-sm'
-        : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-transparent'
+        ? 'bg-[#1a0b0b]/95 backdrop-blur-xl border-b border-white/5 shadow-sm'
+        : 'bg-transparent border-b border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -88,35 +88,27 @@ export default function Navigation({
             <div className="w-9 h-9 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105">
               <span className="text-white font-bold text-sm">AY</span>
             </div>
-            <span className="hidden sm:block font-semibold text-gray-900 dark:text-white">Arkar Yan</span>
+            <span className="hidden sm:block font-semibold text-white">Research</span>
           </Link>
         </div>
 
         {/* Center: Desktop Navigation */}
         <div className="hidden xl:flex items-center justify-center flex-1">
           <div className="flex items-center gap-1">
-            {[
-              { name: 'home', label: 'Home' },
-              { name: 'about', label: 'About' },
-              { name: 'skills', label: 'Skills' },
-              { name: 'projects', label: 'Projects' },
-              { name: 'blog', label: 'Blog' },
-              { name: 'services', label: 'Services' },
-              { name: 'experience', label: 'Experience' },
-              { name: 'contact', label: 'Contact' }
-            ].map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.name)}
-                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                  currentActiveSection === item.name
-                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-gray-800/50'
-                }`}
+            <div className="flex items-center bg-white/5 rounded-full px-4 py-1 border border-white/10">
+              <button 
+                onClick={() => scrollToSection('home')}
+                className="px-4 py-1.5 text-sm font-medium text-white hover:text-gray-300 transition-colors"
               >
-                <span className="capitalize">{item.label}</span>
+                Home
               </button>
-            ))}
+              <button 
+                className="px-4 py-1.5 text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-1"
+              >
+                Registration
+                <MenuIcon className="w-3 h-3" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -164,6 +156,11 @@ export default function Navigation({
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
 
+          {/* Search Icon */}
+          <button className="p-2.5 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition-all">
+            <Search className="w-5 h-5" />
+          </button>
+
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -182,24 +179,18 @@ export default function Navigation({
             <div className="grid grid-cols-2 gap-2">
               {[
                 { name: 'home', label: 'Home' },
-                { name: 'about', label: 'About' },
-                { name: 'skills', label: 'Skills' },
-                { name: 'projects', label: 'Projects' },
-                { name: 'blog', label: 'Blog' },
-                { name: 'services', label: 'Services' },
-                { name: 'experience', label: 'Experience' },
-                { name: 'contact', label: 'Contact' }
+                { name: 'registration', label: 'Registration' }
               ].map((item) => (
                 <button
                   key={item.name}
                   onClick={() => {
-                    scrollToSection(item.name);
+                    if (item.name === 'home') scrollToSection('home');
                     setIsMenuOpen(false);
                   }}
                   className={`text-left px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium ${
                     currentActiveSection === item.name
-                      ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                      ? 'bg-white/10 text-white'
+                      : 'text-gray-400 hover:bg-white/5 hover:text-white'
                   }`}
                 >
                   <span className="capitalize">{item.label}</span>
