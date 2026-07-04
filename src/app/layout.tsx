@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://arkaryan.net/"),
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   alternates: {
     canonical: "/",
   },
