@@ -41,7 +41,7 @@ async function fetchBlogPost(slug: string): Promise<BlogPost | null> {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = await fetchBlogPost(slug);
-  const baseUrl = "https://arkaryan.vercel.app";
+  const baseUrl = "https://arkaryan.net/";
 
   if (!post) {
     return {

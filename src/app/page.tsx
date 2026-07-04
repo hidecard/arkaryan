@@ -321,7 +321,7 @@ export default function Home() {
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-center sm:justify-end space-x-2">
                   <Mail className="h-4 w-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
-                  <a href="mailto:arkaryan.info@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded px-2 py-1 -mx-2 -my-1 break-all">arkaryan.info@gmail.com</a>
+                  <a href="mailto:info@arkaryan.net" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 transition-all duration-300 hover:backdrop-blur-sm hover:bg-blue-50/50 dark:hover:bg-blue-900/20 rounded px-2 py-1 -mx-2 -my-1 break-all">info@arkaryan.net</a>
                 </div>
                 <div className="flex items-center justify-center sm:justify-end space-x-2">
                   <Phone className="h-4 w-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
@@ -345,7 +345,7 @@ export default function Home() {
                     { icon: Github, href: 'https://github.com/hidecard' },
                     { icon: Linkedin, href: 'https://linkedin.com/arkaryan' },
                     { icon: Twitter, href: 'https://twitter.com/arkaryan' },
-                    { icon: Mail, href: 'mailto:arkaryan.info@gmail.com' },
+                    { icon: Mail, href: 'mailto:info@arkaryan.net' },
                     { icon: Send, href: 'https://t.me/hidecard1' },
                     { icon: Facebook, href: 'https://facebook.com/arkaryan11' }
                   ].map((social, index) => (

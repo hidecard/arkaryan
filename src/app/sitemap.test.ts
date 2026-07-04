@@ -4,7 +4,7 @@ import { GET } from './sitemap.xml/route';
 describe('Sitemap', () => {
   beforeAll(() => {
     // Mock environment variables if needed
-    process.env.NEXT_PUBLIC_SITE_URL = 'https://arkaryan.vercel.app';
+    process.env.NEXT_PUBLIC_SITE_URL = 'https://arkaryan.net/';
   });
 
   it('should generate a valid sitemap XML', async () => {
@@ -30,7 +30,7 @@ describe('Sitemap', () => {
     const xmlText = await response.text();
     
     expect(xmlText).toContain('<url>');
-    expect(xmlText).toContain('<loc>https://arkaryan.vercel.app/</loc>');
+    expect(xmlText).toContain('<loc>https://arkaryan.net/</loc>');
     expect(xmlText).toContain('</url>');
   });
 

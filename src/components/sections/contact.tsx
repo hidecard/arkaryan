@@ -29,9 +29,9 @@ export default function ContactSection() {
                   <Mail className="h-6 w-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-500" />
                 </div>
                 <h3 className="font-medium mb-2">Email</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">arkaryan.info@gmail.com</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">info@arkaryan.net</p>
                 <Button variant="outline" size="sm" className="hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-500 transition-colors" asChild>
-                  <a href="mailto:arkaryan.info@gmail.com">Send email</a>
+                  <a href="mailto:info@arkaryan.net">Send email</a>
                 </Button>
               </div>
               

@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://arkaryan.vercel.app"),
+  metadataBase: new URL("https://arkaryan.net/"),
   alternates: {
     canonical: "/",
   },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Arkar Yan - Full Stack Developer & Software Architect",
     description: "10+ years experience in software architecture, project management, and cybersecurity advocacy. Founder of k Square and Myanmar Cyber Ghost.",
     type: "website",
-    url: "https://arkaryan.vercel.app",
+    url: "https://arkaryan.net/",
     siteName: "Arkar Yan - Portfolio",
     locale: "en_US",
     images: [

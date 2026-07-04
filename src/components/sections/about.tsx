@@ -56,7 +56,7 @@ export default function AboutSection() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
                     <Mail className="h-4 w-4 text-gray-500" />
-                    <span className="text-sm">arkaryan.info@gmail.com</span>
+                    <span className="text-sm">info@arkaryan.net</span>
                   </div>
                   <div className="flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
                     <Phone className="h-4 w-4 text-gray-500" />
