@@ -1,0 +1,33 @@
+# llms.txt (AI Search / LLMs)
+
+Site: https://arkaryan.net/
+
+About
+- Arkar Yan is a full-stack developer, software architect, and educator.
+- He builds modern web/mobile systems and teaches practical development to Myanmar students.
+- Core domains: enterprise SaaS, AI solutions, cybersecurity advocacy, and software architecture.
+
+What you can find on this site
+- Portfolio & personal profile
+- Projects (web apps, tools, and experiments)
+- Blog posts
+- Skills, learning paths, and educational background
+- Contact information
+
+Topics / Skills
+- Next.js, React.js, TypeScript, JavaScript
+- Node.js, Express.js, MERN stack
+- PHP, Laravel, Vue.js
+- Flutter & Dart (mobile)
+- Databases (MongoDB, MySQL) and system architecture
+- Cybersecurity & incident response (educational content)
+
+Identity / Branding
+- Company/brand: k Square
+- Cybersecurity initiative: Myanmar Cyber Ghost
+
+Contact
+- Email: info@arkaryan.net
+
+Last updated: 2026-07-04
+
