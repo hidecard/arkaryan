@@ -21,7 +21,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Arkar Yan - Full Stack Developer",
-  description: "Visionary Software Architect and Educator with 10+ years experience. Led 200+ projects in enterprise SaaS, AI solutions, and cybersecurity advocacy. Founder of k Square, specializing in MERN, Laravel, and Flutter development.",
+  description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။",
   keywords: ["Arkar Yan", "Software Engineer", "Full Stack Developer", "Project Manager", "Instructor", "Founder", "Software Architect", "MERN", "Laravel", "Flutter", "Cybersecurity", "SaaS", "Next.js", "React.js", "Node.js", "PHP", "Web Development", "Mobile Development", "k Square", "Myanmar Cyber Ghost", "TypeScript", "Tailwind CSS"],
   authors: [{ name: "Arkar Yan" }],
   creator: "Arkar Yan",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Arkar Yan - Full Stack Developer & Software Architect",
-    description: "10+ years experience in software architecture, project management, and cybersecurity advocacy. Founder of k Square and Myanmar Cyber Ghost.",
+    description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။",
     type: "website",
     url: "https://arkaryan.net/",
     siteName: "Arkar Yan - Portfolio",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Arkar Yan - Full Stack Developer & Software Architect",
-    description: "10+ years experience in software architecture, project management, and cybersecurity advocacy. Founder of k Square.",
+    description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။"
     images: ["/profile.jpg"],
     creator: "@hidecard1",
     site: "@hidecard1",
