@@ -1,74 +1,12 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, ArrowRight, ExternalLink, Github, Play, Code, Database, Smartphone, Settings, GraduationCap, Rocket, Shield, Trophy, Users, Clock, Navigation, Search, MessageSquare, Download, Star, Heart, Share2, BookmarkPlus, Award, Briefcase, Target, TrendingUp, BookOpen, FileText, Video, Headphones, Globe, Zap, CheckCircle, AlertCircle, Info, Brain } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Play, Target, Users, Navigation, MessageSquare, BookOpen, Briefcase, Globe, Zap, CheckCircle, Brain, TrendingUp, FileText } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
-
-// Animation Hook
-const useIntersectionObserver = (options = {}) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsIntersecting(entry.isIntersecting);
-    }, options);
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [options]);
-
-  return { ref, isIntersecting };
-};
-
-// Animated Section Component
-const AnimatedSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-1000 ease-out ${className} ${
-        isIntersecting 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-10'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
-
-// Animated Card Component
-const AnimatedCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${className} ${
-        isIntersecting 
-          ? 'opacity-100 scale-100' 
-          : 'opacity-0 scale-95'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
+import { AnimatedSection, AnimatedCard } from '@/components/shared/animated-section';
 
 const features = [
   {
@@ -476,8 +414,7 @@ export default function MMCareerAIPage() {
                           <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
                             <li>• No API key required</li>
                             <li>• Puter.js "User-Pays" model</li>
-                            <li>• Free unlimited access</li>
-                            <li>• Real-time processing</li>
+                            <li>• High-performance inference</li>
                           </ul>
                         </div>
                       </div>
@@ -487,184 +424,8 @@ export default function MMCareerAIPage() {
               </div>
             </AnimatedSection>
           )}
-
-          {/* Usage Tab */}
-          {activeTab === 'usage' && (
-            <AnimatedSection delay={400}>
-              <div className="space-y-8">
-                <h2 className="text-3xl font-bold mb-8">How to Use</h2>
-                <Card>
-                  <CardContent className="pt-6">
-                    <div className="space-y-6">
-                      <div className="space-y-4">
-                        <div className="flex items-start gap-4">
-                          <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 dark:text-blue-400 font-bold">1</span>
-                          </div>
-                          <div>
-                            <h4 className="font-medium mb-2">Start Career Assessment</h4>
-                            <p className="text-gray-600 dark:text-gray-400">Visit the homepage and click "အခုပဲ စစ်ဆေးကြည့်မယ်" (Start Assessment)</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-4">
-                          <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 dark:text-blue-400 font-bold">2</span>
-                          </div>
-                          <div>
-                            <h4 className="font-medium mb-2">Enter Skills & Interests</h4>
-                            <p className="text-gray-600 dark:text-gray-400">Input your skills (HTML, CSS, JavaScript, Photoshop) and interests (Web Development, AI, Mobile Apps)</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-4">
-                          <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 dark:text-blue-400 font-bold">3</span>
-                          </div>
-                          <div>
-                            <h4 className="font-medium mb-2">Review Career Guide</h4>
-                            <p className="text-gray-600 dark:text-gray-400">Check your match score, recommended job, salary, and explore the step-by-step Career Roadmap</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-4">
-                          <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 dark:text-blue-400 font-bold">4</span>
-                          </div>
-                          <div>
-                            <h4 className="font-medium mb-2">Build Resume & Prepare</h4>
-                            <p className="text-gray-600 dark:text-gray-400">Create your resume with AI suggestions and prepare for interviews with AI evaluation</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-2xl mb-4">Data Privacy</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <div>
-                          <h4 className="font-medium">Local Storage Only</h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">All personal data stored locally in browser (localStorage)</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <div>
-                          <h4 className="font-medium">No Server Data</h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">No data sent to any server except AI prompts for generation</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <div>
-                          <h4 className="font-medium">Complete Privacy</h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Skills, resume, interview answers, and learning progress remain private</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </AnimatedSection>
-          )}
-
-          {/* Architecture Tab */}
-          {activeTab === 'architecture' && (
-            <AnimatedSection delay={400}>
-              <div className="space-y-8">
-                <h2 className="text-3xl font-bold mb-8">Architecture</h2>
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-2xl mb-4">Project Structure</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
-                        <div className="space-y-2">
-                          <div>mm-career-ai/</div>
-                          <div>├── index.html</div>
-                          <div>├── index.tsx</div>
-                          <div>├── App.tsx</div>
-                          <div>├── types.ts</div>
-                          <div>├── components/</div>
-                          <div>├── pages/</div>
-                          <div>├── services/</div>
-                          <div>├── public/</div>
-                          <div>└── vite.config.ts</div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-xl mb-4">Frontend Architecture</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm">
-                        <li>• React 19.2.3 with TypeScript</li>
-                        <li>• Vite 6.2.0 build tool</li>
-                        <li>• Tailwind CSS for styling</li>
-                        <li>• React Router for navigation</li>
-                        <li>• Component-based architecture</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-xl mb-4">AI Integration</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm">
-                        <li>• Gemini AI via Puter.js</li>
-                        <li>• Streaming responses</li>
-                        <li>• JSON-structured outputs</li>
-                        <li>• Career analysis algorithms</li>
-                        <li>• Resume optimization AI</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </AnimatedSection>
-          )}
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-200 dark:border-gray-800 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs">MC</span>
-              </div>
-              <span className="font-medium">MyanCareer AI</span>
-            </div>
-            <div className="flex items-center space-x-6">
-              <a 
-                href="https://mm-career-ai.vercel.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                <ExternalLink className="h-4 w-4" />
-                Live Demo
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

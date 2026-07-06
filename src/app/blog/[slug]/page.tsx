@@ -41,22 +41,28 @@ async function fetchBlogPost(slug: string): Promise<BlogPost | null> {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = await fetchBlogPost(slug);
-  const baseUrl = "https://arkaryan.net/";
+  const baseUrl = "https://arkaryan.net";
 
   if (!post) {
     return {
-      title: "Blog Post Not Found | Arkar Yan",
+      title: "Blog Post Not Found",
       description: "The blog post you are looking for could not be found.",
     };
   }
 
   const title = post.title;
-  const description = post.excerpt || post.content.substring(0, 150) + '...';
-  const imageUrl = post.image_url || `${baseUrl}/profile.jpg`;
+  const description = post.excerpt || (post.content.substring(0, 150).replace(/[#*`]/g, '') + '...');
+  
+  // Ensure imageUrl is absolute for crawlers
+  let imageUrl = post.image_url || `${baseUrl}/profile.jpg`;
+  if (imageUrl.startsWith('/')) {
+    imageUrl = `${baseUrl}${imageUrl}`;
+  }
+  
   const blogUrl = `${baseUrl}/blog/${post.id}`;
 
   return {
-    title: `${title} | Arkar Yan Blog`,
+    title: title,
     description: description,
     authors: [{ name: post.author || "Arkar Yan" }],
     openGraph: {
@@ -74,13 +80,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           width: 1200,
           height: 630,
           alt: title,
-        },
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 1200,
-          alt: title,
-        },
+        }
       ],
     },
     twitter: {

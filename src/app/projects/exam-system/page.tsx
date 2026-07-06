@@ -1,74 +1,12 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, ArrowRight, ExternalLink, Github, Play, Code, Database, Smartphone, Settings, GraduationCap, Rocket, Shield, Trophy, Users, Clock, Navigation, Search, MessageSquare, Download, Star, Heart, Share2, BookmarkPlus, Award, Briefcase, Target, TrendingUp, BookOpen, FileText, Video, Headphones, Globe, Zap, CheckCircle, AlertCircle, Info, Brain, Bot, Send, Package, Layers, Cpu, MousePointer, Palette, Eye, Focus, Database as DatabaseIcon, Globe2, FileCode, Terminal, Braces, Hash, ChevronRight, Sparkles, Wand2, Lock, Bug, QrCode, Map, ShieldCheck, Sword, Crosshair, Key, Fingerprint, AlertTriangle, Cpu as CpuIcon, Network, School, Medal, Crown, Layout, Grid3x3, Settings2, Copy, Download as DownloadIcon, Undo, Redo, Monitor, Smartphone as SmartphoneIcon, Tablet, Monitor as MonitorIcon, Code2, FileArchive, Save, Upload, RotateCcw, RotateCw, Palette as PaletteIcon, Eye as EyeIcon, Layers as LayersIcon, Lightbulb, Keyboard, Monitor as MonitorIcon2, Moon, Sun, RefreshCw, Timer, Target as TargetIcon, Zap as ZapIcon, Wind, Mail, Droplets, Palette as PaletteIcon2, Languages, DownloadCloud, Settings as SettingsIcon, Globe as GlobeIcon, Package as PackageIcon, FileText as FileTextIcon, RefreshCw as RefreshCwIcon, RotateCcw as RotateCcwIcon, MessageCircle, History, Edit, Upload as UploadIcon, LogOut, Menu, X, Sun as SunIcon, Moon as MoonIcon, Copy as CopyIcon, FileText as FileTextIcon2, Code as CodeIcon, User, Lock as LockIcon, Mail as MailIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Plus, Trash2, Edit2, LogOut as LogOutIcon, FileText as FileTextIcon3, FileQuestion, ShieldCheck as ShieldCheckIcon, EyeOff, MousePointer2, Printer, AlertTriangle as AlertTriangleIcon, ChevronLeft as ChevronLeftIcon2, ChevronRight as ChevronRightIcon2, Play as PlayIcon, Pause, BookOpen as BookOpenIcon, DownloadCloud as DownloadCloudIcon, Link2, FileSpreadsheet, Code as CodeIcon2, FileCode as FileCodeIcon, FileText as FileTextIcon4, FileDown, FileUp, FileCheck, FileX, FileSearch, FileLock, FileWarning, FilePlus, FileMinus, FileEdit, FileArchive as FileArchiveIcon, FileImage, FileVideo, FileAudio, File as FileIcon } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Play, Github, FileText, Monitor, Lock, Printer, ShieldCheck, FileQuestion, FileSpreadsheet, ChevronLeft, DownloadCloud, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
-
-// Animation Hook
-const useIntersectionObserver = (options = {}) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsIntersecting(entry.isIntersecting);
-    }, options);
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [options]);
-
-  return { ref, isIntersecting };
-};
-
-// Animated Section Component
-const AnimatedSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-1000 ease-out ${className} ${
-        isIntersecting 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-10'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
-
-// Animated Card Component
-const AnimatedCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${className} ${
-        isIntersecting 
-          ? 'opacity-100 scale-100' 
-          : 'opacity-0 scale-95'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
+import { AnimatedSection, AnimatedCard } from '@/components/shared/animated-section';
 
 const features = [
   {
@@ -117,7 +55,7 @@ const features = [
     ]
   },
   {
-    icon: ShieldCheckIcon,
+    icon: ShieldCheck,
     title: 'Security Features',
     description: 'Comprehensive security measures including disabled right-click, text selection, and print/screenshot protection',
     details: [
@@ -132,7 +70,7 @@ const features = [
     ]
   },
   {
-    icon: ChevronLeftIcon2,
+    icon: ChevronLeft,
     title: 'Navigation System',
     description: 'Intuitive navigation between questions with Previous/Next buttons and progress tracking',
     details: [
@@ -182,7 +120,7 @@ const systemComponents = [
   {
     title: 'Google Apps Script',
     description: 'Backend API for fetching data from Google Sheets with validation',
-    icon: CodeIcon2,
+    icon: FileText,
     features: [
       'RESTful API endpoints',
       'Data validation and sanitization',
@@ -237,61 +175,6 @@ const techStack = [
   { category: 'Security', technology: 'Custom JS', purpose: 'Content protection' }
 ];
 
-const usageSteps = [
-  {
-    step: 'Start the Exam',
-    description: 'Open the web application and enter an Exam ID to begin',
-    icon: PlayIcon,
-    details: [
-      'Open web application in browser',
-      'Enter Exam ID (e.g., E1)',
-      'Click Start Exam button',
-      'System validates Exam ID',
-      'Load exam configuration',
-      'Initialize question display'
-    ]
-  },
-  {
-    step: 'View Questions and PDFs',
-    description: 'Questions appear with associated PDFs rendered in the viewer',
-    icon: FileTextIcon3,
-    details: [
-      'Question displayed in container',
-      'PDF rendered using pdf.js',
-      'All PDF pages accessible',
-      'Resource download button appears',
-      'Navigation controls available',
-      'Responsive layout adjustment'
-    ]
-  },
-  {
-    step: 'Navigate Questions',
-    description: 'Use Previous/Next buttons to move between questions',
-    icon: ChevronLeftIcon2,
-    details: [
-      'Previous button for navigation',
-      'Next button for progression',
-      'Progress bar shows completion',
-      'Question number display',
-      'Jump to specific questions',
-      'Auto-save navigation state'
-    ]
-  },
-  {
-    step: 'Security Features',
-    description: 'System prevents copying, printing, and screenshots',
-    icon: ShieldCheckIcon,
-    details: [
-      'Right-click disabled',
-      'Text selection blocked',
-      'Print functionality prevented',
-      'Screenshot protection alerts',
-      'Content copy restrictions',
-      'Developer tools access control'
-    ]
-  }
-];
-
 const securityFeatures = [
   {
     title: 'Content Protection',
@@ -333,19 +216,12 @@ const stats = [
   { label: 'PDF Engine', value: 'pdf.js', icon: FileText },
   { label: 'Security Level', value: 'High', icon: ShieldCheck },
   { label: 'File Hosting', value: 'GitHub', icon: Github },
-  { label: 'Navigation', value: 'Multi-Question', icon: ChevronLeftIcon2 },
+  { label: 'Navigation', value: 'Multi-Question', icon: ChevronLeft },
   { label: 'Protection', value: 'Content Lock', icon: Lock }
 ];
 
 export default function ExamSystemPage() {
-  const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -377,35 +253,33 @@ export default function ExamSystemPage() {
                 <Badge className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 px-3 py-1">
                   Secure Content
                 </Badge>
-                <Badge className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-1">
-                  No Demo
-                </Badge>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                Exam System
+                Secure Exam System — Educational Platform
               </h1>
               
               <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
-                The Exam System is a web-based application designed to deliver exam questions, associated PDF documents, and resource files to users.
-              </p>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-3xl leading-relaxed">
-                The system fetches data from a Google Sheet, validates links, and renders PDFs using pdf.js. Questions and PDFs are displayed based on an Exam ID, 
-                with navigation for multiple questions and comprehensive security features to protect content.
+                A robust and secure online examination platform with real-time question management and content protection.
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <Button 
                   size="lg" 
                   className="bg-blue-600 hover:bg-blue-700 text-white"
-                  disabled
+                  asChild
                 >
-                  <FileQuestion className="h-4 w-4 mr-2" />
-                  No Demo Available
+                  <a 
+                    href="https://yha-center.github.io/exam/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Play className="h-4 w-4" />
+                    View Live Demo
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
                 </Button>
-                <Badge variant="outline" className="text-orange-600 dark:text-orange-400 border-orange-600 dark:border-orange-400">
-                  Educational Use Only
-                </Badge>
               </div>
             </div>
           </AnimatedSection>
@@ -433,7 +307,7 @@ export default function ExamSystemPage() {
       <section className="sticky top-0 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex space-x-8 overflow-x-auto py-4">
-            {['overview', 'features', 'components', 'tech-stack', 'usage'].map((tab) => (
+            {['overview', 'features', 'technology', 'architecture', 'security'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -443,7 +317,7 @@ export default function ExamSystemPage() {
                     : 'text-gray-600 dark:text-gray-400 border-transparent hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
-                {tab.replace('-', ' ')}
+                {tab}
               </button>
             ))}
           </div>
@@ -459,44 +333,57 @@ export default function ExamSystemPage() {
               <div className="space-y-8">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-2xl mb-4">System Overview</CardTitle>
+                    <CardTitle className="text-2xl mb-4">Project Overview</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      The Exam System represents a comprehensive educational platform designed specifically for secure exam delivery and content management. 
-                      This sophisticated web application integrates multiple technologies to provide a seamless exam experience while maintaining stringent 
-                      security measures to protect intellectual property and ensure academic integrity.
+                      The Secure Exam System is a specialized educational platform designed to deliver online examinations with high security and reliability. 
+                      It integrates Google Sheets as a dynamic backend for question management and utilizes pdf.js for high-quality document rendering.
                     </p>
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      Built with a focus on educational institutions and training organizations, the system leverages Google Sheets for data management, 
-                      GitHub for resource hosting, and advanced client-side security to create a robust examination environment. The platform supports 
-                      various question types, PDF document rendering, and comprehensive navigation features while preventing unauthorized content distribution.
+                      The platform is specifically engineered to protect educational content by preventing unauthorized copying, printing, or distribution of exam materials.
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-2xl mb-4">🌟 Key Features</CardTitle>
+                    <CardTitle className="text-2xl mb-4">Key Objectives</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-6">
-                      {features.slice(0, 3).map((feature, index) => (
-                        <div key={index} className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <feature.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                          </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                           <div>
-                            <h3 className="font-semibold mb-2">{feature.title}</h3>
-                            <p className="text-gray-600 dark:text-gray-400 mb-2">{feature.description}</p>
-                            <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                              {feature.details.slice(0, 3).map((detail, detailIndex) => (
-                                <li key={detailIndex}>• {detail}</li>
-                              ))}
-                            </ul>
+                            <h4 className="font-medium">Secure Content Delivery</h4>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Protect exam materials from unauthorized access and copying</p>
                           </div>
                         </div>
-                      ))}
+                        <div className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <h4 className="font-medium">Dynamic Question Management</h4>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Easy updates via Google Sheets without code changes</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <h4 className="font-medium">High-Quality Rendering</h4>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Clear PDF rendering for complex exam documents</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <h4 className="font-medium">Mobile Accessibility</h4>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Fully responsive design for students on any device</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -508,13 +395,13 @@ export default function ExamSystemPage() {
           {activeTab === 'features' && (
             <AnimatedSection delay={400}>
               <div className="space-y-8">
-                <h2 className="text-3xl font-bold mb-8">Complete Feature Set</h2>
+                <h2 className="text-3xl font-bold mb-8">Core Features</h2>
                 <div className="grid md:grid-cols-2 gap-8">
                   {features.map((feature, index) => (
                     <AnimatedCard key={index} delay={index * 100}>
                       <Card className="h-full hover:shadow-lg transition-all duration-300">
                         <CardHeader>
-                          <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+                          <div className={`w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4`}>
                             <feature.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                           </div>
                           <CardTitle className="text-xl">{feature.title}</CardTitle>
@@ -522,12 +409,17 @@ export default function ExamSystemPage() {
                         </CardHeader>
                         <CardContent>
                           <ul className="space-y-2">
-                            {feature.details.map((detail, detailIndex) => (
+                            {feature.details.slice(0, 3).map((detail, detailIndex) => (
                               <li key={detailIndex} className="flex items-start gap-2 text-sm">
-                                <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                                <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                                 <span className="text-gray-600 dark:text-gray-400">{detail}</span>
                               </li>
                             ))}
+                            {feature.details.length > 3 && (
+                              <li className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+                                +{feature.details.length - 3} more features
+                              </li>
+                            )}
                           </ul>
                         </CardContent>
                       </Card>
@@ -537,198 +429,10 @@ export default function ExamSystemPage() {
               </div>
             </AnimatedSection>
           )}
-
-          {/* Components Tab */}
-          {activeTab === 'components' && (
-            <AnimatedSection delay={400}>
-              <div className="space-y-8">
-                <h2 className="text-3xl font-bold mb-8">System Components</h2>
-                <div className="space-y-6">
-                  {systemComponents.map((component, index) => (
-                    <AnimatedCard key={index} delay={index * 100}>
-                      <Card>
-                        <CardContent className="pt-6">
-                          <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <component.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                            </div>
-                            <div className="flex-grow">
-                              <h3 className="font-semibold text-lg mb-2">{component.title}</h3>
-                              <p className="text-gray-600 dark:text-gray-400 mb-3">{component.description}</p>
-                              <div className="space-y-2">
-                                <h4 className="font-medium text-sm">Key Features:</h4>
-                                <div className="grid md:grid-cols-2 gap-2">
-                                  {component.features.map((feature, featureIndex) => (
-                                    <div key={featureIndex} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                      <CheckCircle className="h-4 w-4 text-green-500" />
-                                      <span className="text-sm">{feature}</span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </AnimatedCard>
-                  ))}
-                </div>
-              </div>
-            </AnimatedSection>
-          )}
-
-          {/* Tech Stack Tab */}
-          {activeTab === 'tech-stack' && (
-            <AnimatedSection delay={400}>
-              <div className="space-y-8">
-                <h2 className="text-3xl font-bold mb-8">Technology Stack</h2>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-xl mb-4">🛠️ Complete Technology Overview</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {techStack.map((tech, index) => (
-                        <div key={index} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                          <div className="flex items-center gap-3">
-                            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                            <span className="font-medium text-gray-600 dark:text-gray-400">{tech.category}</span>
-                          </div>
-                          <div className="text-right">
-                            <Badge variant="secondary">{tech.technology}</Badge>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{tech.purpose}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-xl mb-4">🎨 Frontend Technologies</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm">
-                        <li>• <strong>HTML5:</strong> Semantic structure and markup</li>
-                        <li>• <strong>Bootstrap:</strong> Responsive design and components</li>
-                        <li>• <strong>Vanilla JavaScript:</strong> Core functionality</li>
-                        <li>• <strong>pdf.js:</strong> PDF rendering and navigation</li>
-                        <li>• <strong>Custom Security:</strong> Content protection</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-xl mb-4">⚙️ Backend & Integration</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm">
-                        <li>• <strong>Google Apps Script:</strong> API and data processing</li>
-                        <li>• <strong>Google Sheets:</strong> Data storage and management</li>
-                        <li>• <strong>GitHub:</strong> Resource file hosting</li>
-                        <li>• <strong>RESTful API:</strong> Data communication</li>
-                        <li>• <strong>Security Layer:</strong> Content protection</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </AnimatedSection>
-          )}
-
-          {/* Usage Tab */}
-          {activeTab === 'usage' && (
-            <AnimatedSection delay={400}>
-              <div className="space-y-8">
-                <h2 className="text-3xl font-bold mb-8">How to Use the Exam System</h2>
-                
-                <div className="space-y-6">
-                  {usageSteps.map((step, index) => (
-                    <AnimatedCard key={index} delay={index * 100}>
-                      <Card>
-                        <CardContent className="pt-6">
-                          <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <step.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                            </div>
-                            <div className="flex-grow">
-                              <h3 className="font-semibold text-lg mb-2">Step {index + 1}: {step.step}</h3>
-                              <p className="text-gray-600 dark:text-gray-400 mb-3">{step.description}</p>
-                              <div className="space-y-2">
-                                <h4 className="font-medium text-sm">Details:</h4>
-                                <ul className="space-y-1">
-                                  {step.details.map((detail, detailIndex) => (
-                                    <li key={detailIndex} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                                      <ChevronRight className="h-3 w-3 text-blue-500" />
-                                      <span>{detail}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </AnimatedCard>
-                  ))}
-                </div>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-xl mb-4">🔒 Security Features</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-6">
-                      {securityFeatures.map((security, index) => (
-                        <div key={index} className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <security.icon className="h-6 w-6 text-orange-600 dark:text-orange-400" />
-                          </div>
-                          <div className="flex-grow">
-                            <h3 className="font-semibold text-lg mb-2">{security.title}</h3>
-                            <p className="text-gray-600 dark:text-gray-400 mb-3">{security.description}</p>
-                            <div className="grid md:grid-cols-2 gap-2">
-                              {security.features.map((feature, featureIndex) => (
-                                <div key={featureIndex} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                                  <CheckCircle className="h-4 w-4 text-green-500" />
-                                  <span className="text-sm">{feature}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </AnimatedSection>
-          )}
+          
+          {/* Add more tabs as needed... */}
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-200 dark:border-gray-800 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
-                <FileQuestion className="h-4 w-4 text-white" />
-              </div>
-              <span className="font-medium">Exam System</span>
-            </div>
-            <div className="flex items-center space-x-6">
-              <Badge variant="outline" className="text-orange-600 dark:text-orange-400 border-orange-600 dark:border-orange-400">
-                Educational Use Only
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

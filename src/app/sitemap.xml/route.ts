@@ -28,7 +28,7 @@ export async function GET() {
   ];
   const projectRoutes = projects.map(p => `/projects/${p}`);
 
-  // Fetch blog posts to get dynamic slugs
+  // Fetch blog posts to get dynamic IDs
   let blogRoutes: string[] = [];
   try {
     const SHEETS_API_BASE = 'https://script.google.com/macros/s/AKfycbyhu0M0IeYOiVYHyTxafuSQ8TNau6Ij4F1DKCe2agZSjV4aYzMwoJ4gmDm8tputzMtbpg/exec';
@@ -38,7 +38,8 @@ export async function GET() {
     if (response.ok) {
       const data = await response.json();
       if (Array.isArray(data)) {
-        blogRoutes = data.map((blog: any) => `/blog/${blog.slug}`);
+        // Use ID instead of slug to match the actual routing logic
+        blogRoutes = data.map((blog: any) => `/blog/${blog.id}`);
       }
     }
   } catch (error) {

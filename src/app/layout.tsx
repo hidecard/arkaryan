@@ -20,7 +20,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Arkar Yan - Full Stack Developer",
+  title: {
+    default: "Arkar Yan - Full Stack Developer | Software Architect",
+    template: "%s | Arkar Yan"
+  },
   description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။",
   keywords: ["Arkar Yan", "Software Engineer", "Full Stack Developer", "Project Manager", "Instructor", "Founder", "Software Architect", "MERN", "Laravel", "Flutter", "Cybersecurity", "SaaS", "Next.js", "React.js", "Node.js", "PHP", "Web Development", "Mobile Development", "k Square", "Myanmar Cyber Ghost", "TypeScript", "Tailwind CSS"],
   authors: [{ name: "Arkar Yan" }],
@@ -53,19 +56,13 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Arkar Yan - Full Stack Developer & Software Architect",
-      },
-      {
-        url: "/profile.jpg",
-        width: 1200,
-        height: 1200,
-        alt: "Arkar Yan - Full Stack Developer & Software Architect",
-      },
+      }
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Arkar Yan - Full Stack Developer & Software Architect",
-    description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။"
+    description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။",
     images: ["/profile.jpg"],
     creator: "@hidecard1",
     site: "@hidecard1",
@@ -117,6 +114,7 @@ export default function RootLayout({
             jobTitle: "Full Stack Developer & Software Architect",
             description: "Visionary Software Architect and Educator with 10+ years experience in enterprise SaaS, AI solutions, and cybersecurity advocacy.",
             email: "info@arkaryan.net",
+            image: "https://arkaryan.net/profile.jpg",
             worksFor: {
               "@type": "Organization",
               name: "k Square",
