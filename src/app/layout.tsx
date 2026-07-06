@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: "Arkar Yan - Full Stack Developer | Software Architect",
     template: "%s | Arkar Yan"
   },
-  description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။",
+  description: "ဆော့ဖ်ဝဲလ်ဗိသုကာပညာရှင်နှင့် နည်းပညာပညာပေးသူ အာကာယံ၏ Portfolio ဖြစ်ပါသည်။ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်ပြီး၊ k Square ၏ Founder တစ်ဦးလည်း ဖြစ်သည်။ MERN, Laravel နှင့် Flutter နည်းပညာများဖြင့် ခေတ်မီဆော့ဖ်ဝဲလ်ဖြေရှင်းချက်များကို ဖန်တီးပေးလျက်ရှိပါသည်။",
   keywords: ["Arkar Yan", "Software Engineer", "Full Stack Developer", "Project Manager", "Instructor", "Founder", "Software Architect", "MERN", "Laravel", "Flutter", "Cybersecurity", "SaaS", "Next.js", "React.js", "Node.js", "PHP", "Web Development", "Mobile Development", "k Square", "Myanmar Cyber Ghost", "TypeScript", "Tailwind CSS"],
   authors: [{ name: "Arkar Yan" }],
   creator: "Arkar Yan",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Arkar Yan - Full Stack Developer & Software Architect",
-    description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။",
+    description: "ဆော့ဖ်ဝဲလ်ဗိသုကာပညာရှင်နှင့် နည်းပညာပညာပေးသူ အာကာယံ၏ Portfolio ဖြစ်ပါသည်။ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်ပြီး၊ k Square ၏ Founder တစ်ဦးလည်း ဖြစ်သည်။ MERN, Laravel နှင့် Flutter နည်းပညာများဖြင့် ခေတ်မီဆော့ဖ်ဝဲလ်ဖြေရှင်းချက်များကို ဖန်တီးပေးလျက်ရှိပါသည်။",
     type: "website",
     url: "https://arkaryan.net/",
     siteName: "Arkar Yan - Portfolio",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Arkar Yan - Full Stack Developer & Software Architect",
-    description: "အာကာယံသည် ဆော့ဝဲဗိသုကာပညာရှင်နှင့် ပညာပေးသူတစ်ဦးဖြစ်ပြီး၊ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာများနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်သည်။ k Square ကို တည်ထောင်သူဖြစ်ပြီး MERN, Laravel, Flutter နည်းပညာများတွင် အထူးပြုပါသည်။",
+    description: "ဆော့ဖ်ဝဲလ်ဗိသုကာပညာရှင်နှင့် နည်းပညာပညာပေးသူ အာကာယံ၏ Portfolio ဖြစ်ပါသည်။ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်ပြီး၊ k Square ၏ Founder တစ်ဦးလည်း ဖြစ်သည်။ MERN, Laravel နှင့် Flutter နည်းပညာများဖြင့် ခေတ်မီဆော့ဖ်ဝဲလ်ဖြေရှင်းချက်များကို ဖန်တီးပေးလျက်ရှိပါသည်။",
     images: ["/profile.jpg"],
     creator: "@hidecard1",
     site: "@hidecard1",
