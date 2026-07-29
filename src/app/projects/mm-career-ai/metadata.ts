@@ -2,7 +2,11 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "MyanCareer AI - AI Career Guidance Platform",
-  description: "MyanCareer AI is an AI-powered career guidance platform designed specifically for Myanmar's young professionals and job seekers. Features AI career assessment, roadmap generation, and resume building.",
+  description: "MyanCareer AI is an AI-powered career guidance platform designed specifically for Myanmar's young professionals and job seekers. Features AI career assessment, roadmap generation, and resume building. Developed by Arkar Yan.",
+  keywords: ["MyanCareer AI", "Career Guidance", "AI", "Myanmar", "Job Seeker", "Resume Builder", "Arkar Yan"],
+  authors: [{ name: "Arkar Yan" }],
+  creator: "Arkar Yan",
+  publisher: "Arkar Yan",
   openGraph: {
     title: "MyanCareer AI - AI Career Guidance Platform",
     description: "AI-powered career guidance platform for Myanmar's young professionals. Personalized assessments, roadmaps, and resume builder.",

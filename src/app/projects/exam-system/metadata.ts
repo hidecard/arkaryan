@@ -2,7 +2,11 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Secure Exam System - Educational Platform",
-  description: "A secure online examination system featuring PDF rendering, real-time question fetching from Google Sheets, and content protection mechanisms.",
+  description: "A secure online examination system featuring PDF rendering, real-time question fetching from Google Sheets, and content protection mechanisms. Developed by Arkar Yan.",
+  keywords: ["Secure Exam System", "Educational Platform", "Exam", "PDF Rendering", "Google Sheets", "Arkar Yan"],
+  authors: [{ name: "Arkar Yan" }],
+  creator: "Arkar Yan",
+  publisher: "Arkar Yan",
   openGraph: {
     title: "Secure Exam System - Educational Platform",
     description: "Secure online examination system with PDF rendering and content protection. Integrated with Google Sheets API.",

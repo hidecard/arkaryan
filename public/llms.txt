@@ -22,6 +22,23 @@ Topics / Skills
 - Databases (MongoDB, MySQL) and system architecture
 - Cybersecurity & incident response (educational content)
 
+Projects by Arkar Yan
+- YBS AI (Intelligent Public Transport): AI-powered bus route guide for Yangon, Myanmar
+- MM Match: Tinder-style Telegram dating bot with swipe functionality
+- Solo VPN: Java Native VPN application with secure network protocols
+- KG English: Interactive educational mobile app for English language learning
+- DWMBlurGlass: Free open-source Windows blur effects application
+- OneKit - Modern JavaScript Library: Lightweight JS library for modern web development
+- MM Career AI: AI-powered career guidance platform for Myanmar professionals
+- PhotoBooth: Interactive web-based photo booth application
+- Exam System: Secure online examination system with PDF rendering
+- YHA - AI: Sleek AI-powered chat application
+- CSS-Labs: Web-based CSS layout learning tool
+- Security Labs Web Platform: Interactive cybersecurity learning platform
+- Programming Keyboard Trainer: Flutter desktop app for typing practice
+- OneKit Framework: Custom lightweight JavaScript framework
+- Mobile App Portfolio: Various utility software on Google Play Store
+
 Identity / Branding
 - Company/brand: k Square
 - Cybersecurity initiative: Myanmar Cyber Ghost
@@ -29,5 +46,5 @@ Identity / Branding
 Contact
 - Email: info@arkaryan.net
 
-Last updated: 2026-07-04
+Last updated: 2026-07-29
 

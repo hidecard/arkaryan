@@ -25,7 +25,9 @@ export default function AboutSection() {
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
                   I'm a passionate full-stack developer with extensive experience in building modern web and mobile applications. 
                   My expertise spans across frontend technologies like React.js and Next.js, backend systems with Node.js and PHP, 
-                  and mobile development using Flutter.
+                  and mobile development using Flutter. I've created notable projects including YBS AI (Intelligent Public Transport), 
+                  MM Match (Tinder-style Dating Bot), Solo VPN, KG English, DWMBlurGlass, OneKit JavaScript Library, 
+                  MM Career AI, and many more.
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   I have a strong foundation in system administration, version control, and modern development practices. 

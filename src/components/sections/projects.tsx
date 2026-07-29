@@ -31,143 +31,194 @@ const getDetailPath = (title: string) => {
 
 // Projects data
 const projects = [
-  {
-    title: 'Solo VPN',
-    description: 'Java Native VPN application focusing on secure network protocols, data encryption, and high-performance connectivity.',
-    technologies: ['Java Native', 'OpenVPN', 'WireGuard', 'IKEv2', 'AES-256', 'Android VPN Service', 'Bouncy Castle', 'Netty'],
-    category: 'Mobile',
+{
+    title: 'YBS AI (Intelligent Public Transport)',
+    description: 'A comprehensive bus route guide application for Yangon, Myanmar, featuring interactive maps, AI-powered route assistance, and offline functionality.',
+    technologies: ['React 19', 'TypeScript', 'Tailwind CSS', 'Leaflet Maps', 'Google Gemini AI', 'IndexedDB', 'Dexie', 'Progressive Web App'],
+    category: 'AI',
+    featured: true,
+    liveDemo: 'https://ybs-mm-v2.vercel.app/',
+    features: [
+      '🗺️ Interactive Maps with Leaflet and OpenStreetMap',
+      '🤖 AI-Powered Assistant with Google Gemini',
+      '🔍 Advanced Search & Navigation',
+      '📱 Responsive Mobile-First Design',
+      '💾 Offline Capabilities with IndexedDB',
+      '🌐 Myanmar & English Language Support'
+    ],
+    detailedDescription: `Yangon YBS Guide 🚌
+A comprehensive bus route guide application for Yangon, Myanmar, featuring interactive maps, AI-powered route assistance, and offline functionality.
+
+🌟 Features
+🗺️ Interactive Maps
+Leaflet-powered maps with OpenStreetMap tiles
+GPS location services to find nearby bus stops
+Route visualization with color-coded bus routes
+Stop search and navigation on the map
+🤖 AI-Powered Assistant
+Natural language queries in Myanmar and English
+Intelligent route finding using Google Gemini AI
+Contextual responses with transfer information
+Conversational interface for transportation queries
+🔍 Advanced Search & Navigation
+Route search between any two bus stops
+Stop directory with 1000+ stops organized by township
+Route filtering by start/end locations
+Transfer planning with multiple route options
+📱 Responsive Design
+Mobile-first design with bottom navigation
+Desktop interface with header navigation
+Progressive Web App capabilities
+Offline functionality with cached data
+💾 Offline Capabilities
+IndexedDB storage using Dexie
+Local route data for offline access
+Fast loading without internet dependency
+Data synchronization when online`
+  },
+{
+    title: 'MM Match - Tinder-style Dating Bot',
+    description: 'Complete Telegram dating bot with swipe functionality, built with Vercel and Turso for scalable performance supporting up to 100,000 users.',
+    technologies: ['Node.js', 'Telegraf', 'JavaScript ES Modules', 'Turso Database', 'LibSQL Client', 'Vercel Functions', 'Telegram Bot API', 'Webhook Integration'],
+    category: 'Bot',
+    featured: true,
+    liveDemo: 'https://t.me/mmcupid_bot',
+    features: [
+      '🤖 Step-by-step Registration',
+      '💕 Discovery System',
+      '⚧ Gender-based Matching',
+      '✨ Match Notification',
+      '✏️ Profile Editing',
+      '🎯 Smart UI & Commands',
+      '🚀 Scalable Architecture',
+      '🔒 Zero Storage Cost'
+    ],
+    detailedDescription: `MM Match - Tinder-style Dating Bot
+A complete Telegram dating bot with swipe functionality, built with Vercel and Turso for scalable performance supporting up to 100,000 users.
+
+🤖 Bot Information
+Bot Name: MM Match
+Bot Username: @mmcupid_bot
+Direct Link: https://t.me/mmcupid_bot
+
+🎯 Features
+Step-by-step Registration: Collects nickname, age, location, photo, bio, gender, and preferences
+Discovery System: Swipe through profiles with "Next" and "Like" buttons
+Gender-based Matching: Male users see Female profiles, Female users see Male profiles
+Match Notification: When two users like each other, usernames are revealed
+Profile Editing: Update any profile information anytime
+Smart UI: Button-based interactions with pinned commands
+Scalable Architecture: Optimized for 100,000+ users
+Zero Storage Cost: Uses Telegram photo_id instead of storing images
+Smart User Links: Fallback to tg://user?id=xxx when username not set
+
+🛠️ Tech Stack
+Backend: Node.js, Telegraf, JavaScript (ES Modules)
+Database: Turso (SQLite-compatible), LibSQL Client
+Deployment: Vercel, Vercel Functions
+APIs: Telegram Bot API, Webhook Integration
+
+🎨 User Interface & Experience
+Welcome Screen with Myanmar language support
+7-step registration process
+Button-based navigation with pinned commands
+Gender-based profile filtering
+Real-time match notifications
+Profile editing capabilities
+
+📊 Key Metrics
+User Capacity: 100,000+
+Bot Commands: 5 (/start, /find, /edit, /update, /help)
+Registration Steps: 7
+Database: Turso edge database
+Platform: Telegram
+Deployment: Vercel serverless`
+  },
+{
+    title: 'OneKit - Modern JavaScript Library',
+    description: 'OneKit is a lightweight, powerful JavaScript library that provides everything you need for modern web development: DOM manipulation, animations, reactive state management, routing, API integration, and more.',
+    technologies: ['Vanilla JavaScript', 'ES6+', 'Rollup/Webpack', 'Jest/QUnit', 'JSDoc', 'npm/yarn', 'ES Modules', 'Fluent Interface'],
+    category: 'Library',
     featured: true,
     features: [
-      '🔐 Advanced Security Protocols',
-      '📶 High-Performance Connectivity',
-      '🔒 Data Encryption & Privacy',
-      '📱 Cross-Platform Support',
-      '🌐 Global Server Network',
-      '📊 Connection Monitoring'
+      '🔧 DOM Manipulation',
+      '✨ Animations',
+      '🧠 Reactive State',
+      '🧭 Router',
+      '🌐 HTTP Client',
+      '👆 Gestures',
+      '📦 Components',
+      '🎨 Themes',
+      '👁️ Accessibility',
+      '💾 Storage'
     ],
-    detailedDescription: `Solo VPN
-Java Native VPN application focusing on secure network protocols, data encryption, and high-performance connectivity.
+    detailedDescription: `OneKit - Modern JavaScript Library
+OneKit is a lightweight, powerful JavaScript library that provides everything you need for modern web development: DOM manipulation, animations, reactive state management, routing, API integration, and more.
 
-🌟 Key Features
-🔐 Advanced Security Protocols
-AES-256 bit encryption for data protection
-Multiple VPN protocols (OpenVPN, WireGuard, IKEv2)
-DNS leak prevention and kill switch functionality
-Military-grade encryption standards
-Perfect Forward Secrecy (PFS)
-No-log policy with privacy protection
-Advanced authentication methods
-Regular security audits and updates
+🚀 Features
+DOM Manipulation - jQuery-like API for element selection and manipulation
+Animations - Smooth CSS animations and transitions
+Reactive State - Automatic UI updates with reactive data binding
+Router - Client-side routing with history API support
+HTTP Client - AJAX requests, WebSocket, and file uploads
+Gestures - Touch and gesture support for mobile devices
+Components - Reusable component system
+Themes - Built-in theming and dark mode support
+Accessibility - Screen reader support and focus management
+Storage - Local/session storage utilities
+Utilities - Debounce, throttle, date formatting, and more
 
-📶 High-Performance Connectivity
-High-speed servers in multiple locations
-Unlimited bandwidth with no throttling
-Automatic server selection for optimal performance
-Load balancing across server network
-Protocol optimization for different network types
-Ping reduction and latency improvement
-Connection stability monitoring
-Fallback server options for reliability
+📦 Quick Start
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My OneKit App</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello OneKit!</h1>
+        <button class="btn">Click me</button>
+    </div>
 
-🔒 Data Encryption & Privacy
-End-to-end encryption for all data transmission
-Secure DNS resolution to prevent leaks
-IP address masking and location hiding
-Split tunneling for selective protection
-Encrypted DNS queries
-Malware and phishing protection
-Ad-blocking capabilities
-Tracker prevention system
+    <script src="onekit.js"></script>
+    <script>
+        // DOM manipulation
+        ok('.btn').click(() => {
+            ok('#app').append('<p>Button clicked!</p>');
+        });
 
-📱 Cross-Platform Support
-Native Java development for Android
-Optimized for battery efficiency
-Background connection management
-Quick connect and disconnect features
-System integration with Android VPN service
-Widget support for quick access
-Notification system for connection status
-Automatic reconnection on network changes
+        // Animations
+        ok('.btn').fade_in();
+    </script>
+</body>
+</html>
 
-🌐 Global Server Network
-Server locations in 50+ countries
-High-bandwidth server infrastructure
-Load-balanced server clusters
-Geo-optimized routing algorithms
-Server health monitoring system
-Automatic server load distribution
-Redundant server configurations
-24/7 server maintenance and updates
+🛠️ Tech Stack
+Language: Vanilla JavaScript (ES6+)
+Build Tool: Rollup/Webpack
+Testing: Jest/QUnit
+Documentation: JSDoc
+Package Manager: npm/yarn
+Browser Support: Modern Browsers
+Module System: ES Modules/CommonJS
+API Design: Fluent Interface Pattern
 
-📊 Connection Monitoring
-Real-time connection speed monitoring
-Data transfer statistics and usage tracking
-Connection uptime and stability metrics
-Server response time monitoring
-Protocol performance comparison
-Bandwidth usage analytics
-Connection quality assessment
-Historical connection data and trends`
+📊 Key Metrics
+Core Features: 10+
+API Methods: 100+
+File Size: 25KB (minified)
+Browser Support: Modern browsers
+Dependencies: 0 (zero dependencies)
+License: MIT
+
+🌐 Browser Support
+Chrome (latest) - Supported
+Firefox (latest) - Supported
+Safari (latest) - Supported
+Edge (latest) - Supported
+IE 11 - Not supported`
   },
-  {
-    title: 'KG English',
-    description: 'Interactive educational mobile application designed to enhance English language learning for young students through gamified experiences.',
-    technologies: ['Flutter & Dart', 'Material Design', 'Audio Processing', 'Lottie Animations', 'SQLite', 'Provider', 'BLoC Pattern', 'Firebase Analytics'],
-    category: 'Mobile',
-    featured: true,
-    features: [
-      '📚 Interactive Learning Modules',
-      '🎮 Gamified Learning Experience',
-      '🔊 Audio-Visual Learning',
-      '🏆 Progress Tracking & Rewards',
-      '👥 Multi-User Support',
-      '📱 Mobile-First Design'
-    ],
-    detailedDescription: `KG English
-Interactive educational mobile application designed to enhance English language learning for young students through gamified experiences.
-
-🌟 Key Features
-📚 Interactive Learning Modules
-Alphabet learning with phonics and pronunciation
-Vocabulary building with visual aids and audio
-Grammar lessons with interactive exercises
-Reading comprehension with stories and articles
-Writing practice with guided exercises
-Speaking practice with pronunciation feedback
-Listening skills development with audio content
-Progress tracking with detailed analytics
-
-🎮 Gamified Learning Experience
-Word matching games with visual feedback
-Spelling bee competitions with difficulty levels
-Grammar racing games with time challenges
-Vocabulary puzzles and crosswords
-Story completion games with creative writing
-Role-playing scenarios for conversation practice
-Achievement system with badges and rewards
-Leaderboard for competitive learning
-
-🔊 Audio-Visual Learning
-Native speaker audio recordings
-Pronunciation practice with speech recognition
-Video lessons with animations and graphics
-Interactive flashcards with audio support
-Sing-along songs for vocabulary building
-Visual stories with text highlighting
-Audio books with comprehension questions
-Pronunciation guides with mouth movement videos
-
-📱 Mobile-First Design
-Responsive design for all screen sizes
-Touch-optimized interactions
-Offline mode for learning without internet
-Push notifications for learning reminders
-Gesture-based navigation
-Adaptive UI for different age groups
-Battery-optimized performance
-Quick access to favorite lessons`
-  },
-  {
+{
     title: 'MM Career AI',
     description: 'AI-powered career guidance platform for Myanmar professionals with skill assessment, job matching, and personalized learning roadmaps.',
     technologies: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Gemini AI', 'Puter.js', 'jsPDF', 'html2canvas', 'Recharts'],
@@ -248,7 +299,223 @@ Milestone generation with completion tracking
 Full UI text and AI-generated content in Myanmar language
 Pyidaungsu font support for proper Burmese rendering`
   },
-  {
+{
+    title: 'Solo VPN',
+    description: 'Java Native VPN application focusing on secure network protocols, data encryption, and high-performance connectivity.',
+    technologies: ['Java Native', 'OpenVPN', 'WireGuard', 'IKEv2', 'AES-256', 'Android VPN Service', 'Bouncy Castle', 'Netty'],
+    category: 'Mobile',
+    featured: true,
+    features: [
+      '🔐 Advanced Security Protocols',
+      '📶 High-Performance Connectivity',
+      '🔒 Data Encryption & Privacy',
+      '📱 Cross-Platform Support',
+      '🌐 Global Server Network',
+      '📊 Connection Monitoring'
+    ],
+    detailedDescription: `Solo VPN
+Java Native VPN application focusing on secure network protocols, data encryption, and high-performance connectivity.
+
+🌟 Key Features
+🔐 Advanced Security Protocols
+AES-256 bit encryption for data protection
+Multiple VPN protocols (OpenVPN, WireGuard, IKEv2)
+DNS leak prevention and kill switch functionality
+Military-grade encryption standards
+Perfect Forward Secrecy (PFS)
+No-log policy with privacy protection
+Advanced authentication methods
+Regular security audits and updates
+
+📶 High-Performance Connectivity
+High-speed servers in multiple locations
+Unlimited bandwidth with no throttling
+Automatic server selection for optimal performance
+Load balancing across server network
+Protocol optimization for different network types
+Ping reduction and latency improvement
+Connection stability monitoring
+Fallback server options for reliability
+
+🔒 Data Encryption & Privacy
+End-to-end encryption for all data transmission
+Secure DNS resolution to prevent leaks
+IP address masking and location hiding
+Split tunneling for selective protection
+Encrypted DNS queries
+Malware and phishing protection
+Ad-blocking capabilities
+Tracker prevention system
+
+📱 Cross-Platform Support
+Native Java development for Android
+Optimized for battery efficiency
+Background connection management
+Quick connect and disconnect features
+System integration with Android VPN service
+Widget support for quick access
+Notification system for connection status
+Automatic reconnection on network changes
+
+🌐 Global Server Network
+Server locations in 50+ countries
+High-bandwidth server infrastructure
+Load-balanced server clusters
+Geo-optimized routing algorithms
+Server health monitoring system
+Automatic server load distribution
+Redundant server configurations
+24/7 server maintenance and updates
+
+📊 Connection Monitoring
+Real-time connection speed monitoring
+Data transfer statistics and usage tracking
+Connection uptime and stability metrics
+Server response time monitoring
+Protocol performance comparison
+Bandwidth usage analytics
+Connection quality assessment
+Historical connection data and trends`
+  },
+{
+    title: 'KG English',
+    description: 'Interactive educational mobile application designed to enhance English language learning for young students through gamified experiences.',
+    technologies: ['Flutter & Dart', 'Material Design', 'Audio Processing', 'Lottie Animations', 'SQLite', 'Provider', 'BLoC Pattern', 'Firebase Analytics'],
+    category: 'Mobile',
+    featured: true,
+    features: [
+      '📚 Interactive Learning Modules',
+      '🎮 Gamified Learning Experience',
+      '🔊 Audio-Visual Learning',
+      '🏆 Progress Tracking & Rewards',
+      '👥 Multi-User Support',
+      '📱 Mobile-First Design'
+    ],
+    detailedDescription: `KG English
+Interactive educational mobile application designed to enhance English language learning for young students through gamified experiences.
+
+🌟 Key Features
+📚 Interactive Learning Modules
+Alphabet learning with phonics and pronunciation
+Vocabulary building with visual aids and audio
+Grammar lessons with interactive exercises
+Reading comprehension with stories and articles
+Writing practice with guided exercises
+Speaking practice with pronunciation feedback
+Listening skills development with audio content
+Progress tracking with detailed analytics
+
+🎮 Gamified Learning Experience
+Word matching games with visual feedback
+Spelling bee competitions with difficulty levels
+Grammar racing games with time challenges
+Vocabulary puzzles and crosswords
+Story completion games with creative writing
+Role-playing scenarios for conversation practice
+Achievement system with badges and rewards
+Leaderboard for competitive learning
+
+🔊 Audio-Visual Learning
+Native speaker audio recordings
+Pronunciation practice with speech recognition
+Video lessons with animations and graphics
+Interactive flashcards with audio support
+Sing-along songs for vocabulary building
+Visual stories with text highlighting
+Audio books with comprehension questions
+Pronunciation guides with mouth movement videos
+
+📱 Mobile-First Design
+Responsive design for all screen sizes
+Touch-optimized interactions
+Offline mode for learning without internet
+Push notifications for learning reminders
+Gesture-based navigation
+Adaptive UI for different age groups
+Battery-optimized performance
+Quick access to favorite lessons`
+  },
+{
+    title: 'DWMBlurGlass',
+    description: 'DWMBlurGlass is a free and open-source application that enables customizable blur effects for Windows title bars and borders, bringing back the classic Aero glass effect with modern enhancements.',
+    technologies: ['DWM Integration', 'Windows API', 'C++', 'Symbol Management', 'Multi-Language Support', 'Open Source'],
+    category: 'Utility',
+    featured: true,
+    liveDemo: 'https://liquid-glass-ui-for-window.vercel.app/',
+    features: [
+      '💧 Custom Blur Effects',
+      '🖥️ Windows 10/11 Support',
+      '👁️ Aero Reflection',
+      '🎨 Color Customization',
+      '🌍 Multi-Language Support',
+      '☁️ Symbol File Management'
+    ],
+    detailedDescription: `DWMBlurGlass
+DWMBlurGlass is a free and open-source application that enables customizable blur effects for Windows title bars and borders, bringing back the classic Aero glass effect with modern enhancements.
+
+🌟 Features
+Custom Blur Effects: Apply blur effects to window title bars and borders
+Windows 10/11 Support: Works on both Windows 10 and Windows 11
+Aero Reflection: Enable classic Windows 7-style Aero reflection effects
+Color Customization: Customize blend colors for light and dark modes
+Symbol File Management: Automatic symbol file downloading and management
+Multiple Languages: Supports 15+ languages including English, Chinese, Japanese, Korean, German, French, Spanish, and more
+
+📋 Installation
+Download the latest release from the releases page
+Extract files to directory outside user folder (not in C:\\Users\\ or subdirectories)
+Run application as administrator
+Click Install to install DWM modifications
+Download symbols from "Symbol" tab if prompted
+
+⚠️ Important: Due to DWM security restrictions, the application must be placed outside user directories.
+
+🎯 Usage
+General Settings
+Install/Uninstall: Enable or disable DWMBlurGlass effects
+Blur Radius: Adjust global blur intensity
+Override DWMAPI: Override Windows 11 Mica effects with custom blur
+Extend to Borders: Apply effects to window borders (Windows 10)
+
+Advanced Settings
+Aero Reflection: Enable Windows 7-style reflection effects
+Title Bar Buttons: Restore classic Windows 7 button styling
+Color Modes: Customize colors for light and dark themes
+Blend Colors: Set custom title bar blend colors
+
+Symbol Files
+Auto-Download: Automatically download required symbol files
+Status Check: Verify if current symbols are valid
+Manual Refresh: Re-download symbols after Windows updates
+
+🔧 Troubleshooting
+Installation Failed: Ensure app is not in user directory, run as admin
+Symbols Invalid: Download fresh symbols from Symbol tab
+Effects Not Working: Verify installation status, download valid symbols
+Error Messages: Check specific error solutions in documentation
+
+📊 System Requirements
+Windows 10 version 1903 or later
+Windows 11 (all versions)
+Administrator privileges required
+Internet connection for symbol downloads
+DWM service enabled
+GPU with DirectX support
+
+🌐 Multi-Language Support
+English, Chinese (Simplified/Traditional), Japanese, Korean
+German, French, Spanish, Italian, Portuguese, Russian
+And more - 15+ languages supported
+
+💻 Technical Implementation
+Direct DWM integration for system-level blur effects
+Windows API hooks for title bar modification
+Symbol file management for compatibility
+GPU-accelerated rendering for performance
+Memory-efficient implementation
+System service integration`
+  },
+{
     title: 'PhotoBooth',
     description: 'A fun, interactive web-based PhotoBooth application that lets you capture memorable moments with cute frames, effects, and customizable layouts.',
     technologies: ['HTML5', 'CSS3', 'Vanilla JavaScript', 'Bootstrap 5.3.0', 'WebRTC', 'Canvas API', 'Google Analytics', 'Icons8'],
@@ -352,7 +619,7 @@ Click "Save Photos" to download your finished photo strip as a PNG file
 Click "Share Photos" to share via your device's native share sheet
 Click "Retake Photos" to start over with a new photo session`
   },
-  {
+{
     title: 'Exam System',
     description: 'The Exam System is a web-based application designed to deliver exam questions, associated PDF documents, and resource files to users with comprehensive security features.',
     technologies: ['HTML5', 'Bootstrap', 'Vanilla JavaScript', 'pdf.js', 'Google Apps Script', 'Google Sheets', 'GitHub', 'Custom Security'],
@@ -418,7 +685,7 @@ Multi-format support (questions, PDFs, resources)
 Real-time data synchronization
 User-friendly navigation and interface`
   },
-  {
+{
     title: 'YHA - AI',
     description: 'YHA - AI is a sleek, modern, and responsive AI-powered chat application designed to empower users to explore AI, coding, and computer science concepts.',
     technologies: ['HTML5', 'CSS3', 'Bootstrap 5', 'JavaScript ES6', 'Prism.js', 'Google Fonts', 'Gemini 1.5 Flash API', 'Local Storage'],
@@ -486,87 +753,7 @@ CSS variables for dynamic theming
 Responsive design with mobile-first approach
 Accessibility features with ARIA labels and high contrast`
   },
-  {
-    title: 'DWMBlurGlass',
-    description: 'DWMBlurGlass is a free and open-source application that enables customizable blur effects for Windows title bars and borders, bringing back the classic Aero glass effect with modern enhancements.',
-    technologies: ['DWM Integration', 'Windows API', 'C++', 'Symbol Management', 'Multi-Language Support', 'Open Source'],
-    category: 'Utility',
-    featured: true,
-    liveDemo: 'https://liquid-glass-ui-for-window.vercel.app/',
-    features: [
-      '💧 Custom Blur Effects',
-      '🖥️ Windows 10/11 Support',
-      '👁️ Aero Reflection',
-      '🎨 Color Customization',
-      '🌍 Multi-Language Support',
-      '☁️ Symbol File Management'
-    ],
-    detailedDescription: `DWMBlurGlass
-DWMBlurGlass is a free and open-source application that enables customizable blur effects for Windows title bars and borders, bringing back the classic Aero glass effect with modern enhancements.
-
-🌟 Features
-Custom Blur Effects: Apply blur effects to window title bars and borders
-Windows 10/11 Support: Works on both Windows 10 and Windows 11
-Aero Reflection: Enable classic Windows 7-style Aero reflection effects
-Color Customization: Customize blend colors for light and dark modes
-Symbol File Management: Automatic symbol file downloading and management
-Multiple Languages: Supports 15+ languages including English, Chinese, Japanese, Korean, German, French, Spanish, and more
-
-📋 Installation
-Download the latest release from the releases page
-Extract files to directory outside user folder (not in C:\\Users\\ or subdirectories)
-Run application as administrator
-Click Install to install DWM modifications
-Download symbols from "Symbol" tab if prompted
-
-⚠️ Important: Due to DWM security restrictions, the application must be placed outside user directories.
-
-🎯 Usage
-General Settings
-Install/Uninstall: Enable or disable DWMBlurGlass effects
-Blur Radius: Adjust global blur intensity
-Override DWMAPI: Override Windows 11 Mica effects with custom blur
-Extend to Borders: Apply effects to window borders (Windows 10)
-
-Advanced Settings
-Aero Reflection: Enable Windows 7-style reflection effects
-Title Bar Buttons: Restore classic Windows 7 button styling
-Color Modes: Customize colors for light and dark themes
-Blend Colors: Set custom title bar blend colors
-
-Symbol Files
-Auto-Download: Automatically download required symbol files
-Status Check: Verify if current symbols are valid
-Manual Refresh: Re-download symbols after Windows updates
-
-🔧 Troubleshooting
-Installation Failed: Ensure app is not in user directory, run as admin
-Symbols Invalid: Download fresh symbols from Symbol tab
-Effects Not Working: Verify installation status, download valid symbols
-Error Messages: Check specific error solutions in documentation
-
-📊 System Requirements
-Windows 10 version 1903 or later
-Windows 11 (all versions)
-Administrator privileges required
-Internet connection for symbol downloads
-DWM service enabled
-GPU with DirectX support
-
-🌐 Multi-Language Support
-English, Chinese (Simplified/Traditional), Japanese, Korean
-German, French, Spanish, Italian, Portuguese, Russian
-And more - 15+ languages supported
-
-💻 Technical Implementation
-Direct DWM integration for system-level blur effects
-Windows API hooks for title bar modification
-Symbol file management for compatibility
-GPU-accelerated rendering for performance
-Memory-efficient implementation
-System service integration`
-  },
-  {
+{
     title: 'Programming Keyboard Trainer',
     description: 'A Flutter Windows Desktop Application that helps beginners practice typing and learn HTML, CSS, and JavaScript syntax with real-time metrics.',
     technologies: ['Flutter SDK', 'Dart', 'Visual Studio', 'Material Design', 'flutter_highlight', 'flutter_typeahead', 'provider'],
@@ -649,7 +836,7 @@ Multiplayer mode
 ⚠️ Demo Status
 Currently no public demo version available. Contact developer for access.`
   },
-  {
+{
     title: 'CSS-Labs',
     description: 'CSS-Labs is a web-based tool designed to help developers learn and experiment with CSS layouts (Flexbox and Grid) with live preview and code generation.',
     technologies: ['React', 'React DOM', 'Bootstrap CSS', 'Custom Components', 'JSZip', 'SVG Icons', 'React Hooks', 'localStorage'],
@@ -714,7 +901,7 @@ Export Code: Copy HTML/CSS or export to CodePen/JSFiddle/ZIP
 Undo/Redo: Navigate history with keyboard shortcuts
 Save/Load: JSON configuration import/export`
   },
-  {
+{
     title: 'Security Labs Web Platform',
     description: 'Security Labs is a web-based interactive learning platform designed to teach practical cybersecurity concepts through hands-on labs and curated resources.',
     technologies: ['Next.js', 'Tailwind CSS', 'shadcn/ui', 'Prisma', 'SQLite', 'TypeScript', 'Vite', 'Vercel'],
@@ -778,208 +965,21 @@ Security Topics: 15+ comprehensive coverage
 Hands-on Practice: 100% practical learning approach
 Career Benefits: Huge advantage for cybersecurity professionals`
   },
-  {
-    title: 'OneKit - Modern JavaScript Library',
-    description: 'OneKit is a lightweight, powerful JavaScript library that provides everything you need for modern web development: DOM manipulation, animations, reactive state management, routing, API integration, and more.',
-    technologies: ['Vanilla JavaScript', 'ES6+', 'Rollup/Webpack', 'Jest/QUnit', 'JSDoc', 'npm/yarn', 'ES Modules', 'Fluent Interface'],
-    category: 'Library',
-    featured: true,
-    features: [
-      '🔧 DOM Manipulation',
-      '✨ Animations',
-      '🧠 Reactive State',
-      '🧭 Router',
-      '🌐 HTTP Client',
-      '👆 Gestures',
-      '📦 Components',
-      '🎨 Themes',
-      '👁️ Accessibility',
-      '💾 Storage'
-    ],
-    detailedDescription: `OneKit - Modern JavaScript Library
-OneKit is a lightweight, powerful JavaScript library that provides everything you need for modern web development: DOM manipulation, animations, reactive state management, routing, API integration, and more.
-
-🚀 Features
-DOM Manipulation - jQuery-like API for element selection and manipulation
-Animations - Smooth CSS animations and transitions
-Reactive State - Automatic UI updates with reactive data binding
-Router - Client-side routing with history API support
-HTTP Client - AJAX requests, WebSocket, and file uploads
-Gestures - Touch and gesture support for mobile devices
-Components - Reusable component system
-Themes - Built-in theming and dark mode support
-Accessibility - Screen reader support and focus management
-Storage - Local/session storage utilities
-Utilities - Debounce, throttle, date formatting, and more
-
-📦 Quick Start
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My OneKit App</title>
-</head>
-<body>
-    <div id="app">
-        <h1>Hello OneKit!</h1>
-        <button class="btn">Click me</button>
-    </div>
-
-    <script src="onekit.js"></script>
-    <script>
-        // DOM manipulation
-        ok('.btn').click(() => {
-            ok('#app').append('<p>Button clicked!</p>');
-        });
-
-        // Animations
-        ok('.btn').fade_in();
-    </script>
-</body>
-</html>
-
-🛠️ Tech Stack
-Language: Vanilla JavaScript (ES6+)
-Build Tool: Rollup/Webpack
-Testing: Jest/QUnit
-Documentation: JSDoc
-Package Manager: npm/yarn
-Browser Support: Modern Browsers
-Module System: ES Modules/CommonJS
-API Design: Fluent Interface Pattern
-
-📊 Key Metrics
-Core Features: 10+
-API Methods: 100+
-File Size: 25KB (minified)
-Browser Support: Modern browsers
-Dependencies: 0 (zero dependencies)
-License: MIT
-
-🌐 Browser Support
-Chrome (latest) - Supported
-Firefox (latest) - Supported
-Safari (latest) - Supported
-Edge (latest) - Supported
-IE 11 - Not supported`
-  },
-  {
-    title: 'MM Match - Tinder-style Dating Bot',
-    description: 'Complete Telegram dating bot with swipe functionality, built with Vercel and Turso for scalable performance supporting up to 100,000 users.',
-    technologies: ['Node.js', 'Telegraf', 'JavaScript ES Modules', 'Turso Database', 'LibSQL Client', 'Vercel Functions', 'Telegram Bot API', 'Webhook Integration'],
-    category: 'Bot',
-    featured: true,
-    liveDemo: 'https://t.me/mmcupid_bot',
-    features: [
-      '🤖 Step-by-step Registration',
-      '💕 Discovery System',
-      '⚧ Gender-based Matching',
-      '✨ Match Notification',
-      '✏️ Profile Editing',
-      '🎯 Smart UI & Commands',
-      '🚀 Scalable Architecture',
-      '🔒 Zero Storage Cost'
-    ],
-    detailedDescription: `MM Match - Tinder-style Dating Bot
-A complete Telegram dating bot with swipe functionality, built with Vercel and Turso for scalable performance supporting up to 100,000 users.
-
-🤖 Bot Information
-Bot Name: MM Match
-Bot Username: @mmcupid_bot
-Direct Link: https://t.me/mmcupid_bot
-
-🎯 Features
-Step-by-step Registration: Collects nickname, age, location, photo, bio, gender, and preferences
-Discovery System: Swipe through profiles with "Next" and "Like" buttons
-Gender-based Matching: Male users see Female profiles, Female users see Male profiles
-Match Notification: When two users like each other, usernames are revealed
-Profile Editing: Update any profile information anytime
-Smart UI: Button-based interactions with pinned commands
-Scalable Architecture: Optimized for 100,000+ users
-Zero Storage Cost: Uses Telegram photo_id instead of storing images
-Smart User Links: Fallback to tg://user?id=xxx when username not set
-
-🛠️ Tech Stack
-Backend: Node.js, Telegraf, JavaScript (ES Modules)
-Database: Turso (SQLite-compatible), LibSQL Client
-Deployment: Vercel, Vercel Functions
-APIs: Telegram Bot API, Webhook Integration
-
-🎨 User Interface & Experience
-Welcome Screen with Myanmar language support
-7-step registration process
-Button-based navigation with pinned commands
-Gender-based profile filtering
-Real-time match notifications
-Profile editing capabilities
-
-📊 Key Metrics
-User Capacity: 100,000+
-Bot Commands: 5 (/start, /find, /edit, /update, /help)
-Registration Steps: 7
-Database: Turso edge database
-Platform: Telegram
-Deployment: Vercel serverless`
-  },
-  {
-    title: 'YBS AI (Intelligent Public Transport)',
-    description: 'A comprehensive bus route guide application for Yangon, Myanmar, featuring interactive maps, AI-powered route assistance, and offline functionality.',
-    technologies: ['React 19', 'TypeScript', 'Tailwind CSS', 'Leaflet Maps', 'Google Gemini AI', 'IndexedDB', 'Dexie', 'Progressive Web App'],
-    category: 'AI',
-    featured: true,
-    liveDemo: 'https://ybs-mm-v2.vercel.app/',
-    features: [
-      '🗺️ Interactive Maps with Leaflet and OpenStreetMap',
-      '🤖 AI-Powered Assistant with Google Gemini',
-      '🔍 Advanced Search & Navigation',
-      '📱 Responsive Mobile-First Design',
-      '💾 Offline Capabilities with IndexedDB',
-      '🌐 Myanmar & English Language Support'
-    ],
-    detailedDescription: `Yangon YBS Guide 🚌
-A comprehensive bus route guide application for Yangon, Myanmar, featuring interactive maps, AI-powered route assistance, and offline functionality.
-
-🌟 Features
-🗺️ Interactive Maps
-Leaflet-powered maps with OpenStreetMap tiles
-GPS location services to find nearby bus stops
-Route visualization with color-coded bus routes
-Stop search and navigation on the map
-🤖 AI-Powered Assistant
-Natural language queries in Myanmar and English
-Intelligent route finding using Google Gemini AI
-Contextual responses with transfer information
-Conversational interface for transportation queries
-🔍 Advanced Search & Navigation
-Route search between any two bus stops
-Stop directory with 1000+ stops organized by township
-Route filtering by start/end locations
-Transfer planning with multiple route options
-📱 Responsive Design
-Mobile-first design with bottom navigation
-Desktop interface with header navigation
-Progressive Web App capabilities
-Offline functionality with cached data
-💾 Offline Capabilities
-IndexedDB storage using Dexie
-Local route data for offline access
-Fast loading without internet dependency
-Data synchronization when online`
-  },
-  {
+{
     title: 'OneKit Framework',
     description: 'Custom lightweight JavaScript framework for routing and state management to optimize web performance.',
     technologies: ['JavaScript', 'Framework Development', 'State Management', 'Web Performance'],
     category: 'Framework',
     featured: false,
   },
-  {
+{
     title: 'Mobile App Portfolio',
     description: 'Various utility software solutions currently available on Google Play Store for public use.',
     technologies: ['Flutter', 'Play Store Deployment', 'Mobile Utilities', 'App Development'],
     category: 'Mobile',
     featured: false,
-  },
-];
+  }
+];;
 
 export default function ProjectsSection() {
   const [currentPage, setCurrentPage] = useState(1);

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -6,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import StructuredData from "@/components/structured-data";
 import { BackToTop } from "@/components/ui/back-to-top";
 import LoadingScreen from "@/components/loading-screen";
+import { metadata } from "./metadata";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
@@ -18,71 +18,6 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-
-export const metadata: Metadata = {
-  title: {
-    default: "Arkar Yan - Full Stack Developer | Software Architect",
-    template: "%s | Arkar Yan"
-  },
-  description: "ဆော့ဖ်ဝဲလ်ဗိသုကာပညာရှင်နှင့် နည်းပညာပညာပေးသူ အာကာယံ၏ Portfolio ဖြစ်ပါသည်။ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်ပြီး၊ k Square ၏ Founder တစ်ဦးလည်း ဖြစ်သည်။ MERN, Laravel နှင့် Flutter နည်းပညာများဖြင့် ခေတ်မီဆော့ဖ်ဝဲလ်ဖြေရှင်းချက်များကို ဖန်တီးပေးလျက်ရှိပါသည်။",
-  keywords: ["Arkar Yan", "Software Engineer", "Full Stack Developer", "Project Manager", "Instructor", "Founder", "Software Architect", "MERN", "Laravel", "Flutter", "Cybersecurity", "SaaS", "Next.js", "React.js", "Node.js", "PHP", "Web Development", "Mobile Development", "k Square", "Myanmar Cyber Ghost", "TypeScript", "Tailwind CSS"],
-  authors: [{ name: "Arkar Yan" }],
-  creator: "Arkar Yan",
-  publisher: "Arkar Yan",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL("https://arkaryan.net/"),
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
-  },
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: "Arkar Yan - Full Stack Developer & Software Architect",
-    description: "ဆော့ဖ်ဝဲလ်ဗိသုကာပညာရှင်နှင့် နည်းပညာပညာပေးသူ အာကာယံ၏ Portfolio ဖြစ်ပါသည်။ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်ပြီး၊ k Square ၏ Founder တစ်ဦးလည်း ဖြစ်သည်။ MERN, Laravel နှင့် Flutter နည်းပညာများဖြင့် ခေတ်မီဆော့ဖ်ဝဲလ်ဖြေရှင်းချက်များကို ဖန်တီးပေးလျက်ရှိပါသည်။",
-    type: "website",
-    url: "https://arkaryan.net/",
-    siteName: "Arkar Yan - Portfolio",
-    locale: "en_US",
-    images: [
-      {
-        url: "/profile.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Arkar Yan - Full Stack Developer & Software Architect",
-      }
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Arkar Yan - Full Stack Developer & Software Architect",
-    description: "ဆော့ဖ်ဝဲလ်ဗိသုကာပညာရှင်နှင့် နည်းပညာပညာပေးသူ အာကာယံ၏ Portfolio ဖြစ်ပါသည်။ လုပ်ငန်းသုံး SaaS၊ AI နည်းပညာနှင့် ဆိုက်ဘာလုံခြုံရေးဆိုင်ရာ ပရောဂျက်ပေါင်း ၂၀၀ ကျော်ကို ဦးဆောင်ခဲ့သူဖြစ်ပြီး၊ k Square ၏ Founder တစ်ဦးလည်း ဖြစ်သည်။ MERN, Laravel နှင့် Flutter နည်းပညာများဖြင့် ခေတ်မီဆော့ဖ်ဝဲလ်ဖြေရှင်းချက်များကို ဖန်တီးပေးလျက်ရှိပါသည်။",
-    images: ["/profile.jpg"],
-    creator: "@hidecard1",
-    site: "@hidecard1",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
-  },
-};
 
 export default function RootLayout({
   children,
@@ -121,22 +56,35 @@ export default function RootLayout({
               description: "Software development and cybersecurity company",
               url: "https://ksquare.com",
             },
-            knowsAbout: [
-              "Software Development",
-              "Web Development",
-              "Mobile Development",
-              "Cybersecurity",
-              "Project Management",
-              "Software Architecture",
-              "MERN Stack",
-              "Laravel",
-              "Flutter",
-              "Next.js",
-              "React.js",
-              "Node.js",
-              "TypeScript",
-              "Tailwind CSS",
-            ],
+             knowsAbout: [
+               "Software Development",
+               "Web Development",
+               "Mobile Development",
+               "Cybersecurity",
+               "Project Management",
+               "Software Architecture",
+               "MERN Stack",
+               "Laravel",
+               "Flutter",
+               "Next.js",
+               "React.js",
+               "Node.js",
+               "TypeScript",
+               "Tailwind CSS",
+               "YBS AI - Intelligent Public Transport",
+               "MM Match - Telegram Dating Bot",
+               "Solo VPN",
+               "KG English",
+               "DWMBlurGlass",
+               "OneKit JavaScript Library",
+               "MM Career AI",
+               "PhotoBooth",
+               "Exam System",
+               "YHA AI Chat",
+               "CSS-Labs",
+               "Security Labs",
+               "Programming Keyboard Trainer",
+             ],
             sameAs: [
               "https://twitter.com/hidecard1",
               "https://linkedin.com/in/arkaryan",
