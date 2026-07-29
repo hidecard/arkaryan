@@ -47,7 +47,7 @@ export default function RootLayout({
             name: "Arkar Yan",
             url: "https://arkaryan.net/",
             jobTitle: "Full Stack Developer & Software Architect",
-            description: "Visionary Software Architect and Educator with 10+ years experience in enterprise SaaS, AI solutions, and cybersecurity advocacy.",
+            description: "Visionary Software Architect and Educator with 10+ years experience. Successfully led 200+ projects, from enterprise SaaS to community-driven AI solutions. Creator of YBS AI, MM Match, Solo VPN, KG English, DWMBlurGlass, OneKit, MM Career AI, and many more open-source projects.",
             email: "info@arkaryan.net",
             image: "https://arkaryan.net/profile.jpg",
             worksFor: {

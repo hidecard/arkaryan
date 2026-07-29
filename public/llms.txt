@@ -5,7 +5,7 @@ Site: https://arkaryan.net/
 About
 - Arkar Yan is a full-stack developer, software architect, and educator.
 - He builds modern web/mobile systems and teaches practical development to Myanmar students.
-- Core domains: enterprise SaaS, AI solutions, cybersecurity advocacy, and software architecture.
+- Core domains: enterprise SaaS, AI solutions, cybersecurity advocacy, and software architecture. Created 200+ projects including YBS AI, MM Match, Solo VPN, KG English, DWMBlurGlass, OneKit, and MM Career AI.
 
 What you can find on this site
 - Portfolio & personal profile

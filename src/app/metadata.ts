@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     default: "Arkar Yan - Full Stack Developer | Software Architect",
     template: "%s | Arkar Yan",
   },
-  description: "Arkar Yan is a full-stack developer, software architect, and educator based in Yangon, Myanmar. With 9+ years of experience in enterprise SaaS, AI solutions, cybersecurity advocacy, and software architecture. Creator of YBS AI, MM Match, Solo VPN, KG English, DWMBlurGlass, OneKit, and many more open-source projects.",
+  description: "Visionary Software Architect and Educator with 10+ years experience. Successfully led 200+ projects, from enterprise SaaS to community-driven AI solutions. Creator of YBS AI, MM Match, Solo VPN, KG English, DWMBlurGlass, OneKit, MM Career AI, and many more open-source projects.",
   keywords: ["Arkar Yan", "Software Engineer", "Full Stack Developer", "Project Manager", "Instructor", "Founder", "Software Architect", "MERN", "Laravel", "Flutter", "Cybersecurity", "SaaS", "Next.js", "React.js", "Node.js", "PHP", "Web Development", "Mobile Development", "k Square", "Myanmar Cyber Ghost", "TypeScript", "Tailwind CSS", "YBS AI", "MM Match", "Solo VPN", "KG English", "DWMBlurGlass", "OneKit", "AI Solutions", "Yangon Myanmar"],
   authors: [{ name: "Arkar Yan" }],
   creator: "Arkar Yan",

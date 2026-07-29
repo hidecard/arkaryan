@@ -137,7 +137,7 @@ export default function HomeSection({ scrollToSection }: HomeSectionProps) {
               
               <AnimatedSection delay={600}>
                 <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-md mx-auto lg:mx-0">
-                  Visionary Software Architect and Educator with 10+ years of experience. Successfully led 200+ projects, from enterprise SaaS to community-driven AI solutions. Founder of k Square and Myanmar Cyber Ghost.
+                  Visionary Software Architect and Educator with 10+ years of experience. Successfully led 200+ projects, from enterprise SaaS to community-driven AI solutions. Creator of YBS AI, MM Match, Solo VPN, KG English, DWMBlurGlass, OneKit, MM Career AI, and more. Founder of k Square and Myanmar Cyber Ghost.
                 </p>
               </AnimatedSection>
               
